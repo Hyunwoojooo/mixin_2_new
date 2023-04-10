@@ -22,6 +22,12 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
   bool bongsa = false;
   bool health = false;
   bool animal = false;
+  bool sagyo = false;
+  bool classes = false;
+  bool language = false;
+  bool restuarant = false;
+  bool cook = false;
+  bool finance = false;
 
 
   @override
@@ -58,7 +64,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
             borderRadius: BorderRadius.circular(8.0),
           ),
           onPressed: () {
-            if (nextButtonColor == true){
+            if (nextButtonColor == false){
               Navigator.of(context).push(
                 MaterialPageRoute(
                     builder: (context) => MakePositionScreen()),
@@ -126,23 +132,27 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 Row(
                   children: [
                     // IT
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(10, 14, 10, 12.53),
-                      height: 48,
+                    SizedBox(
                       width: 101,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
+                      height: 48,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
+                            side: BorderSide(
+                              color: it == true ? MIXIN_2 : MIXIN_BLACK_5
+                            ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                            backgroundColor: it == true ? MIXIN_ : MIXIN_BLACK_5
                           ),
-                          onPressed: null,
+                          onPressed: (){
+                            setState(() {
+                              it = !it;
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: it == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/IT.png',
@@ -166,48 +176,37 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                           )
                       ),
                     ),
+
                     SizedBox(
                       width: 12.0,
                     ),
                     // Design
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(13, 14, 10, 14),
-                      height: 48,
+                    SizedBox(
                       width: 92,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
-                          child: Container(
-                            color: MIXIN_BLACK_5,
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/design.png',
-                                  width: 18,
-                                  height: 18,
-                                ),
-                                const SizedBox(
-                                  width: 9.0,
-                                ),
-                                const Text(
-                                  '디자인',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
-                                ),
-                              ],
+                      height: 48,
+                      child: Container(
+                        color: MIXIN_BLACK_5,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/design.png',
+                              width: 18,
+                              height: 18,
                             ),
-                          )
+                            const SizedBox(
+                              width: 9.0,
+                            ),
+                            const Text(
+                              '디자인',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: MIXIN_BLACK_1
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(

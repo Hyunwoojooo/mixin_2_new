@@ -86,9 +86,9 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                   const SizedBox(
                     height: 29.0,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         backgroundColor: MIXIN_BLACK_5,
                         radius: 12.0,

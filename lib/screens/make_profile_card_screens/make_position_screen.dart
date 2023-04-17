@@ -82,9 +82,9 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                   const SizedBox(
                     height: 29.0,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         backgroundColor: MIXIN_POINT_COLOR,
                         radius: 12.0,

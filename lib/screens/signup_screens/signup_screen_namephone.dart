@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:mixin_2/components/custom_textformfield.dart';
 import 'package:mixin_2/components/number_formatter.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
+import 'package:flutter_countdown_timer/countdown.dart';
 import 'package:dio/dio.dart';
 
 class SignUpScreenNamePhone extends StatefulWidget {
@@ -18,30 +23,56 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
 
   final _userNameTextEditController = TextEditingController();
   final _userPhoneNumberTextController = TextEditingController();
+  final _userCertificationNumberController = TextEditingController();
   List<bool> isSelected = [false, false];
   List<String> textList = ['여자', '남자'];
 
+  bool onClickSendButton = false;
+  String sendText = '인증번호 전송';
+  String sendAgainText = '인증번호 재전송';
+
   String userName = '';
   String userPhoneNumber = '';
+  String userCertificationNumber = '';
 
-  int ?newsAgency;
+  Timer? countdownTimer;
+  Duration myDuration = Duration(minutes: 3);
+
+  void startTimer() {
+    countdownTimer =
+        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+  }
+
+  void setCountDown() {
+    final reduceSecondsBy = 1;
+    setState(() {
+      final seconds = myDuration.inSeconds - reduceSecondsBy;
+      if (seconds < 0) {
+        countdownTimer!.cancel();
+      } else {
+        myDuration = Duration(seconds: seconds);
+      }
+    });
+  }
+
+  int? newsAgency;
   String selectAgency = '통신사';
   String kt = 'KT';
   String skt = 'SKT';
   String lg = 'LG';
   String addp = '알뜰폰';
 
-  void changeAgency(){
-    if(newsAgency == 0){
+  void changeAgency() {
+    if (newsAgency == 0) {
       selectAgency = kt;
     }
-    if(newsAgency == 1){
+    if (newsAgency == 1) {
       selectAgency = skt;
     }
-    if(newsAgency == 2){
+    if (newsAgency == 2) {
       selectAgency = lg;
     }
-    if(newsAgency == 3){
+    if (newsAgency == 3) {
       selectAgency = addp;
     }
   }
@@ -69,7 +100,6 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
     ),
   ];
 
-
   @override
   void dispose() {
     _userNameTextEditController.dispose();
@@ -79,6 +109,9 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
 
   @override
   Widget build(BuildContext context) {
+    String strDigits(int n) => n.toString().padLeft(2, '0');
+    final minutes = strDigits(myDuration.inMinutes.remainder(60));
+    final seconds = strDigits(myDuration.inSeconds.remainder(60));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -267,16 +300,17 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                         child: Center(
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                                primary: MIXIN_POINT_COLOR,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(8.0)),
-                                                elevation: 8.0,
+                                              primary: MIXIN_POINT_COLOR,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0)),
+                                              elevation: 8.0,
                                             ),
                                             onPressed: () async {
                                               Navigator.of(context).pop();
                                               changeAgency();
-                                              setState(() {
-                                              });
+                                              setState(() {});
                                               print(newsAgency);
                                             },
                                             child: Container(
@@ -289,7 +323,8 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                                       color: Colors.white,
                                                       fontSize: 18,
                                                       fontFamily: 'SUIT',
-                                                      fontWeight: FontWeight.w600),
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                                 ),
                                               ),
                                             ),
@@ -310,7 +345,9 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                     fontWeight: FontWeight.w500,
                                     fontFamily: 'SUIT',
                                     fontSize: 16.0,
-                                    color: selectAgency == '통신사' ? MIXIN_BLACK_4 : MIXIN_BLACK_1),
+                                    color: selectAgency == '통신사'
+                                        ? MIXIN_BLACK_4
+                                        : MIXIN_BLACK_1),
                               ),
                               SizedBox(
                                 width: 15.0,
@@ -357,12 +394,12 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                             // 모든 Input 상태의 기본 스타일 세팅
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide:
-                                    BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
+                                borderSide: BorderSide(
+                                    color: MIXIN_BLACK_5, width: 1.5)),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
-                                borderSide:
-                                    BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
+                                borderSide: BorderSide(
+                                    color: MIXIN_BLACK_5, width: 1.5)),
                             // focus 일 때 세팅
                             focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -373,7 +410,8 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             borderSide: BorderSide(
-                                                color: Colors.white, width: 1.5))
+                                                color: Colors.white,
+                                                width: 1.5))
                                         .borderSide
                                     // .copyWith(color: Colors.red)),
                                     ),
@@ -388,43 +426,120 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                 height: 12.0,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Container(
+                    width: 216,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: MIXIN_BLACK_5,
+                        width: 1.5,
+                      ),
+                      color: Colors.transparent,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                          width: 140,
+                          height: 56,
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            scrollPadding: EdgeInsets.all(0.0),
+                            controller: _userCertificationNumberController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(6),
+                            ],
+                            cursorColor: Colors.grey,
+                            obscureText: false,
+                            autofocus: false,
+                            onChanged: (String value) {
+                              userCertificationNumber = value;
+                            },
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(20),
+                              hintText: '인증번호 입력',
+                              hintStyle: TextStyle(
+                                color: MIXIN_BLACK_4,
+                                fontSize: 16.0,
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w500,
+                              ),
+                              fillColor: Colors.grey,
+                              filled: false,
+                              // 모든 Input 상태의 기본 스타일 세팅
+                              border: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.transparent)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.transparent)),
+                              // focus 일 때 세팅
+                              focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.transparent))
+                                  .copyWith(
+                                      borderSide: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.5))
+                                          .borderSide
+                                      // .copyWith(color: Colors.red)),
+                                      ),
+                            ),
+                          ),
+                        ),
+                        Text('$minutes:$seconds'),
+                        SizedBox(
+                          width: 8,
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: 32,
                     width: 110,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
                           primary: MIXIN_POINT_COLOR,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0)),
                           elevation: 0.0),
                       onPressed: () async {
-                        Dio dio = Dio();
-                        final Response resp = await dio.post(serverUrl, data: {
-                          "userEmail" : "adadaddda",
-                          "userPassword" : "1234"
+                        setState(() {
+                          onClickSendButton = true;
                         });
+                        startTimer();
+                        // Dio dio = Dio();
+                        // final Response resp = await dio.post(serverUrl, data: {
+                        //   "userEmail" : "adadaddda",
+                        //   "userPassword" : "1234"
+                        // });
                         // final Response resp1 = await dio.get(serverUrl);
                         // print(resp1);
                         // "userEmail": _userNameTextEditController.text,
                         // "userPassword": _userPhoneNumberTextController.text,
                         // "userName": "주현우",
-                        print(resp);
+                        // print(resp);
                         print(_userPhoneNumberTextController.text);
                         print(_userNameTextEditController.text);
                       },
                       child: Container(
-                        padding: EdgeInsets.zero,
-                        child: Center(
-                          child: Text(
-                            '인증번호 전송',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: 'SUIT',
-                                fontWeight: FontWeight.w500),
-                          ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          onClickSendButton == false ? sendText : sendAgainText,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -432,7 +547,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                 ],
               ),
               const SizedBox(
-                height: 130,
+                height: 100,
               ),
               Center(
                 child: ElevatedButton(
@@ -443,7 +558,8 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                       elevation: 0.0),
                   onPressed: () async {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignUpScreenSchool()),
+                      MaterialPageRoute(
+                          builder: (context) => SignUpScreenSchool()),
                     );
                   },
                   child: Container(

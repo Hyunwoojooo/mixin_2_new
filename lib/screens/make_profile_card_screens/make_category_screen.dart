@@ -1,4 +1,3 @@
-import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:mixin_2/const/colors.dart';
 
@@ -12,23 +11,10 @@ class MakeCategoryScreen extends StatefulWidget {
 }
 
 class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
-
   bool nextButtonColor = false;
-  bool it = false;
-  bool design = false;
-  bool culture = false;
-  bool mucis = false;
-  bool trip = false;
-  bool bongsa = false;
-  bool health = false;
-  bool animal = false;
-  bool sagyo = false;
-  bool classes = false;
-  bool language = false;
-  bool restuarant = false;
-  bool cook = false;
-  bool finance = false;
 
+  List<bool> categoryList = List.filled(14, false);
+  List<String> selectedOptions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,39 +32,37 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white,
-                spreadRadius: 0.0,
-                blurRadius: 0.0,
-              ),
-            ]
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: 0.0,
+              blurRadius: 0.0,
+            ),
+          ],
         ),
         width: 342,
         height: 56,
         child: RawMaterialButton(
-          fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+          fillColor: categoryList.where((element) => element).length >= 3 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
           onPressed: () {
-            if (nextButtonColor == false){
+            if (categoryList.where((element) => element).length >= 3) {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) => MakePositionScreen()),
+                MaterialPageRoute(builder: (context) => MakePositionScreen()),
               );
-            } else {}
+            } else {null;}
           },
-          child: Text(
+          child: const Text(
             '다음',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600
-            ),
+                fontWeight: FontWeight.w600),
           ),
         ),
       ),
@@ -131,26 +115,28 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 ),
                 Row(
                   children: [
-                    // IT
+                    // IT - 0
                     SizedBox(
                       width: 101,
                       height: 48,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                              color: it == true ? MIXIN_2 : MIXIN_BLACK_5
-                            ),
+                              side: BorderSide(
+                                  color: categoryList[0] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                               padding: EdgeInsets.zero,
                               elevation: 0.0,
-                            backgroundColor: it == true ? MIXIN_ : MIXIN_BLACK_5
-                          ),
-                          onPressed: (){
+                              backgroundColor:
+                              categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
                             setState(() {
-                              it = !it;
+                              categoryList[0] = !categoryList[0];
                             });
                           },
                           child: Container(
-                            color: it == true ? MIXIN_ : MIXIN_BLACK_5,
+                            color: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -168,67 +154,91 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // Design
+                    // 디자인 - 1
                     SizedBox(
                       width: 92,
                       height: 48,
-                      child: Container(
-                        color: MIXIN_BLACK_5,
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/design.png',
-                              width: 18,
-                              height: 18,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                                color:
+                                    categoryList[1] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            const SizedBox(
-                              width: 9.0,
-                            ),
-                            const Text(
-                              '디자인',
-                              style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w500,
-                                  color: MIXIN_BLACK_1
+                            padding: EdgeInsets.zero,
+                            elevation: 0.0,
+                            backgroundColor:
+                                categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5),
+                        onPressed: () {
+                          setState(() {
+                            categoryList[1] = !categoryList[1];
+                          });
+                        },
+                        child: Container(
+                          color: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/design.png',
+                                width: 18,
+                                height: 18,
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 9.0,
+                              ),
+                              const Text(
+                                '디자인',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: MIXIN_BLACK_1),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                    // 문화활동 - 2
+                    SizedBox(
                       height: 48,
                       width: 108,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color: categoryList[2] == true
+                                      ? MIXIN_2
+                                      : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[2] = !categoryList[2];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/culture.png',
@@ -244,13 +254,11 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
@@ -260,23 +268,30 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 Row(
                   children: [
                     // 음악
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[3] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[3] = !categoryList[3];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/music.png',
@@ -292,35 +307,40 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // trip
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(13, 12, 11, 12),
+                    // trip -4
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[4] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[4] = !categoryList[4];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/trip.png',
@@ -336,35 +356,40 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 봉사활동
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(13, 13, 10, 13),
+                    // 봉사활동 - 5
+                    SizedBox(
                       height: 48,
                       width: 108,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[5] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[5] = !categoryList[5];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/bongsa.png',
@@ -380,13 +405,11 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
@@ -395,24 +418,31 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 ),
                 Row(
                   children: [
-                    // 운동
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
+                    // 운동 - 6
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[6] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[6] = !categoryList[6];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/health.png',
@@ -428,35 +458,40 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 반려동물
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(11, 15, 10, 15.61),
+                    // 반려동물 - 7
+                    SizedBox(
                       height: 48,
                       width: 108,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[7] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[7] = !categoryList[7];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/animal.png',
@@ -472,35 +507,40 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 사교
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(15, 12, 10, 13),
+                    // 사교 - 8
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color:
+                                      categoryList[8] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[8] = !categoryList[8];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/sagyo.png',
@@ -516,13 +556,11 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
@@ -531,24 +569,32 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 ),
                 Row(
                   children: [
-                    // 수업
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(12, 12.42, 10, 12.78),
+                    // 수업 - 9
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color: categoryList[9] == true
+                                      ? MIXIN_2
+                                      : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[9] = !categoryList[9];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/class.png',
@@ -564,35 +610,41 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 외국어
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(10, 12, 10, 13),
+                    // 외국어 - 10
+                    SizedBox(
                       height: 48,
                       width: 92,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                  color: categoryList[10] == true
+                                      ? MIXIN_2
+                                      : MIXIN_BLACK_5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[10] = !categoryList[10];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/language.png',
@@ -608,35 +660,42 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 맛집
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(11, 12, 10, 12),
+                    // 맛집 - 11
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
+                              side: BorderSide(
+                                color: categoryList[11] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: EdgeInsets.zero,
+                              elevation: 0.0,
+                              backgroundColor:
+                                  categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5),
+                          onPressed: () {
+                            setState(() {
+                              categoryList[11] = !categoryList[11];
+                            });
+                          },
                           child: Container(
-                            color: MIXIN_BLACK_5,
+                            color: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/images/restuarant.png',
@@ -652,13 +711,11 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                                       fontFamily: 'SUIT',
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
+                                      color: MIXIN_BLACK_1),
                                 ),
                               ],
                             ),
-                          )
-                      ),
+                          )),
                     ),
                   ],
                 ),
@@ -667,89 +724,100 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 ),
                 Row(
                   children: [
-                    // 요리
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(11, 14, 10, 14),
+                    // 요리 - 12
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
-                          child: Container(
-                            color: MIXIN_BLACK_5,
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/cook.png',
-                                  width: 24,
-                                  height: 19.86,
-                                ),
-                                const SizedBox(
-                                  width: 7.0,
-                                ),
-                                const Text(
-                                  '요리',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
-                                ),
-                              ],
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                                color: categoryList[12] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                          )
+                            padding: EdgeInsets.zero,
+                            elevation: 0.0,
+                            backgroundColor:
+                                categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5),
+                        onPressed: () {
+                          setState(() {
+                            categoryList[12] = !categoryList[12];
+                          });
+                        },
+                        child: Container(
+                          color: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/cook.png',
+                                width: 24,
+                                height: 19.86,
+                              ),
+                              const SizedBox(
+                                width: 7.0,
+                              ),
+                              const Text(
+                                '요리',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: MIXIN_BLACK_1),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12.0,
                     ),
-                    // 금융
-                    Container(
-                      margin: EdgeInsets.zero,
-                      padding: const EdgeInsets.fromLTRB(9.18, 10, 10, 13),
+                    // 금융 - 13
+                    SizedBox(
                       height: 48,
                       width: 80,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                          color: MIXIN_BLACK_5
-                      ),
                       child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: null,
-                          child: Container(
-                            color: MIXIN_BLACK_5,
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/finance.png',
-                                  width: 24.17,
-                                  height: 25,
-                                ),
-                                const SizedBox(
-                                  width: 8.65,
-                                ),
-                                const Text(
-                                  '금융',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1
-                                  ),
-                                ),
-                              ],
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                                color:
+                                    categoryList[13] == true ? MIXIN_2 : MIXIN_BLACK_5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                          )
+                            padding: EdgeInsets.zero,
+                            elevation: 0.0,
+                            backgroundColor:
+                                categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5),
+                        onPressed: () {
+                          setState(() {
+                            categoryList[13] = !categoryList[13];
+                          });
+                        },
+                        child: Container(
+                          color: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/finance.png',
+                                width: 24.17,
+                                height: 25,
+                              ),
+                              const SizedBox(
+                                width: 8.65,
+                              ),
+                              const Text(
+                                '금융',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: MIXIN_BLACK_1),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],

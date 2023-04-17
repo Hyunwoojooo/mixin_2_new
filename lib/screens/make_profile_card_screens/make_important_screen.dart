@@ -82,9 +82,9 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
                   const SizedBox(
                     height: 29.0,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         backgroundColor: MIXIN_BLACK_5,
                         radius: 12.0,
@@ -198,10 +198,10 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
                           margin: EdgeInsets.fromLTRB(24, 26, 0, 0),
                           alignment: Alignment.centerLeft,
                           color: communication == true ? MIXIN_ : Colors.white,
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 '소통',
                                 style: TextStyle(

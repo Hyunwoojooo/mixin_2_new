@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../const/colors.dart';
-import 'make_introduce_screen.dart';
+import 'make_character_screen.dart';
 
 class MakeProfileScreen extends StatefulWidget {
   const MakeProfileScreen({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
               if (nextButtonColor == false){
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => MakeIntroduceScreen()),
+                      builder: (context) => MakeCharacterScreen()),
                 );
               } else {}
             },

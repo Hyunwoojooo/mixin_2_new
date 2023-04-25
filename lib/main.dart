@@ -24,6 +24,7 @@ class Mixin extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
       home: OnboardingScreen(),
+
     );
   }
 }

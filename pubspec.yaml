@@ -45,6 +45,10 @@ dependencies:
   firebase_core: ^2.7.0
   firebase_auth: ^4.2.10
   flutter_countdown_timer: ^4.1.0
+  smooth_page_indicator: ^1.1.0
+  image_picker: ^0.8.7+3
+  xml: ^6.2.2
+
 
 dev_dependencies:
   flutter_test:

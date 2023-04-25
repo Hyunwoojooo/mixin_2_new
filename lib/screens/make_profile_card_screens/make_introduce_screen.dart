@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../const/colors.dart';
-import 'make_important_screen.dart';
 
 class MakeIntroduceScreen extends StatefulWidget {
   const MakeIntroduceScreen({Key? key}) : super(key: key);
@@ -12,507 +15,229 @@ class MakeIntroduceScreen extends StatefulWidget {
 
 class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
 
+  XFile? _pickedFile;
 
-  bool nextButtonColor = false;
-  bool discuss = false;
-  bool peace = false;
-  bool shy = false;
-  bool talker = false;
-  bool serious = false;
-  bool curious = false;
-  bool j = false;
-  bool p = false;
 
   @override
   Widget build(BuildContext context) {
+
+    final _imageSize = MediaQuery.of(context).size.width / 4;
+
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0.0,
+        leading: GestureDetector(
+          child: Image.asset('assets/images/back_icon.png'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        decoration: const BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.white,
+            spreadRadius: 0.0,
+            blurRadius: 0.0,
+          ),
+        ]),
+        width: 342,
+        height: 56,
+        child: RawMaterialButton(
+          fillColor: MIXIN_POINT_COLOR,
           elevation: 0.0,
-          leading: GestureDetector(
-            child: Image.asset('assets/images/back_icon.png'),
-            onTap: () {
-              Navigator.pop(context);
-            },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          onPressed: () {},
+          child: const Text(
+            '다음',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'SUIT',
+                fontWeight: FontWeight.w600),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white,
-                  spreadRadius: 0.0,
-                  blurRadius: 0.0,
+      ),
+      body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 29.0,
                 ),
-              ]
-          ),
-          width: 342,
-          height: 56,
-          child: RawMaterialButton(
-            fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-            elevation: 0.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            onPressed: () {
-              if (nextButtonColor == false){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => MakeImportantScreen()),
-                );
-              } else {}
-            },
-            child: const Text(
-              '다음',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w600
-              ),
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 29.0,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: MIXIN_BLACK_5,
-                        radius: 12.0,
-                        child: Text(
-                          '1',
-                          style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12.0,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: MIXIN_POINT_COLOR,
-                        radius: 12.0,
-                        child: Text(
-                          '2',
-                          style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: Colors.white
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12.0,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: MIXIN_BLACK_5,
-                        radius: 12.0,
-                        child: Text(
-                          '3',
-                          style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
-                  const Text(
-                    '나를 3가지 단어로\n소개하자면?',
+                const Center(
+                  child: Text(
+                    '자신을 표현할 수 있는\n별명, 한마디를 적어주세요.',
                     style: TextStyle(
-                        fontFamily: 'SUIT',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 24.0
+                      fontFamily: 'SUIT',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 24.0,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 12.0,
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                Container(
+                  width: 81,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18.0),
+                    color: MIXIN_BLACK_5,
                   ),
-                  Container(
-                    width: 81,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18.0),
-                      color: MIXIN_BLACK_5,
+                  child: const Center(
+                    child: Text(
+                      '성격/특성',
+                      style: TextStyle(
+                        fontFamily: 'SUIT',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14.0,
+                        color: Color(0xFF51B49F),
+                      ),
                     ),
-                    child: const Center(
-                      child: Text(
-                        '성격/특성',
-                        style: TextStyle(
-                          fontFamily: 'SUIT',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14.0,
-                          color: Color(0xFF51B49F),
-                        ),
-                      ),
-                    ),
                   ),
-                  const SizedBox(
-                    height: 54,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 138,
-                          height: 48,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: discuss == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: discuss == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                discuss = !discuss;
-                              });
-                            },
-                            child: Container(
-                              color: discuss == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '논쟁을 좋아하는',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
+                ),
+                const SizedBox(
+                  height: 47,
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 20,),
+                    if (_pickedFile == null)
+                      Container(
+                        constraints: BoxConstraints(
+                          minHeight: _imageSize,
+                          minWidth: _imageSize,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: peace == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: peace == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                peace = !peace;
-                              });
-                            },
-                            child: Container(
-                              color: peace == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '평화를 좋아하는',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12.0,
-                  ),
-
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: shy == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: shy == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                shy = !shy;
-                              });
-                            },
-                            child: Container(
-                              color: shy == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '수줍음을 타는',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: talker == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: talker == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                talker = !talker;
-                              });
-                            },
-                            child: Container(
-                              color: talker == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '말주변이 좋은',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12.0,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: serious == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: serious == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                serious = !serious;
-                              });
-                            },
-                            child: Container(
-                              color: serious == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '진지한',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: curious == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                  width: 1.5
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor: curious == true ? MIXIN_ : Colors.white
-                          ),
-                          onPressed: (){
-                            setState(() {
-                              curious = !curious;
-                            });
+                        child: GestureDetector(
+                          onTap: () {
+                            _showBottomSheet();
                           },
-                          child: Container(
-                            color: curious == true ? MIXIN_ : Colors.white,
-                            child: const Text(
-                              '장난끼가 많은',
-                              style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                  color: MIXIN_BLACK_1
-                              ),
-                              textAlign: TextAlign.center,
+                          child: Center(
+                            child: Icon(
+                              Icons.account_circle,
+                              size: _imageSize,
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12.0,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(
-                                    color: j == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                    width: 1.5
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)
-                                ),
-                                padding: EdgeInsets.zero,
-                                elevation: 0.0,
-                                backgroundColor: j == true ? MIXIN_ : Colors.white
-                            ),
-                            onPressed: (){
-                              setState(() {
-                                j = !j;
-                              });
-                            },
-                            child: Container(
-                              color: j == true ? MIXIN_ : Colors.white,
-                              child: const Text(
-                                '계획적인',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0,
-                                    color: MIXIN_BLACK_1
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 18.0,
-                      ),
-                      SizedBox(
-                        width: 138,
-                        height: 48,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: p == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                  width: 1.5
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor: p == true ? MIXIN_ : Colors.white
-                          ),
-                          onPressed: (){
-                            setState(() {
-                              p = !p;
-                            });
-                          },
-                          child: Container(
-                            color: p == true ? MIXIN_ : Colors.white,
-                            child: const Text(
-                              '즉흥적인',
-                              style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                  color: MIXIN_BLACK_1
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+                      )
+                    else
+                      Center(
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 2, color: Theme.of(context).colorScheme.primary),
+                            image: DecorationImage(
+                                image: FileImage(File(_pickedFile!.path)),
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-
-                ],
-              ),
+                  ],
+                ),
+                // ElevatedButton(
+                //   style: ElevatedButton.styleFrom(
+                //     padding: EdgeInsets.zero,
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(80.0)
+                //     ),
+                //     backgroundColor: Colors.transparent,
+                //     elevation: 0.0
+                //   ),
+                //     onPressed: (){},
+                //     child: Image.asset(
+                //         'assets/images/profile_null.png',
+                //       height: 80.0,
+                //       width: 80.0,
+                //     ),
+                // )
+              ],
             ),
           ),
-        )
+        ),
+      ),
     );
   }
+
+  _showBottomSheet() {
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () => _getCameraImage(),
+              child: const Text('사진찍기'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(
+              thickness: 3,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () => _getPhotoLibraryImage(),
+              child: const Text('라이브러리에서 불러오기'),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  _getCameraImage() async {
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _pickedFile = pickedFile;
+      });
+    } else {
+      if (kDebugMode) {
+        print('이미지 선택안함');
+      }
+    }
+  }
+  _getPhotoLibraryImage() async {
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _pickedFile = _pickedFile;
+      });
+    } else {
+      if (kDebugMode) {
+        print('이미지 선택안함');
+      }
+    }
+  }
 }
+

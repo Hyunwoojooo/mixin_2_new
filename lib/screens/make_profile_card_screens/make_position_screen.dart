@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../const/colors.dart';
-import 'make_introduce_screen.dart';
+import 'make_character_screen.dart';
 
 class MakePositionScreen extends StatefulWidget {
   const MakePositionScreen({Key? key}) : super(key: key);
@@ -12,12 +12,8 @@ class MakePositionScreen extends StatefulWidget {
 
 class _MakePositionScreenState extends State<MakePositionScreen> {
 
-
-  bool nextButtonColor = false;
-  bool leader = false;
-  bool moodMaker = false;
-  bool liker = false;
-  bool calmer = false;
+  
+  List<bool> positionList = List.filled(4, false);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +31,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: Colors.white,
@@ -47,18 +43,20 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
         width: 342,
         height: 56,
         child: RawMaterialButton(
-          fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+          fillColor: (positionList.where((element) => element).length == 1) ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
           onPressed: () {
-            if (nextButtonColor == false){
+            if (positionList.where((element) => element).length == 1){
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => MakeIntroduceScreen()),
+                    builder: (context) => MakeCharacterScreen()),
               );
-            } else {}
+            } else {
+              null;
+            }
           },
           child: const Text(
             '다음',
@@ -177,7 +175,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: BorderSide(
-                                    color: leader == true ? MIXIN_2 : MIXIN_BLACK_5,
+                                    color: positionList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
                                   width: 1.5
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -185,23 +183,23 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                                 ),
                                 padding: EdgeInsets.zero,
                                 elevation: 0.0,
-                                backgroundColor: leader == true ? MIXIN_ : Colors.white
+                                backgroundColor: positionList[0] == true ? MIXIN_ : Colors.white
                             ),
                             onPressed: (){
                               setState(() {
-                                leader = !leader;
-                                if(leader == true){
-                                  moodMaker = false;
-                                  liker = false;
-                                  calmer = false;
+                                positionList[0] = !positionList[0];
+                                if(positionList[0] == true){
+                                  positionList[1] = false;
+                                  positionList[2] = false;
+                                  positionList[3] = false;
                                 }
                               });
                             },
                             child: Container(
-                              color: leader == true ? MIXIN_ : Colors.white,
-                              child: Column(
+                              color: positionList[0] == true ? MIXIN_ : Colors.white,
+                              child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
                                     '나 빼고 결정하는건\n못참지',
                                     style: TextStyle(
@@ -238,7 +236,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: BorderSide(
-                                    color: moodMaker == true ? MIXIN_2 : MIXIN_BLACK_5,
+                                    color: positionList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
                                     width: 1.5
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -246,23 +244,23 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                                 ),
                                 padding: EdgeInsets.zero,
                                 elevation: 0.0,
-                                backgroundColor: moodMaker == true ? MIXIN_ : Colors.white
+                                backgroundColor: positionList[1] == true ? MIXIN_ : Colors.white
                             ),
                             onPressed: (){
                               setState(() {
-                                moodMaker = !moodMaker;
-                                if(moodMaker == true){
-                                  liker = false;
-                                  leader = false;
-                                  calmer = false;
+                                positionList[1] = !positionList[1];
+                                if(positionList[1] == true){
+                                  positionList[2] = false;
+                                  positionList[0] = false;
+                                  positionList[3] = false;
                                 }
                               });
                             },
                             child: Container(
-                              color: moodMaker == true ? MIXIN_ : Colors.white,
-                              child: Column(
+                              color: positionList[1] == true ? MIXIN_ : Colors.white,
+                              child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
                                     '이 모임 분위기는\n내가 책임진다!',
                                     style: TextStyle(
@@ -303,7 +301,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: BorderSide(
-                                    color: liker == true ? MIXIN_2 : MIXIN_BLACK_5,
+                                    color: positionList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
                                     width: 1.5
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -311,23 +309,23 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                                 ),
                                 padding: EdgeInsets.zero,
                                 elevation: 0.0,
-                                backgroundColor: liker == true ? MIXIN_ : Colors.white
+                                backgroundColor: positionList[2] == true ? MIXIN_ : Colors.white
                             ),
                             onPressed: (){
                               setState(() {
-                                liker = !liker;
-                                if(liker == true){
-                                  moodMaker = false;
-                                  leader = false;
-                                  calmer = false;
+                                positionList[2] = !positionList[2];
+                                if(positionList[2] == true){
+                                  positionList[1] = false;
+                                  positionList[0] = false;
+                                  positionList[3] = false;
                                 }
                               });
                             },
                             child: Container(
-                              color: liker == true ? MIXIN_ : Colors.white,
-                              child: Column(
+                              color: positionList[2] == true ? MIXIN_ : Colors.white,
+                              child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
                                     '좋아좋아\n뭐든지 다 좋아~',
                                     style: TextStyle(
@@ -364,7 +362,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 side: BorderSide(
-                                    color: calmer == true ? MIXIN_2 : MIXIN_BLACK_5,
+                                    color: positionList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
                                     width: 1.5
                                 ),
                                 shape: RoundedRectangleBorder(
@@ -372,23 +370,23 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                                 ),
                                 padding: EdgeInsets.zero,
                                 elevation: 0.0,
-                                backgroundColor: calmer == true ? MIXIN_ : Colors.white
+                                backgroundColor: positionList[3] == true ? MIXIN_ : Colors.white
                             ),
                             onPressed: (){
                               setState(() {
-                                calmer = !calmer;
-                                if(calmer == true){
-                                  moodMaker = false;
-                                  leader = false;
-                                  liker = false;
+                                positionList[3] = !positionList[3];
+                                if(positionList[3] == true){
+                                  positionList[1] = false;
+                                  positionList[0] = false;
+                                  positionList[2] = false;
                                 }
                               });
                             },
                             child: Container(
-                              color: calmer == true ? MIXIN_ : Colors.white,
-                              child: Column(
+                              color: positionList[3] == true ? MIXIN_ : Colors.white,
+                              child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
                                     '당황하지 않아요\n침착하게..',
                                     style: TextStyle(

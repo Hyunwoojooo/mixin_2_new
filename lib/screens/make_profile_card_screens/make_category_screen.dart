@@ -11,7 +11,6 @@ class MakeCategoryScreen extends StatefulWidget {
 }
 
 class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
-  bool nextButtonColor = false;
 
   List<bool> categoryList = List.filled(14, false);
   List<String> selectedOptions = [];

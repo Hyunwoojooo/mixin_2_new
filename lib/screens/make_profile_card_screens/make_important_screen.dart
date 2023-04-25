@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mixin_2/screens/make_profile_card_screens/make_profile_screen.dart';
 
 import '../../const/colors.dart';
-import 'make_introduce_screen.dart';
+import 'make_character_screen.dart';
 
 class MakeImportantScreen extends StatefulWidget {
   const MakeImportantScreen({Key? key}) : super(key: key);

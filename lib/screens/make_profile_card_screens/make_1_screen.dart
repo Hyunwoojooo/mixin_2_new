@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
 import '../../const/colors.dart';
-import 'make_character_screen.dart';
+import 'make_2_screen.dart';
 
 class MakePositionScreen extends StatefulWidget {
   const MakePositionScreen({Key? key}) : super(key: key);
@@ -30,44 +31,19 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white,
-                spreadRadius: 0.0,
-                blurRadius: 0.0,
-              ),
-            ]
-        ),
-        width: 342,
-        height: 56,
-        child: RawMaterialButton(
-          fillColor: (positionList.where((element) => element).length == 1) ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-          elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          onPressed: () {
+      floatingActionButton: CustomFloatingActionButton(
+        text: '다음',
+        fillColor: (positionList.where((element) => element).length == 1) ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+        onPressed: () {
             if (positionList.where((element) => element).length == 1){
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => MakeCharacterScreen()),
+                    builder: (context) => const MakeCharacterScreen()),
               );
             } else {
               null;
             }
           },
-          child: const Text(
-            '다음',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

@@ -2,30 +2,30 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_countdown_timer/current_remaining_time.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:mixin_2/components/custom_textformfield.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/components/number_formatter.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
-import 'package:flutter_countdown_timer/countdown.dart';
-import 'package:dio/dio.dart';
 
 class SignUpScreenNamePhone extends StatefulWidget {
-  const SignUpScreenNamePhone({Key? key}) : super(key: key);
+  final bool isAdIfmChecked;
+  SignUpScreenNamePhone(this.isAdIfmChecked, {Key? key}) : super(key: key);
 
   @override
   State<SignUpScreenNamePhone> createState() => _SignUpScreenNamePhoneState();
 }
 
 class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
+
   final String serverUrl = 'http://122.37.227.143:8080/login';
 
   final _userNameTextEditController = TextEditingController();
   final _userPhoneNumberTextController = TextEditingController();
   final _userCertificationNumberController = TextEditingController();
   List<bool> isSelected = [false, false];
-  List<String> textList = ['여자', '남자'];
+  List<String> genderList = ['여자', '남자'];
+  String userGender = '';
 
   bool onClickSendButton = false;
   String sendText = '인증번호 전송';
@@ -41,6 +41,15 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
   void startTimer() {
     countdownTimer =
         Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+  }
+
+  void getGender(){
+    if(genderList[0] == true){
+      userGender == '여자';
+    } else if(genderList[1] == true){
+      userGender == '남자';
+    }
+    print('userGender : $userGender');
   }
 
   void setCountDown() {
@@ -107,6 +116,8 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
     super.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     String strDigits(int n) => n.toString().padLeft(2, '0');
@@ -121,6 +132,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
           child: Image.asset('assets/images/back_icon.png'),
           onTap: () {
             Navigator.pop(context);
+            print("widget.isAdIfmChecked: ${widget.isAdIfmChecked}");
           },
         ),
       ),
@@ -132,35 +144,11 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 29,
-              ),
-              Container(
-                color: Colors.white,
-                child: Text(
-                  '이름과 전화번호로\n본인인증을 해주세요',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'SUIT',
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 50.0,
-              ),
-              const Text(
-                '이름',
-                style: TextStyle(
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.0,
-                  color: MIXIN_BLACK_3,
-                ),
-              ),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 29),
+              const HeadlineText(text: '이름과 전화번호로\n본인인증을 해주세요',),
+              const SizedBox(height: 50.0),
+              const InfoText(text: '이름'),
+              const SizedBox(height: 12.0),
               CustomTextFormField(
                 controller: _userNameTextEditController,
                 hintText: '이름을 작성해주세요',
@@ -168,21 +156,9 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   userName = value;
                 },
               ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const Text(
-                '성별',
-                style: TextStyle(
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.0,
-                  color: MIXIN_BLACK_3,
-                ),
-              ),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 24.0),
+              const InfoText(text: '성별'),
+              const SizedBox(height: 12.0),
               Ink(
                 width: 342,
                 height: 56,
@@ -211,6 +187,8 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                 isSelected[indexBtn] = false;
                               }
                             }
+                            print('userGender : $userGender');
+                            print(isSelected);
                           });
                         },
                         child: Ink(
@@ -223,7 +201,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                           ),
                           child: Center(
                             child: Text(
-                              textList[index],
+                              genderList[index],
                               style: TextStyle(
                                 color:
                                     isSelected[index] ? MIXIN_2 : MIXIN_BLACK_4,
@@ -239,21 +217,9 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const Text(
-                '전화번호',
-                style: TextStyle(
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12.0,
-                  color: MIXIN_BLACK_3,
-                ),
-              ),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 24.0),
+              const InfoText(text: '전화번호'),
+              const SizedBox(height: 12.0,),
               Row(
                 children: [
                   Row(
@@ -316,7 +282,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                             child: Container(
                                               width: 342,
                                               height: 56,
-                                              child: Center(
+                                              child: const Center(
                                                 child: Text(
                                                   '확인',
                                                   style: TextStyle(
@@ -422,9 +388,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 12.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -546,9 +510,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 100,
-              ),
+              const SizedBox(height: 100,),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

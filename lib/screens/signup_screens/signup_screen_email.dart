@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mixin_2/components/custom_textformfield.dart';
-import 'package:mixin_2/screens/login_screen.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_password.dart';
 
-import '../../components/number_formatter.dart';
 import '../../const/colors.dart';
 
 class SignUpScreenEmail extends StatefulWidget {
@@ -48,40 +46,16 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 29.0,
-                ),
-                Container(
-                  color: Colors.transparent,
-                  child: const Text(
-                    '학교 이메일에서\n인증번호를 입력해주세요!',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'SUIT',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                const Text(
-                  '학교 이메일',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 29.0),
+                const HeadlineText(text: '학교 이메일에서\n인증번호를 입력해주세요!'),
+                const SizedBox(height: 50.0),
+                const InfoText(text: '학교 이메일'),
+                const SizedBox(height: 12.0),
                 SizedBox(
                   width: 342,
                   height: 56,
                   child: TextFormField(
-                    scrollPadding: EdgeInsets.all(0.0),
+                    scrollPadding: const EdgeInsets.all(0.0),
                     controller: _userStudentIdTextEditController,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -94,7 +68,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                       userStudentId = value;
                     },
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20),
+                      contentPadding: const EdgeInsets.all(20),
                       hintText: '학교 이메일을 입력해주세요.',
                       hintStyle: const TextStyle(
                         color: MIXIN_BLACK_4,
@@ -114,27 +88,25 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
-                          borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
+                          borderSide: const BorderSide(
+                              color: MIXIN_BLACK_5, width: 1.5)),
                       // focus 일 때 세팅
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5))
-                          .copyWith(
-                          borderSide: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                   color: MIXIN_BLACK_5, width: 1.5))
-                              .borderSide
-                        // .copyWith(color: Colors.red)),
-                      ),
+                          .copyWith(
+                              borderSide: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderSide: const BorderSide(
+                                          color: MIXIN_BLACK_5, width: 1.5))
+                                  .borderSide
+                              // .copyWith(color: Colors.red)),
+                              ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 8.0,
-                ),
+                const SizedBox(height: 8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -147,8 +119,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
                             elevation: 0.0),
-                        onPressed: () async {
-                        },
+                        onPressed: () async {},
                         child: Container(
                           padding: EdgeInsets.zero,
                           child: Center(
@@ -158,8 +129,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                   color: Colors.white,
                                   fontSize: 14,
                                   fontFamily: 'SUIT',
-                                  fontWeight: FontWeight.w500
-                              ),
+                                  fontWeight: FontWeight.w500),
                             ),
                           ),
                         ),
@@ -167,9 +137,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 361,
-                ),
+                const SizedBox(height: 361),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -180,10 +148,10 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                     onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => SignUpScreenPassword()),
+                            builder: (context) => const SignUpScreenPassword()),
                       );
                     },
-                    child: Container(
+                    child: const SizedBox(
                       width: 342,
                       height: 56,
                       child: Center(

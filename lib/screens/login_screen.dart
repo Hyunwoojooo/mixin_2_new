@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mixin_2/components/default_layout.dart';
-import 'package:http/http.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 
 import '../components/custom_textformfield.dart';
 import 'make_profile_card_screens/make_category_screen.dart';
 
-class StartScreen extends StatefulWidget {
-  const StartScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<StartScreen> createState() => _StartScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _StartScreenState extends State<StartScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final String serverUrl = 'http://122.37.227.143:8000/http/post';
 
   final _idTextEditController = TextEditingController();

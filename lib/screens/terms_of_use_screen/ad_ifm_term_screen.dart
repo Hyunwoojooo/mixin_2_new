@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mixin_2/const/term_of_service_text/ad_term_text.dart';
 import 'package:mixin_2/const/term_of_service_text/personal_term_text.dart';
 
-import '../const/colors.dart';
+import '../../const/colors.dart';
+
 
 class AdIfmTerm extends StatelessWidget {
   AdIfmTerm({Key? key}) : super(key: key);

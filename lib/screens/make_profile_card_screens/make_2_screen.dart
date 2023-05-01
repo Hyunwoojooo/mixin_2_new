@@ -1,10 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 import 'package:mixin_2/screens/make_profile_card_screens/make_introduce_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../const/colors.dart';
-import 'make_important_screen.dart';
+import 'make_3_screen.dart';
 
 class MakeCharacterScreen extends StatefulWidget {
   const MakeCharacterScreen({Key? key}) : super(key: key);
@@ -14,8 +15,28 @@ class MakeCharacterScreen extends StatefulWidget {
 }
 
 class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
-
   List<bool> introduceList = List.filled(16, false);
+
+  List<String> introduceListText = [
+    '논쟁을 좋아하는',
+    '평화를 좋아하는',
+    '수줍음을 타는',
+    '말주변이 좋은',
+    '진지한',
+    '장난끼가 많은',
+    '계획적인',
+    '즉흥적인',
+    '느긋한',
+    '성격이 급한',
+    '파티를 좋아하는',
+    '소수모임을 좋아하는',
+    '단호한',
+    '우유부단한',
+    '감성적인',
+    '이성적인'
+  ];
+  List<String> selectList = [];
+
 
   final PageController controller = PageController(initialPage: 0);
 
@@ -34,44 +55,21 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white,
-                  spreadRadius: 0.0,
-                  blurRadius: 0.0,
-                ),
-              ]
-          ),
-          width: 342,
-          height: 56,
-          child: RawMaterialButton(
-            fillColor: introduceList.where((element) => element).length == 3 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-            elevation: 0.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+        floatingActionButton: CustomFloatingActionButton(
+          text: '다음',
+          fillColor: introduceList.where((element) => element).length == 3
+              ? MIXIN_POINT_COLOR
+              : MIXIN_BLACK_4,
             onPressed: () {
-              if (introduceList.where((element) => element).length == 3){
+              if (introduceList.where((element) => element).length == 3) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => MakeIntroduceScreen()),
+                      builder: (context) => const MakeImportantScreen()),
                 );
               } else {
                 null;
               }
             },
-            child: const Text(
-              '다음',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w600
-              ),
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -96,8 +94,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
+                              color: MIXIN_BLACK_4),
                         ),
                       ),
                       SizedBox(
@@ -112,8 +109,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: Colors.white
-                          ),
+                              color: Colors.white),
                         ),
                       ),
                       SizedBox(
@@ -128,8 +124,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
+                              color: MIXIN_BLACK_4),
                         ),
                       ),
                     ],
@@ -142,8 +137,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                     style: TextStyle(
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w600,
-                        fontSize: 24.0
-                    ),
+                        fontSize: 24.0),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
@@ -171,7 +165,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                   const SizedBox(
                     height: 54,
                   ),
-                  Container(
+                  SizedBox(
                     width: 294,
                     height: 228,
                     child: PageView(
@@ -189,39 +183,47 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[0] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[0] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[0] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList.where((element) => element).length == 3) {
                                             null;
-                                          } else{
+                                          } else {
                                             introduceList[0] = !introduceList[0];
+                                          }
+                                          if (introduceList[0] == true){
+                                            selectList.add(introduceListText[0]);
+                                          } else if(introduceList[0] == false){
+                                            selectList.removeLast();
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[0] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[0] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '논쟁을 좋아하는',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -232,39 +234,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[1] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[1] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[1] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[1] = !introduceList[1];
+                                          } else {
+                                            introduceList[1] =
+                                                !introduceList[1];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[1] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[1] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '평화를 좋아하는',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ),
@@ -281,39 +290,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[2] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[2] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[2] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[2] = !introduceList[2];
+                                          } else {
+                                            introduceList[2] =
+                                                !introduceList[2];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[2] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[2] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '수줍음을 타는',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -324,35 +340,42 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[3] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[3] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[3] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length == 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length ==
+                                            3) {
                                           null;
-                                        } else{
+                                        } else {
                                           introduceList[3] = !introduceList[3];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[3] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[3] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '말주변이 좋은',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -373,39 +396,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[4] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[4] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[4] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[4] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[4] = !introduceList[4];
+                                          } else {
+                                            introduceList[4] =
+                                                !introduceList[4];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[4] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[4] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '진지한',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -416,35 +446,42 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[5] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[5] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[5] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[5] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length == 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length ==
+                                            3) {
                                           null;
-                                        } else{
+                                        } else {
                                           introduceList[5] = !introduceList[5];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[5] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[5] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '장난끼가 많은',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -465,39 +502,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[6] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[6] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[6] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[6] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[6] = !introduceList[6];
+                                          } else {
+                                            introduceList[6] =
+                                                !introduceList[6];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[6] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[6] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '계획적인',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -508,35 +552,42 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[7] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[7] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[7] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[7] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length >= 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length >=
+                                            3) {
                                           null;
-                                        } else{
+                                        } else {
                                           introduceList[7] = !introduceList[7];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[7] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[7] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '즉흥적인',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -558,39 +609,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[8] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[8] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[8] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[8] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[8] = !introduceList[8];
+                                          } else {
+                                            introduceList[8] =
+                                                !introduceList[8];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[8] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[8] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '느긋한',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -601,39 +659,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[9] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[9] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[9] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[9] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[9] = !introduceList[9];
+                                          } else {
+                                            introduceList[9] =
+                                                !introduceList[9];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[9] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[9] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '성격이 급한',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ),
@@ -650,39 +715,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[10] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[10] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[10] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[10] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[10] = !introduceList[10];
+                                          } else {
+                                            introduceList[10] =
+                                                !introduceList[10];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[10] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[10] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '파티를 좋아하는',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -693,35 +765,43 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[11] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[11] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[11] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[11] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length == 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length ==
+                                            3) {
                                           null;
-                                        } else{
-                                          introduceList[11] = !introduceList[11];
+                                        } else {
+                                          introduceList[11] =
+                                              !introduceList[11];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[11] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[11] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '소수모임을 좋아하는',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -742,39 +822,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[4] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[4] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[12] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[12] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[12] = !introduceList[12];
+                                          } else {
+                                            introduceList[12] =
+                                                !introduceList[12];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[12] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[12] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '단호한',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -785,35 +872,43 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[13] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[13] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[13] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[13] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length == 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length ==
+                                            3) {
                                           null;
-                                        } else{
-                                          introduceList[13] = !introduceList[13];
+                                        } else {
+                                          introduceList[13] =
+                                              !introduceList[13];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[13] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[13] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '우유부단한',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -834,39 +929,46 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[6] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                              width: 1.5
-                                          ),
+                                              color: introduceList[6] == true
+                                                  ? MIXIN_2
+                                                  : MIXIN_BLACK_5,
+                                              width: 1.5),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           padding: EdgeInsets.zero,
                                           elevation: 0.0,
-                                          backgroundColor: introduceList[14] == true ? MIXIN_ : Colors.white
-                                      ),
-                                      onPressed: (){
+                                          backgroundColor:
+                                              introduceList[14] == true
+                                                  ? MIXIN_
+                                                  : Colors.white),
+                                      onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3){
+                                          if (introduceList
+                                                  .where((element) => element)
+                                                  .length ==
+                                              3) {
                                             null;
-                                          } else{
-                                            introduceList[14] = !introduceList[14];
+                                          } else {
+                                            introduceList[14] =
+                                                !introduceList[14];
                                           }
                                         });
                                       },
                                       child: Container(
-                                        color: introduceList[14] == true ? MIXIN_ : Colors.white,
+                                        color: introduceList[14] == true
+                                            ? MIXIN_
+                                            : Colors.white,
                                         child: const Text(
                                           '감성적인',
                                           style: TextStyle(
                                               fontFamily: 'SUIT',
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16.0,
-                                              color: MIXIN_BLACK_1
-                                          ),
+                                              color: MIXIN_BLACK_1),
                                           textAlign: TextAlign.center,
                                         ),
-                                      )
-                                  ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   width: 18.0,
@@ -877,35 +979,43 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         side: BorderSide(
-                                            color: introduceList[15] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                            width: 1.5
-                                        ),
+                                            color: introduceList[15] == true
+                                                ? MIXIN_2
+                                                : MIXIN_BLACK_5,
+                                            width: 1.5),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                         padding: EdgeInsets.zero,
                                         elevation: 0.0,
-                                        backgroundColor: introduceList[15] == true ? MIXIN_ : Colors.white
-                                    ),
-                                    onPressed: (){
+                                        backgroundColor:
+                                            introduceList[15] == true
+                                                ? MIXIN_
+                                                : Colors.white),
+                                    onPressed: () {
                                       setState(() {
-                                        if (introduceList.where((element) => element).length >= 3){
+                                        if (introduceList
+                                                .where((element) => element)
+                                                .length >=
+                                            3) {
                                           null;
-                                        } else{
-                                          introduceList[15] = !introduceList[15];
+                                        } else {
+                                          introduceList[15] =
+                                              !introduceList[15];
                                         }
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[7] == true ? MIXIN_ : Colors.white,
+                                      color: introduceList[7] == true
+                                          ? MIXIN_
+                                          : Colors.white,
                                       child: const Text(
                                         '이성적인',
                                         style: TextStyle(
                                             fontFamily: 'SUIT',
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16.0,
-                                            color: MIXIN_BLACK_1
-                                        ),
+                                            color: MIXIN_BLACK_1),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -922,24 +1032,119 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                     height: 50.0,
                   ),
                   SmoothPageIndicator(
-                      controller: controller,  // PageController
-                      count:  2,
-                      effect: const WormEffect(
-                        spacing: 18,
-                        dotColor: MIXIN_BLACK_5,
-                        activeDotColor: MIXIN_POINT_COLOR,
-                        dotHeight: 8,
-                        dotWidth: 8,
-                      ),  // your preferred effect
-                      onDotClicked: (index){},
-
-
+                    controller: controller, // PageController
+                    count: 2,
+                    effect: const WormEffect(
+                      spacing: 18,
+                      dotColor: MIXIN_BLACK_5,
+                      activeDotColor: MIXIN_POINT_COLOR,
+                      dotHeight: 8,
+                      dotWidth: 8,
+                    ), // your preferred effect
+                    onDotClicked: (index) {},
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: [
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            width: 107,
+                            height: 37,
+                            padding: EdgeInsets.zero,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MIXIN_,
+                              border: Border.all(color: MIXIN_2, width: 1.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Text(
+                              '아아',
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 12,
+                            left: 81,
+                            child: IconButton(
+                              onPressed: (){},
+                              icon: Image.asset('assets/images/cancel_button.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 6.0,
+                      ),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            width: 107,
+                            height: 37,
+                            padding: EdgeInsets.zero,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: MIXIN_,
+                              border: Border.all(color: MIXIN_2, width: 1.5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Text(
+                              '아아',
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 12,
+                            left: 81,
+                            child: IconButton(
+                              onPressed: (){},
+                              icon: Image.asset('assets/images/cancel_button.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 6.0,
+                      ),
+                      Visibility(
+                        visible: true,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              width: 107,
+                              height: 37,
+                              padding: EdgeInsets.zero,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: MIXIN_,
+                                border: Border.all(color: MIXIN_2, width: 1.5),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Text(
+                                // '${selectList[0]}',
+                                'dd'
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 12,
+                              left: 81,
+                              child: IconButton(
+                                onPressed: (){},
+                                icon: Image.asset('assets/images/cancel_button.png'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

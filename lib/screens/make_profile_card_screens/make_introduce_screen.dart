@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
 import '../../const/colors.dart';
 
@@ -36,32 +37,8 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        decoration: const BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            spreadRadius: 0.0,
-            blurRadius: 0.0,
-          ),
-        ]),
-        width: 342,
-        height: 56,
-        child: RawMaterialButton(
-          fillColor: MIXIN_POINT_COLOR,
-          elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          onPressed: () {},
-          child: const Text(
-            '다음',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600),
-          ),
-        ),
+      floatingActionButton: CustomFloatingActionButton(
+        onPressed: null,
       ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

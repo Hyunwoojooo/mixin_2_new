@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mixin_2/const/term_of_service_text/community_term_text.dart';
 
-import '../const/colors.dart';
+import '../../const/colors.dart';
+
 
 class CommunityUseTerm extends StatelessWidget {
   CommunityUseTerm({Key? key}) : super(key: key);

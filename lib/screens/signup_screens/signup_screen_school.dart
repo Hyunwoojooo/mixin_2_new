@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mixin_2/components/custom_textformfield.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/screens/login_screen.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_email.dart';
 
@@ -48,35 +49,11 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 29.0,
-                ),
-                Container(
-                  color: Colors.transparent,
-                  child: const Text(
-                    '신뢰성있는 활동을 위한\n학교 인증을 해주세요!',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'SUIT',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                const Text(
-                  '학번',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 29.0),
+                const HeadlineText(text: '신뢰성있는 활동을 위한\n학교 인증을 해주세요!'),
+                const SizedBox(height: 50.0),
+                const InfoText(text: '학번'),
+                const SizedBox(height: 12.0),
                 SizedBox(
                   width: 342,
                   height: 56,
@@ -132,21 +109,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
-                const Text(
-                  '대학교',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 24.0),
+                const InfoText(text: '대학교'),
+                const SizedBox(height: 12.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,
@@ -239,21 +204,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
-                const Text(
-                  '학과',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 24.0),
+                const InfoText(text: '학과'),
+                const SizedBox(height: 12.0),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,
@@ -346,10 +299,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     ),
                   ),
                 ),
-
-                const SizedBox(
-                  height: 186,
-                ),
+                const SizedBox(height: 186),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -363,7 +313,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                             builder: (context) => SignUpScreenEmail()),
                       );
                     },
-                    child: Container(
+                    child: SizedBox(
                       width: 342,
                       height: 56,
                       child: Center(

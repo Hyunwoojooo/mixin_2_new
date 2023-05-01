@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mixin_2/layout/category_layout.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/const/colors.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
-import 'make_position_screen.dart';
+import 'make_1_screen.dart';
 
 class MakeCategoryScreen extends StatefulWidget {
   const MakeCategoryScreen({Key? key}) : super(key: key);
@@ -30,40 +33,16 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.white,
-              spreadRadius: 0.0,
-              blurRadius: 0.0,
-            ),
-          ],
-        ),
-        width: 342,
-        height: 56,
-        child: RawMaterialButton(
-          fillColor: categoryList.where((element) => element).length >= 3 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-          elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          onPressed: () {
+      floatingActionButton: CustomFloatingActionButton(
+        text: '다음',
+        fillColor: categoryList.where((element) => element).length >= 3 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+        onPressed: () {
             if (categoryList.where((element) => element).length >= 3) {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => MakePositionScreen()),
+                MaterialPageRoute(builder: (context) => const MakePositionScreen()),
               );
             } else {null;}
           },
-          child: const Text(
-            '다음',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -73,23 +52,9 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 29.0,
-                ),
-                Container(
-                  color: Colors.transparent,
-                  child: const Text(
-                    '요즘 관심가는 주제가\n무엇인가요?',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'SUIT',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 29.0),
+                const HeadlineText(text: '요즘 관심가는 주제가\n무엇인가요?'),
+                const SizedBox(height: 12.0),
                 Container(
                   width: 201,
                   height: 36,
@@ -109,715 +74,261 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 54,
-                ),
+                const SizedBox(height: 54),
                 Row(
                   children: [
-                    // IT - 0
-                    SizedBox(
-                      width: 101,
-                      height: 48,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: categoryList[0] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                              categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[0] = !categoryList[0];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/IT.png',
-                                  width: 24,
-                                  height: 21.47,
-                                ),
-                                const SizedBox(
-                                  width: 8.0,
-                                ),
-                                const Text(
-                                  'IT/개발',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 101,
+                      borderSideColor: categoryList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[0] = !categoryList[0];
+                        });
+                      },
+                      containerColor: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/IT.png',
+                      imageWidth: 24,
+                      imageHeight: 21.47,
+                      sizedBoxWidth: 8.0,
+                      text: 'IT/개발',
                     ),
-                    const SizedBox(
-                      width: 12.0,
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 92,
+                      borderSideColor: categoryList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[1] = !categoryList[1];
+                        });
+                      },
+                      containerColor: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/design.png',
+                      imageWidth: 18,
+                      imageHeight: 18,
+                      sizedBoxWidth: 9.0,
+                      text: '디자인',
                     ),
-                    // 디자인 - 1
-                    SizedBox(
-                      width: 92,
-                      height: 48,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                                color:
-                                    categoryList[1] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor:
-                                categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5),
-                        onPressed: () {
-                          setState(() {
-                            categoryList[1] = !categoryList[1];
-                          });
-                        },
-                        child: Container(
-                          color: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/design.png',
-                                width: 18,
-                                height: 18,
-                              ),
-                              const SizedBox(
-                                width: 9.0,
-                              ),
-                              const Text(
-                                '디자인',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: MIXIN_BLACK_1),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    // 문화활동 - 2
-                    SizedBox(
-                      height: 48,
-                      width: 108,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: categoryList[2] == true
-                                      ? MIXIN_2
-                                      : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[2] = !categoryList[2];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/culture.png',
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 8.0,
-                                ),
-                                const Text(
-                                  '문화활동',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 108,
+                      borderSideColor: categoryList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[2] = !categoryList[2];
+                        });
+                      },
+                      containerColor: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/culture.png',
+                      imageWidth: 24,
+                      imageHeight: 24,
+                      sizedBoxWidth: 8.0,
+                      text: '문화활동',
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 12.0),
                 Row(
                   children: [
-                    // 음악
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[3] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[3] = !categoryList[3];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/music.png',
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 8.0,
-                                ),
-                                const Text(
-                                  '음악',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[3] = !categoryList[3];
+                        });
+                      },
+                      containerColor: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/music.png',
+                      imageWidth: 24,
+                      imageHeight: 24,
+                      sizedBoxWidth: 8.0,
+                      text: '음악',
                     ),
-                    const SizedBox(
-                      width: 12.0,
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[4] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[4] = !categoryList[4];
+                        });
+                      },
+                      containerColor: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/trip.png',
+                      imageWidth: 19.24,
+                      imageHeight: 24,
+                      sizedBoxWidth: 8.71,
+                      text: '여행',
                     ),
-                    // trip -4
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[4] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[4] = !categoryList[4];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/trip.png',
-                                  width: 19.24,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 8.71,
-                                ),
-                                const Text(
-                                  '여행',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    // 봉사활동 - 5
-                    SizedBox(
-                      height: 48,
-                      width: 108,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[5] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[5] = !categoryList[5];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/bongsa.png',
-                                  width: 23,
-                                  height: 22,
-                                ),
-                                const SizedBox(
-                                  width: 6.0,
-                                ),
-                                const Text(
-                                  '봉사활동',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 108,
+                      borderSideColor: categoryList[5] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[5] = !categoryList[5];
+                        });
+                      },
+                      containerColor: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/bongsa.png',
+                      imageWidth: 23,
+                      imageHeight: 22,
+                      sizedBoxWidth: 6.0,
+                      text: '봉사활동',
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 12.0),
                 Row(
                   children: [
-                    // 운동 - 6
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[6] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[6] = !categoryList[6];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/health.png',
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 8.0,
-                                ),
-                                const Text(
-                                  '운동',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[6] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[6] = !categoryList[6];
+                        });
+                      },
+                      containerColor: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/health.png',
+                      imageWidth: 24,
+                      imageHeight: 24,
+                      sizedBoxWidth: 8.0,
+                      text: '운동',
                     ),
-                    const SizedBox(
-                      width: 12.0,
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 108,
+                      borderSideColor: categoryList[7] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[7] = !categoryList[7];
+                        });
+                      },
+                      containerColor: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/animal.png',
+                      imageWidth: 21.72,
+                      imageHeight: 17.39,
+                      sizedBoxWidth: 9.28,
+                      text: '반려동물',
                     ),
-                    // 반려동물 - 7
-                    SizedBox(
-                      height: 48,
-                      width: 108,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[7] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[7] = !categoryList[7];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/animal.png',
-                                  width: 21.72,
-                                  height: 17.39,
-                                ),
-                                const SizedBox(
-                                  width: 9.28,
-                                ),
-                                const Text(
-                                  '반려동물',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    // 사교 - 8
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color:
-                                      categoryList[8] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[8] = !categoryList[8];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/sagyo.png',
-                                  width: 20,
-                                  height: 23,
-                                ),
-                                const SizedBox(
-                                  width: 7.0,
-                                ),
-                                const Text(
-                                  '사교',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[8] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[8] = !categoryList[8];
+                        });
+                      },
+                      containerColor: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/sagyo.png',
+                      imageWidth: 20.0,
+                      imageHeight: 23.0,
+                      sizedBoxWidth: 7.0,
+                      text: '사교',
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 12.0),
                 Row(
                   children: [
-                    // 수업 - 9
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: categoryList[9] == true
-                                      ? MIXIN_2
-                                      : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[9] = !categoryList[9];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/class.png',
-                                  width: 24,
-                                  height: 22.79,
-                                ),
-                                const SizedBox(
-                                  width: 6.0,
-                                ),
-                                const Text(
-                                  '수업',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[9] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[9] = !categoryList[9];
+                        });
+                      },
+                      containerColor: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/class.png',
+                      imageWidth: 24.0,
+                      imageHeight: 22.79,
+                      sizedBoxWidth: 6.0,
+                      text: '수업',
                     ),
-                    const SizedBox(
-                      width: 12.0,
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 92,
+                      borderSideColor: categoryList[10] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[10] = !categoryList[10];
+                        });
+                      },
+                      containerColor: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/class.png',
+                      imageWidth: 24.84,
+                      imageHeight: 23.0,
+                      sizedBoxWidth: 5.16,
+                      text: '외국어',
                     ),
-                    // 외국어 - 10
-                    SizedBox(
-                      height: 48,
-                      width: 92,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: categoryList[10] == true
-                                      ? MIXIN_2
-                                      : MIXIN_BLACK_5),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[10] = !categoryList[10];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/language.png',
-                                  width: 24.84,
-                                  height: 23,
-                                ),
-                                const SizedBox(
-                                  width: 5.16,
-                                ),
-                                const Text(
-                                  '외국어',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
-                    ),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    // 맛집 - 11
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                color: categoryList[11] == true
-                                    ? MIXIN_2
-                                    : MIXIN_BLACK_5,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              padding: EdgeInsets.zero,
-                              elevation: 0.0,
-                              backgroundColor:
-                                  categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5),
-                          onPressed: () {
-                            setState(() {
-                              categoryList[11] = !categoryList[11];
-                            });
-                          },
-                          child: Container(
-                            color: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/restuarant.png',
-                                  width: 18.67,
-                                  height: 24,
-                                ),
-                                const SizedBox(
-                                  width: 12.33,
-                                ),
-                                const Text(
-                                  '맛집',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: MIXIN_BLACK_1),
-                                ),
-                              ],
-                            ),
-                          )),
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[11] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[11] = !categoryList[11];
+                        });
+                      },
+                      containerColor: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/restuarant.png',
+                      imageWidth: 18.67,
+                      imageHeight: 24.0,
+                      sizedBoxWidth: 12.33,
+                      text: '맛집',
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 12.0),
                 Row(
                   children: [
-                    // 요리 - 12
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                                color: categoryList[12] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor:
-                                categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5),
-                        onPressed: () {
-                          setState(() {
-                            categoryList[12] = !categoryList[12];
-                          });
-                        },
-                        child: Container(
-                          color: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/cook.png',
-                                width: 24,
-                                height: 19.86,
-                              ),
-                              const SizedBox(
-                                width: 7.0,
-                              ),
-                              const Text(
-                                '요리',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: MIXIN_BLACK_1),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[12] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[12] = !categoryList[12];
+                        });
+                      },
+                      containerColor: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/cook.png',
+                      imageWidth: 24,
+                      imageHeight: 19.86,
+                      sizedBoxWidth: 7.0,
+                      text: '요리',
                     ),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    // 금융 - 13
-                    SizedBox(
-                      height: 48,
-                      width: 80,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                                color:
-                                    categoryList[13] == true ? MIXIN_2 : MIXIN_BLACK_5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor:
-                                categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5),
-                        onPressed: () {
-                          setState(() {
-                            categoryList[13] = !categoryList[13];
-                          });
-                        },
-                        child: Container(
-                          color: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/finance.png',
-                                width: 24.17,
-                                height: 25,
-                              ),
-                              const SizedBox(
-                                width: 8.65,
-                              ),
-                              const Text(
-                                '금융',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: MIXIN_BLACK_1),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    const SizedBox(width: 12.0),
+                    CategoryLayout(
+                      mainSizedBoxWidth: 80,
+                      borderSideColor: categoryList[13] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      onPressed: () {
+                        setState(() {
+                          categoryList[13] = !categoryList[13];
+                        });
+                      },
+                      containerColor: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      imageAsset: 'assets/images/finance.png',
+                      imageWidth: 24.17,
+                      imageHeight: 25.0,
+                      sizedBoxWidth: 8.65,
+                      text: '금융',
                     ),
                   ],
                 ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mixin_2/components/custom_textformfield.dart';
+import 'package:dio/dio.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/screens/login_screen.dart';
-import 'package:mixin_2/screens/signup_screens/signup_screen_email.dart';
-
-import '../../components/number_formatter.dart';
 import '../../const/colors.dart';
 
 class SignUpScreenPassword extends StatefulWidget {
@@ -15,6 +13,8 @@ class SignUpScreenPassword extends StatefulWidget {
 }
 
 class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
+  final String serverUrl = 'http://122.37.227.143:8080/api/join';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,35 +37,11 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 29.0,
-                ),
-                Container(
-                  color: Colors.transparent,
-                  child: const Text(
-                    '이제 마지막이에요!\n비밀번호를 설정해주세요.',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'SUIT',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 50.0,
-                ),
-                const Text(
-                  '비밀번호',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 29.0),
+                const HeadlineText(text: '이제 마지막이에요!\n비밀번호를 설정해주세요.'),
+                const SizedBox(height: 50.0),
+                const InfoText(text: '비밀번호'),
+                const SizedBox(height: 12.0),
                 SizedBox(
                   width: 342,
                   height: 56,
@@ -121,21 +97,9 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
-                const Text(
-                  '비밀번호 확인',
-                  style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
-                    color: MIXIN_BLACK_3,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12.0,
-                ),
+                const SizedBox(height: 24.0),
+                const InfoText(text: '비밀번호 확인'),
+                const SizedBox(height: 12.0),
                 SizedBox(
                   width: 342,
                   height: 56,
@@ -191,9 +155,7 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
+                const SizedBox(height: 24.0),
                 Row(
                   children: [
                     Icon(Icons.check_rounded, size: 18.0, color: MIXIN_BLACK_4),
@@ -210,9 +172,7 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 8.0,
-                ),
+                const SizedBox(height: 8.0),
                 Row(
                   children: [
                     Icon(Icons.check_rounded, size: 18.0, color: MIXIN_BLACK_4),
@@ -229,9 +189,7 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 220,
-                ),
+                const SizedBox(height: 220),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -240,15 +198,30 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0),
                     onPressed: () async {
+                      // Dio dio = Dio();
+                      // final Response resp = await dio.post(serverUrl, data: {
+                      //   "agradInfrm" : true,
+                      //   "userName" : "주현우",
+                      //   "userGender" : "여자",
+                      //   "userPhoneNumber" : "01033428798",
+                      //   "userCarrier" : "SKT",
+                      //   "userStudentId" : "20233459",
+                      //   "userUniversity" : "동양미래대학교1",
+                      //   "userDepartment" : "로봇공학과1",
+                      //   "userEmail" : "hyunwoojoo@m365.dongyang.ac.kr",
+                      //   "userPassword" : "odfn123123!",
+                      // });
+                      // final Response resp1 = await dio.get(serverUrl);
+                      // print(resp1);
+                      // print(resp);
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => StartScreen()),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       );
                     },
                     child: Container(
                       width: 342,
                       height: 56,
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           '완료',
                           style: TextStyle(

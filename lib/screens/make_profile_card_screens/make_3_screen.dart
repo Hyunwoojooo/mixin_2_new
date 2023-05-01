@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mixin_2/layout/custom_appbar.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
 import '../../const/colors.dart';
-import 'make_character_screen.dart';
+import 'make_2_screen.dart';
+import 'make_introduce_screen.dart';
 
-class MakeProfileScreen extends StatefulWidget {
-  const MakeProfileScreen({Key? key}) : super(key: key);
+class MakeImportantScreen extends StatefulWidget {
+  const MakeImportantScreen({Key? key}) : super(key: key);
 
   @override
-  State<MakeProfileScreen> createState() => _MakeProfileScreenState();
+  State<MakeImportantScreen> createState() => _MakeImportantScreenState();
 }
 
-class _MakeProfileScreenState extends State<MakeProfileScreen> {
-
-
+class _MakeImportantScreenState extends State<MakeImportantScreen> {
   bool nextButtonColor = false;
-  bool communication = false;
-  bool passion = false;
-  bool promise = false;
+  List<bool> selectList = List.filled(3, false);
 
   @override
   Widget build(BuildContext context) {
@@ -33,42 +32,21 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white,
-                  spreadRadius: 0.0,
-                  blurRadius: 0.0,
-                ),
-              ]
-          ),
-          width: 342,
-          height: 56,
-          child: RawMaterialButton(
-            fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-            elevation: 0.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            onPressed: () {
-              if (nextButtonColor == false){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => MakeCharacterScreen()),
-                );
-              } else {}
-            },
-            child: const Text(
-              '다음',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w600
-              ),
-            ),
-          ),
+        floatingActionButton: CustomFloatingActionButton(
+          text: '다음',
+          fillColor: selectList.where((element) => element).isNotEmpty
+              ? MIXIN_POINT_COLOR
+              : MIXIN_BLACK_4,
+          onPressed: () {
+            if (selectList.where((element) => element).isNotEmpty) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) => const MakeIntroduceScreen()),
+              );
+            } else {
+              null;
+            }
+          },
         ),
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -81,9 +59,9 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                   const SizedBox(
                     height: 29.0,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         backgroundColor: MIXIN_BLACK_5,
                         radius: 12.0,
@@ -93,8 +71,7 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
+                              color: MIXIN_BLACK_4),
                         ),
                       ),
                       SizedBox(
@@ -109,8 +86,7 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: MIXIN_BLACK_4
-                          ),
+                              color: MIXIN_BLACK_4),
                         ),
                       ),
                       SizedBox(
@@ -125,8 +101,7 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500,
                               fontSize: 14.0,
-                              color: Colors.white
-                          ),
+                              color: Colors.white),
                         ),
                       ),
                     ],
@@ -139,8 +114,7 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                     style: TextStyle(
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w600,
-                        fontSize: 24.0
-                    ),
+                        fontSize: 24.0),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
@@ -174,41 +148,40 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             side: BorderSide(
-                                color: communication == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                width: 1.5
-                            ),
+                                color: selectList[0] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                width: 1.5),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
+                                borderRadius: BorderRadius.circular(10.0)),
                             padding: EdgeInsets.zero,
                             elevation: 0.0,
-                            backgroundColor: communication == true ? MIXIN_ : Colors.white
-                        ),
-                        onPressed: (){
+                            backgroundColor:
+                                selectList[0] == true ? MIXIN_ : Colors.white),
+                        onPressed: () {
                           setState(() {
-                            communication = !communication;
-                            if(communication == true){
-                              passion = false;
-                              promise = false;
+                            selectList[0] = !selectList[0];
+                            if (selectList[0] == true) {
+                              selectList[1] = false;
+                              selectList[2] = false;
                             }
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(24, 26, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(24, 26, 0, 0),
                           alignment: Alignment.centerLeft,
-                          color: communication == true ? MIXIN_ : Colors.white,
-                          child: Column(
+                          color: selectList[0] == true ? MIXIN_ : Colors.white,
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 '소통',
                                 style: TextStyle(
                                     fontFamily: 'SUIT',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20.0,
-                                    color: MIXIN_BLACK_1
-                                ),
+                                    color: MIXIN_BLACK_1),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(
@@ -220,13 +193,11 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                                     fontFamily: 'SUIT',
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
-                                    color: MIXIN_BLACK_3
-                                ),
+                                    color: MIXIN_BLACK_3),
                               ),
                             ],
                           ),
-                        )
-                    ),
+                        )),
                   ),
                   const SizedBox(
                     height: 12.0,
@@ -237,41 +208,40 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             side: BorderSide(
-                                color: passion == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                width: 1.5
-                            ),
+                                color: selectList[1] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                width: 1.5),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
+                                borderRadius: BorderRadius.circular(10.0)),
                             padding: EdgeInsets.zero,
                             elevation: 0.0,
-                            backgroundColor: passion == true ? MIXIN_ : Colors.white
-                        ),
-                        onPressed: (){
+                            backgroundColor:
+                                selectList[1] == true ? MIXIN_ : Colors.white),
+                        onPressed: () {
                           setState(() {
-                            passion = !passion;
-                            if(passion == true){
-                              communication = false;
-                              promise = false;
+                            selectList[1] = !selectList[1];
+                            if (selectList[1] == true) {
+                              selectList[0] = false;
+                              selectList[2] = false;
                             }
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(24, 26, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(24, 26, 0, 0),
                           alignment: Alignment.centerLeft,
-                          color: passion == true ? MIXIN_ : Colors.white,
-                          child: Column(
+                          color: selectList[1] == true ? MIXIN_ : Colors.white,
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 '열정',
                                 style: TextStyle(
                                     fontFamily: 'SUIT',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20.0,
-                                    color: MIXIN_BLACK_1
-                                ),
+                                    color: MIXIN_BLACK_1),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(
@@ -283,13 +253,11 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                                     fontFamily: 'SUIT',
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
-                                    color: MIXIN_BLACK_3
-                                ),
+                                    color: MIXIN_BLACK_3),
                               ),
                             ],
                           ),
-                        )
-                    ),
+                        )),
                   ),
                   const SizedBox(
                     height: 12.0,
@@ -300,41 +268,40 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             side: BorderSide(
-                                color: promise == true ? MIXIN_2 : MIXIN_BLACK_5,
-                                width: 1.5
-                            ),
+                                color: selectList[2] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                width: 1.5),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)
-                            ),
+                                borderRadius: BorderRadius.circular(10.0)),
                             padding: EdgeInsets.zero,
                             elevation: 0.0,
-                            backgroundColor: promise == true ? MIXIN_ : Colors.white
-                        ),
-                        onPressed: (){
+                            backgroundColor:
+                                selectList[2] == true ? MIXIN_ : Colors.white),
+                        onPressed: () {
                           setState(() {
-                            promise = !promise;
-                            if(promise == true){
-                              communication = false;
-                              passion = false;
+                            selectList[2] = !selectList[2];
+                            if (selectList[2] == true) {
+                              selectList[0] = false;
+                              selectList[1] = false;
                             }
                           });
                         },
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(24, 26, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(24, 26, 0, 0),
                           alignment: Alignment.centerLeft,
-                          color: promise == true ? MIXIN_ : Colors.white,
-                          child: Column(
+                          color: selectList[2] == true ? MIXIN_ : Colors.white,
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 '약속',
                                 style: TextStyle(
                                     fontFamily: 'SUIT',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20.0,
-                                    color: MIXIN_BLACK_1
-                                ),
+                                    color: MIXIN_BLACK_1),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(
@@ -346,19 +313,16 @@ class _MakeProfileScreenState extends State<MakeProfileScreen> {
                                     fontFamily: 'SUIT',
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
-                                    color: MIXIN_BLACK_3
-                                ),
+                                    color: MIXIN_BLACK_3),
                               ),
                             ],
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 ],
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mixin_2/components/custom_textformfield.dart';
+import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/const/term_of_service_text/progress_text.dart';
+import 'package:mixin_2/layout/custom_floating_action_button.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_namephone.dart';
-import 'package:mixin_2/terms_of_use/ad_ifm_term.dart';
-import 'package:mixin_2/terms_of_use/community_use_term.dart';
-import 'package:mixin_2/terms_of_use/service_use_term.dart';
 import '../../const/colors.dart';
-import '../../terms_of_use/personal_ifm_term.dart';
+import '../terms_of_use_screen/ad_ifm_term_screen.dart';
+import '../terms_of_use_screen/community_use_term_screen.dart';
+import '../terms_of_use_screen/personal_ifm_term_screen.dart';
+import '../terms_of_use_screen/service_use_term_screen.dart';
 
 class SignUpScreen1 extends StatefulWidget {
   const SignUpScreen1({Key? key}) : super(key: key);
+
   @override
   State<SignUpScreen1> createState() => _SignUpScreen1State();
-
 }
 
 class _SignUpScreen1State extends State<SignUpScreen1> {
-
   List<bool> isMaintainChecked = [false, false, false, false, false];
   bool isTotalChecked = false;
   bool isServiceUserChecked = false;
@@ -27,8 +28,12 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
   bool isAgeChecked = false;
   bool nextButtonColor = false;
 
-  void changeData (){
-    if(isMaintainChecked[0] == true && isMaintainChecked[1] == true && isMaintainChecked[2] == true && isMaintainChecked[3] == true &&isMaintainChecked[4] == true ){
+  void changeData() {
+    if (isMaintainChecked[0] == true &&
+        isMaintainChecked[1] == true &&
+        isMaintainChecked[2] == true &&
+        isMaintainChecked[3] == true &&
+        isMaintainChecked[4] == true) {
       nextButtonColor = true;
     } else {
       nextButtonColor = false;
@@ -54,42 +59,18 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white,
-                spreadRadius: 0.0,
-                blurRadius: 0.0,
-              ),
-            ]
-        ),
-        width: 342,
-        height: 56,
-        child: RawMaterialButton(
-          fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-          elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
+      floatingActionButton: CustomFloatingActionButton(
+        text: '다음',
+        fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
           onPressed: () {
-            if (nextButtonColor == true){
+            if (nextButtonColor == true) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => SignUpScreenNamePhone()),
+                  builder: (context) => SignUpScreenNamePhone(isAdIfmChecked),
+                ),
               );
             } else {}
           },
-          child: Text(
-            '다음',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -101,16 +82,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
               const SizedBox(
                 height: 29.0,
               ),
-              Container(
-                child: Text(
-                  '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'SUIT',
-                  ),
-                ),
-              ),
+              const HeadlineText(text: '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!'),
               const SizedBox(
                 height: 50,
               ),
@@ -124,7 +96,9 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      value: (nextButtonColor == true && isAdIfmChecked == true) ? true : isTotalChecked,
+                      value: (nextButtonColor == true && isAdIfmChecked == true)
+                          ? true
+                          : isTotalChecked,
                       onChanged: (bool? value) {
                         setState(() {
                           isTotalChecked = value!;
@@ -144,7 +118,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       },
                     ),
                   ),
-                  Text(
+                  const Text(
                     '약관 정책동의',
                     style: TextStyle(
                       color: MIXIN_BLACK_1,
@@ -155,16 +129,16 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                   ),
                 ],
               ),
-              Divider(
+              const Divider(
                 thickness: 1.0,
                 color: MIXIN_BLACK_5,
               ),
               const SizedBox(
-              height: 15.0,
+                height: 15.0,
               ),
               Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 25.0,
                     child: Row(
                       children: [
@@ -185,7 +159,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '서비스이용약관 동의 (필수)',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -203,13 +177,16 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                           highlightColor: Colors.transparent,
                           splashColor: Colors.transparent,
                           iconSize: 18.0,
-                            onPressed: (){
+                          onPressed: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ServiceUseTerm()),
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ServiceUseTerm()),
                             );
-                            },
-                            icon: Icon(Icons.arrow_forward_ios),
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward_ios,
+                          ),
                         )
                       ],
                     ),
@@ -217,7 +194,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  Container(
+                  SizedBox(
                     height: 25.0,
                     child: Row(
                       children: [
@@ -238,7 +215,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '개인정보처리방침 동의 (필수)',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -251,18 +228,22 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                           width: 106.0,
                         ),
                         IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            iconSize: 18.0,
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PersonalIfmterm()),
-                              );
-                            },
-                            icon: Icon(Icons.arrow_forward_ios))
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          iconSize: 18.0,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PersonalIfmterm()),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -290,7 +271,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '커뮤니티이용규칙 확인 (필수)',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -308,10 +289,11 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                             highlightColor: Colors.transparent,
                             splashColor: Colors.transparent,
                             iconSize: 18.0,
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => CommunityUseTerm()),
+                                MaterialPageRoute(
+                                    builder: (context) => CommunityUseTerm()),
                               );
                             },
                             icon: Icon(Icons.arrow_forward_ios))
@@ -321,7 +303,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                   const SizedBox(
                     height: 10.0,
                   ),
-                  Container(
+                  SizedBox(
                     height: 25.0,
                     child: Row(
                       children: [
@@ -339,7 +321,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '광고성 정보 수신 동의 (선택)',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -352,25 +334,29 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                           width: 112.0,
                         ),
                         IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            iconSize: 18.0,
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => AdIfmTerm()),
-                              );
-                            },
-                            icon: Icon(Icons.arrow_forward_ios))
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          iconSize: 18.0,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdIfmTerm()),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward_ios,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(
                     height: 34,
                   ),
-                  Container(
+                  SizedBox(
                     height: 25.0,
                     child: Row(
                       children: [
@@ -391,7 +377,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '본인 명의를 이용하여 가입을 진행하겠습니다.',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -409,19 +395,16 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
                     child: Container(
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
-                        color: Color(0xFFF2F3F7),
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Color(0xFFCED0D5),
-                          width: 1.0
-                        )
-                      ),
+                          color: const Color(0xFFF2F3F7),
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                              color: const Color(0xFFCED0D5), width: 1.0)),
                       width: 342,
                       height: 100,
                       child: Text(
-                          '${progressTextMain}',
+                        '${progressTextMain}',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 12.0,
@@ -454,7 +437,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '만 14세 이상입니다.',
                           style: TextStyle(
                             color: MIXIN_BLACK_1,
@@ -472,15 +455,12 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 12, 0, 0),
                     child: Container(
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFF2F3F7),
+                          color: const Color(0xFFF2F3F7),
                           borderRadius: BorderRadius.circular(8.0),
                           border: Border.all(
-                              color: Color(0xFFCED0D5),
-                              width: 1.0
-                          )
-                      ),
+                              color: const Color(0xFFCED0D5), width: 1.0)),
                       width: 342,
                       height: 60,
                       child: Text(

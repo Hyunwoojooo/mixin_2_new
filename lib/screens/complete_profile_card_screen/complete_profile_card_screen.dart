@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:mixin_2/screens/complete_profile_card_screen/back_profile_card_screen.dart';
 import 'package:mixin_2/screens/complete_profile_card_screen/front_profile_card_screen.dart';
 
 import '../../const/colors.dart';
@@ -34,8 +35,8 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 '믹스인에서\n내 프로필이 이렇게 보여요!',
                 style: TextStyle(
                   fontFamily: 'SUIT',
@@ -54,36 +55,29 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
                 side: CardSide.FRONT,
                 // The side to initially display.
                 front: FrontProfileCardScreen(),
-                back: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(23.0),
-                  ),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image:
-                                  AssetImage('assets/images/speech_bubble.png'),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                back: BackProfileCardScreen(),
               ),
-              Text(
-                '믹스인에서\n내 프로필이 이렇게 보여요!',
-                style: TextStyle(
-                  fontFamily: 'SUIT',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.0,
+              const SizedBox(
+                height: 40.0,
+              ),
+              Container(
+                height: 40,
+                width: 249,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
                   color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
-                textAlign: TextAlign.center,
-              ),
+                child: Text(
+                    '추후 수정은 내 프로필에서 할 수 있어요!',
+                    style: TextStyle(
+                      color: MIXIN_POINT_COLOR,
+                      fontFamily: 'SUIT',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0,
+                    ),
+                ),
+              )
             ],
           ),
         ),

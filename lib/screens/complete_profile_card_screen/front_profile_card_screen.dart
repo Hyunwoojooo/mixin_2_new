@@ -43,20 +43,12 @@ class FrontProfileCardScreen extends StatelessWidget {
                 Container(
                   width: 90,
                   height: 90,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blueGrey,
-                    // border: Border.all(
-                    //   color: Colors.grey,
-                    //   width: 1.0,
-                    // ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 3.0
-                      ),
-                    ]
-                  ),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blueGrey,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey, blurRadius: 3.0),
+                      ]),
                 ),
                 SizedBox(
                   height: 90,
@@ -75,9 +67,9 @@ class FrontProfileCardScreen extends StatelessWidget {
                         showLabels: false,
                         showTicks: false,
                         axisLineStyle: const AxisLineStyle(
-                            thickness: 5,
-                            cornerStyle: CornerStyle.bothFlat,
-                            color: Colors.white,
+                          thickness: 5,
+                          cornerStyle: CornerStyle.bothFlat,
+                          color: Colors.white,
                         ),
                         pointers: const <GaugePointer>[
                           RangePointer(
@@ -109,6 +101,41 @@ class FrontProfileCardScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            Text(
+              '먼지이이잉',
+              style: TextStyle(
+                fontFamily: 'SUIT',
+                fontWeight: FontWeight.w600,
+                fontSize: 18.0,
+              ),
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              '커뮤니케이션학과',
+              style: TextStyle(
+                fontFamily: 'SUIT',
+                fontWeight: FontWeight.w500,
+                fontSize: 14.0,
+              ),
+            ),
+            const SizedBox(
+              height: 32.0,
+            ),
+            Container(
+              height: 138,
+              width: 280,
+              padding: EdgeInsets.all(32),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32.0),
+                color: MIXIN_BLACK_5,
+              ),
+              child: Text('물지않아요'),
             ),
           ],
         ),

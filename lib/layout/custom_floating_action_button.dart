@@ -14,8 +14,9 @@ class CustomFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          boxShadow: [
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: const [
             BoxShadow(
               color: Colors.white,
               spreadRadius: 0.0,

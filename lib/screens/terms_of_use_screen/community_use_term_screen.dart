@@ -50,7 +50,7 @@ class CommunityUseTerm extends StatelessWidget {
         height: 56,
         child: RawMaterialButton(
           fillColor: MIXIN_POINT_COLOR,
-          elevation: 30.0,
+          elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),

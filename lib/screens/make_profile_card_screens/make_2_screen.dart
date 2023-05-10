@@ -1044,7 +1044,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                     onDotClicked: (index) {},
                   ),
                   const SizedBox(
-                    height: 10.0,
+                    height: 20.0,
                   ),
                   Row(
                     children: [
@@ -1062,7 +1062,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Text(
-                              '아아',
+                              '진지한',
                             ),
                           ),
                           Positioned(
@@ -1092,7 +1092,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Text(
-                              '아아',
+                              '단호한',
                             ),
                           ),
                           Positioned(
@@ -1125,7 +1125,10 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                               ),
                               child: Text(
                                 // '${selectList[0]}',
-                                'dd'
+                                '소수모임을 좋아하는',
+                                style: TextStyle(
+                                  fontSize: 12
+                                ),
                               ),
                             ),
                             Positioned(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mixin_2/const/term_of_service_text/ad_term_text.dart';
-import 'package:mixin_2/const/term_of_service_text/personal_term_text.dart';
 
 import '../../const/colors.dart';
 
@@ -31,16 +30,16 @@ class AdIfmTerm extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.white,
-              spreadRadius: 30.0,
-              blurRadius: 20.0,
+              // spreadRadius: 30.0,
+              // blurRadius: 20.0,
             ),
           ],
         ),
         width: 342,
         height: 56,
         child: RawMaterialButton(
+          elevation: 0.0,
           fillColor: MIXIN_POINT_COLOR,
-          elevation: 30.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -77,7 +76,7 @@ class AdIfmTerm extends StatelessWidget {
                 ),
                 Text(
                   '$first',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 12.0,

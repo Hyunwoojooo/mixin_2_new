@@ -40,10 +40,6 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
           },
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: const CustomFloatingActionButton(
-        onPressed: null,
-      ),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: SafeArea(
@@ -140,7 +136,7 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(20),
-                      hintText: '정지수',
+                      hintText: '주현우',
                       hintStyle: const TextStyle(
                         color: MIXIN_BLACK_4,
                         fontSize: 18.0,
@@ -221,20 +217,23 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 120,
+                ),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: MIXIN_POINT_COLOR,
+                      backgroundColor: MIXIN_POINT_COLOR,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0),
                     onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => CompleteProfileCardScreen()),
+                            builder: (context) => const CompleteProfileCardScreen()),
                       );
                     },
-                    child: Container(
+                    child: const SizedBox(
                       width: 342,
                       height: 56,
                       child: Center(
@@ -244,7 +243,8 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                               color: Colors.white,
                               fontSize: 18,
                               fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

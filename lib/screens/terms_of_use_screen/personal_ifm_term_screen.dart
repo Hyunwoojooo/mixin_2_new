@@ -42,7 +42,7 @@ class PersonalIfmterm extends StatelessWidget {
         height: 56,
         child: RawMaterialButton(
           fillColor: MIXIN_POINT_COLOR,
-          elevation: 30.0,
+          elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -90,7 +90,7 @@ class PersonalIfmterm extends StatelessWidget {
                 ),
                 Text(
                   '$first',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 12.0,
@@ -112,7 +112,7 @@ class PersonalIfmterm extends StatelessWidget {
                 ),
                 Text(
                   '$second',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -134,7 +134,7 @@ class PersonalIfmterm extends StatelessWidget {
                 ),
                 Text(
                   '$third',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -156,7 +156,7 @@ class PersonalIfmterm extends StatelessWidget {
                 ),
                 Text(
                   '$fourth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,

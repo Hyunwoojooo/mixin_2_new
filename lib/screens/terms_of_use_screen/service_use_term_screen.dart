@@ -42,7 +42,7 @@ class ServiceUseTerm extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: Colors.white,
@@ -55,7 +55,7 @@ class ServiceUseTerm extends StatelessWidget {
         height: 56,
         child: RawMaterialButton(
           fillColor: MIXIN_POINT_COLOR,
-          elevation: 30.0,
+          elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -63,7 +63,7 @@ class ServiceUseTerm extends StatelessWidget {
             Navigator.pop(context);
 
           },
-          child: Text(
+          child: const Text(
               '확인하고 전체동의',
             style: TextStyle(
                 color: Colors.white,
@@ -105,7 +105,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$first',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 12.0,
@@ -127,7 +127,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$second',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -149,7 +149,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$third',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -171,7 +171,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$fourth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -193,7 +193,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$fifth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -215,7 +215,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$sixth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -237,7 +237,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$seventh',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -259,7 +259,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$eighth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -281,7 +281,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$ninth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -303,7 +303,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$tenth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -325,7 +325,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$eleventh',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -347,7 +347,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$twelfth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -369,7 +369,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$thirteenth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -391,7 +391,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$fourteenth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,
@@ -413,7 +413,7 @@ class ServiceUseTerm extends StatelessWidget {
                 ),
                 Text(
                   '$fifteenth',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0,

@@ -1,10 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/login_screen.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -131,11 +128,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   elevation: 0.0),
               onPressed: () async {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SignUpScreen1()),
+                  MaterialPageRoute(builder: (context) => const SignUpScreen1()),
                 );
-                print(MediaQuery.of(context).size.width);
-                print(MediaQuery.of(context).size.height);
-                print(MediaQuery.of(context).size.height / 100 * 11.3);
               },
               child: const SizedBox(
                 width: 300,

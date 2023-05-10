@@ -23,8 +23,10 @@ class Mixin extends StatelessWidget {
         fontFamily: 'SUIT',
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
-      home: OnboardingScreen(),
-
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const OnboardingScreen(),
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mixin_2/components/custom_textformfield.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/const/term_of_service_text/progress_text.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';
@@ -18,6 +18,13 @@ class SignUpScreen1 extends StatefulWidget {
 }
 
 class _SignUpScreen1State extends State<SignUpScreen1> {
+  AndroidOptions _getAndroidOptions() => const AndroidOptions(
+    encryptedSharedPreferences: true,
+  );
+  final storage = FlutterSecureStorage();
+
+
+
   List<bool> isMaintainChecked = [false, false, false, false, false];
   bool isTotalChecked = false;
   bool isServiceUserChecked = false;
@@ -27,6 +34,8 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
   bool isProgressChecked = false;
   bool isAgeChecked = false;
   bool nextButtonColor = false;
+  String isAdIfmCheckedText = 'ㄷㄷㄷ';
+  String aa = 'aaaaa';
 
   void changeData() {
     if (isMaintainChecked[0] == true &&
@@ -62,13 +71,12 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
       floatingActionButton: CustomFloatingActionButton(
         text: '다음',
         fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-          onPressed: () {
+          onPressed: () async {
             if (nextButtonColor == true) {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => SignUpScreenNamePhone(isAdIfmChecked),
-                ),
-              );
+                MaterialPageRoute(builder: (context) => SignUpScreenNamePhone())
+                );
+              print('광고성 약관 : $isAdIfmCheckedText');
             } else {}
           },
       ),
@@ -79,13 +87,9 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 29.0,
-              ),
+              const SizedBox(height: 29.0),
               const HeadlineText(text: '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!'),
-              const SizedBox(
-                height: 50,
-              ),
+              const SizedBox(height: 50),
               Row(
                 children: [
                   Transform.scale(
@@ -113,6 +117,12 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                           isMaintainChecked[2] = value;
                           isMaintainChecked[3] = value;
                           isMaintainChecked[4] = value;
+                          if(isAdIfmChecked == true) {
+                            isAdIfmCheckedText = '동의';
+                          } else if(isAdIfmChecked == false){
+                            isAdIfmCheckedText = '비동의';
+                          }
+                          storage.write(key: 'isAdIfmChecked', value: isAdIfmCheckedText);
                           changeData();
                         });
                       },
@@ -133,9 +143,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                 thickness: 1.0,
                 color: MIXIN_BLACK_5,
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
+              const SizedBox(height: 15.0),
               Column(
                 children: [
                   SizedBox(
@@ -168,9 +176,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(
-                          width: 120.0,
-                        ),
+                        const SizedBox(width: 120.0),
                         IconButton(
                           padding: EdgeInsets.zero,
                           constraints: BoxConstraints(),
@@ -191,9 +197,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
+                  const SizedBox(height: 10.0),
                   SizedBox(
                     height: 25.0,
                     child: Row(
@@ -247,10 +251,8 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
+                  const SizedBox(height: 10.0),
+                  SizedBox(
                     height: 25.0,
                     child: Row(
                       children: [
@@ -300,9 +302,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
+                  const SizedBox(height: 10.0),
                   SizedBox(
                     height: 25.0,
                     child: Row(
@@ -312,9 +312,18 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                           child: Checkbox(
                             activeColor: MIXIN_POINT_COLOR,
                             value: isAdIfmChecked,
-                            onChanged: (bool? value) {
+                            onChanged: (bool? value) async{
                               setState(() {
                                 isAdIfmChecked = value!;
+                                if(isAdIfmChecked == true) {
+                                  isAdIfmCheckedText = '동의';
+                                } else if(isAdIfmChecked == false){
+                                  isAdIfmCheckedText = '비동의';
+                                }
+                              });
+                              storage.write(key: 'isAdIfmChecked', value: isAdIfmCheckedText);
+                              setState(() {
+
                               });
                             },
                             shape: RoundedRectangleBorder(
@@ -353,9 +362,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 34,
-                  ),
+                  const SizedBox(height: 34),
                   SizedBox(
                     height: 25.0,
                     child: Row(
@@ -386,9 +393,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   ),
@@ -413,9 +418,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 34.0,
-                  ),
+                  const SizedBox(height: 34.0),
                   Container(
                     height: 25.0,
                     child: Row(
@@ -446,9 +449,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   ),
@@ -465,7 +466,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       height: 60,
                       child: Text(
                         '${ageTextMain}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 12.0,
                           fontFamily: 'SUIT',
@@ -473,9 +474,7 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 100,
-                  )
+                  const SizedBox(height: 100),
                 ],
               ),
             ],

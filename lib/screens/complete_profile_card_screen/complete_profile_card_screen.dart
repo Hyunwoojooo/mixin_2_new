@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:mixin_2/screens/complete_profile_card_screen/back_profile_card_screen.dart';
-import 'package:mixin_2/screens/complete_profile_card_screen/front_profile_card_screen.dart';
 
 import '../../const/colors.dart';
 import '../../layout/custom_floating_action_button.dart';
+import 'back_profile_card_screen.dart';
+import 'front_profile_card_screen.dart';
 
 class CompleteProfileCardScreen extends StatefulWidget {
   const CompleteProfileCardScreen({Key? key}) : super(key: key);
@@ -69,13 +69,13 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Text(
-                    '추후 수정은 내 프로필에서 할 수 있어요!',
-                    style: TextStyle(
-                      color: MIXIN_POINT_COLOR,
-                      fontFamily: 'SUIT',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.0,
-                    ),
+                  '추후 수정은 내 프로필에서 할 수 있어요!',
+                  style: TextStyle(
+                    color: MIXIN_POINT_COLOR,
+                    fontFamily: 'SUIT',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14.0,
+                  ),
                 ),
               )
             ],

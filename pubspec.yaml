@@ -50,6 +50,7 @@ dependencies:
   xml: ^6.2.2
   flip_card: ^0.7.0
   syncfusion_flutter_gauges: ^21.1.41
+  flutter_secure_storage: ^8.0.0
 
 
 dev_dependencies:

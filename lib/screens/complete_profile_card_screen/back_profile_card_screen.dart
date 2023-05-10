@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../const/colors.dart';
+
 class BackProfileCardScreen extends StatelessWidget {
   const BackProfileCardScreen({Key? key}) : super(key: key);
 
@@ -13,8 +15,7 @@ class BackProfileCardScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(23.0),
         color: Colors.white,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
+      child: ListView(
         children: [
           Row(
             children: [
@@ -28,7 +29,7 @@ class BackProfileCardScreen extends StatelessWidget {
                 width: 14.0,
               ),
               Text(
-                '먼지이이잉',
+                '믹스인',
                 style: TextStyle(
                   fontFamily: 'SUIT',
                   fontWeight: FontWeight.w600,
@@ -51,7 +52,7 @@ class BackProfileCardScreen extends StatelessWidget {
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
                     fontSize: 16.0,
-                    color: Colors.black,
+                    color: MIXIN_BLACK_4,
                   ),
                 ),
               ),
@@ -63,7 +64,7 @@ class BackProfileCardScreen extends StatelessWidget {
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
                     fontSize: 16.0,
-                    color: Colors.black,
+                    color: MIXIN_BLACK_4,
                   ),
                 ),
               ),
@@ -72,55 +73,230 @@ class BackProfileCardScreen extends StatelessWidget {
                 child: Text(
                   '가치관',
                   style: TextStyle(
-                    fontFamily: 'SUIT',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
-                    color: Colors.black,
+                      fontFamily: 'SUIT',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0,
+                      color: Colors.black
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(
-            height: 20,
-            width: 20,
+          Container(
+            height: 300,
+            alignment: Alignment.center,
+            padding: EdgeInsets.zero,
             child: PageView(
               children: [
                 Container(
-                  width: 200,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(36.0),
-                    gradient: const LinearGradient(
-                        colors: [
-                          Color(0xFFFFFFFF),
-                          Color(0xFF8DCAC2),
-                        ]),
-                  ),
+                    width: 200,
+                    height: 151,
+                    color: Colors.white,
+                    alignment: Alignment.center,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 57),
+                      width: 200,
+                      height: 151,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        // gradient: LinearGradient(
+                        //     colors: [MIXIN_2, Colors.white],
+                        //   begin: Alignment.topLeft,
+                        //   end: Alignment.bottomRight,
+                        // ),
+                        color: Color(0xFFDAF3F0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: MIXIN_POINT_COLOR,
+                            blurRadius: 2.0,
+                            offset: Offset(2, 4),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(36),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '분위기메이커형',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20.0,
+                              color: MIXIN_POINT_COLOR,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 18.0,
+                          ),
+                          Text(
+                            '이 모임 분위기는\n내가 책임진다!',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.0,
+                              color: MIXIN_POINT_COLOR,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 68, 42, 0),
+                  height: 108,
+                  width: 248,
                   child: Column(
                     children: [
-                      Text('아아아'),
-                      Text('dfdfadf')
+                      Row(
+                        children: [
+                          Text(
+                            '나는',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 14,
+                          ),
+                          Container(
+                            width: 154,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: MIXIN_2,
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '소수모임을 좋아하는',
+                              style: TextStyle(
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 94,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: MIXIN_2,
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '우유부단한',
+                              style: TextStyle(
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 66,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              color: MIXIN_2,
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '단호한',
+                              style: TextStyle(
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 14,
+                          ),
+                          Text(
+                            '사람',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
                 Container(
-                  width: 200,
-                  height: 51,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(36.0),
-                    gradient: const LinearGradient(
-                        colors: [
-                          Color(0xFFFFFFFF),
-                          Color(0xFF8DCAC2),
-                        ]),
-                  ),
-                  child: Column(
-                    children: [
-                      Text('아아아'),
-                      Text('dfdfadf')
-                    ],
-                  ),
+                    width: 200,
+                    height: 151,
+                    color: Colors.white,
+                    alignment: Alignment.center,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 57),
+                      width: 200,
+                      height: 151,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        // gradient: LinearGradient(
+                        //     colors: [MIXIN_2, Colors.white],
+                        //   begin: Alignment.topLeft,
+                        //   end: Alignment.bottomRight,
+                        // ),
+                        color: Color(0xFFDAF3F0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: MIXIN_POINT_COLOR,
+                            blurRadius: 2.0,
+                            offset: Offset(2, 4),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(36),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '소통',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20.0,
+                              color: MIXIN_POINT_COLOR,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 18.0,
+                          ),
+                          Text(
+                            '소통이 원할하게\n이루어지는 게 중요하지!',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.0,
+                              color: MIXIN_POINT_COLOR,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
                 ),
               ],
             ),

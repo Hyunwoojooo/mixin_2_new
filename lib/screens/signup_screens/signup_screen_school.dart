@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/components/custom_textformfield.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/screens/login_screen.dart';
@@ -16,6 +17,9 @@ class SignUpScreenSchool extends StatefulWidget {
 }
 
 class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
+  final storage = FlutterSecureStorage();
+
+
   List<int> studentNumber = List<int>.generate(24, (index) => index + 1);
   final _userStudentIdTextEditController = TextEditingController();
 
@@ -58,6 +62,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                   width: 342,
                   height: 56,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     scrollPadding: EdgeInsets.all(0.0),
                     controller: _userStudentIdTextEditController,
                     inputFormatters: [
@@ -195,12 +200,12 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342,
                     height: 56,
                     child: Text(
-                      '대학교를 선택해주세요',
+                      '동양미래대학교',
                       style: TextStyle(
-                          color: MIXIN_BLACK_4,
+                          color: MIXIN_BLACK_1,
                           fontSize: 16,
                           fontFamily: 'SUIT',
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
@@ -290,28 +295,31 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342,
                     height: 56,
                     child: Text(
-                      '학과를 선택해주세요',
+                      '자동화공학과',
                       style: TextStyle(
-                          color: MIXIN_BLACK_4,
+                          color: Colors.black,
                           fontSize: 16,
                           fontFamily: 'SUIT',
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
-                const SizedBox(height: 186),
+                const SizedBox(height: 170),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: MIXIN_POINT_COLOR,
+                      backgroundColor: MIXIN_POINT_COLOR,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0),
                     onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => SignUpScreenEmail()),
+                            builder: (context) => const SignUpScreenEmail()),
                       );
+                      await storage.write(key: 'userStudentId', value: userStudentId);
+                      await storage.write(key: 'userUniversity', value: '동양미래대학교');
+                      await storage.write(key: 'userDepartment', value: '자동화공학과');
                     },
                     child: SizedBox(
                       width: 342,

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/category_layout.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/const/colors.dart';
@@ -14,7 +17,7 @@ class MakeCategoryScreen extends StatefulWidget {
 }
 
 class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
-
+  final storage = FlutterSecureStorage();
   List<bool> categoryList = List.filled(14, false);
   List<String> selectedOptions = [];
 
@@ -36,11 +39,12 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
       floatingActionButton: CustomFloatingActionButton(
         text: '다음',
         fillColor: categoryList.where((element) => element).length >= 3 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-        onPressed: () {
+        onPressed: () async {
             if (categoryList.where((element) => element).length >= 3) {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const MakePositionScreen()),
               );
+              await storage.write(key: 'userKeyword', value: jsonEncode(categoryList));
             } else {null;}
           },
       ),

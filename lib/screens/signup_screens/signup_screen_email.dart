@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -18,6 +19,8 @@ class SignUpScreenEmail extends StatefulWidget {
 
 class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
   final storage = FlutterSecureStorage();
+  final String serverUrl = 'http://122.37.227.143:8080/api/email/send';
+
 
   List<int> studentNumber = List<int>.generate(24, (index) => index + 1);
   final _userEmailTextEditController = TextEditingController();
@@ -206,6 +209,11 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                             onClickSendButton = true;
                           });
                           startTimer();
+                          Dio dio = Dio();
+                          final Response resp = await dio.post(serverUrl, data: {
+                            "userEmail" : userEmail,
+                          });
+                          print(resp);
                         },
                         child: Container(
                           alignment: Alignment.center,

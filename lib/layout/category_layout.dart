@@ -30,8 +30,6 @@ class CategoryLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return SizedBox(
       width: mainSizedBoxWidth,
       height: 48,

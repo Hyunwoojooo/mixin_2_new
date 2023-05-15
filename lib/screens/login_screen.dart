@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/components/default_layout.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
@@ -14,7 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final String serverUrl = 'http://122.37.227.143:8000/http/post';
+  final String serverUrl = 'http://122.37.227.143:8080/api/login';
+  final storage = FlutterSecureStorage();
 
   final _idTextEditController = TextEditingController();
   final _passwordTextController = TextEditingController();
@@ -94,11 +97,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) => MakeCategoryScreen()),
                       );
+                      // Dio dio = Dio();
+                      // String? userPassword = await storage.read(key: 'userPassword');
+                      // String? userEmail = await storage.read(key: 'userEmail');
+                      // print(userPassword);
+                      // final Response resp = await dio.post(serverUrl, data: {
+                      //   "userEmail" : userEmail,
+                      //   "userPassword" : userPassword,
+                      // });
+                      // print(resp);
                     },
                     child: Container(
                       width: 260,
@@ -162,6 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => SignUpScreen1()),
                         );
+
                       },
                       child: Text(
                         '회원가입',

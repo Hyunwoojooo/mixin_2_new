@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class SignUpScreenNamePhone extends StatefulWidget {
 
 class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
   final storage = FlutterSecureStorage();
-  final String serverUrl = 'http://122.37.227.143:8080/login';
+  final String serverUrl = 'http://122.37.227.143:8080/api/sms/send';
   final _userNameTextEditController = TextEditingController();
   final _userPhoneNumberTextController = TextEditingController();
   final _userCertificationNumberController = TextEditingController();
@@ -243,9 +244,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
               ),
               const SizedBox(height: 24.0),
               const InfoText(text: '전화번호'),
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: 12.0),
               Row(
                 children: [
                   Row(
@@ -364,15 +363,15 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                           controller: _userPhoneNumberTextController,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly,
-                            NumberFormatter(),
-                            LengthLimitingTextInputFormatter(13),
+                            // NumberFormatter(),
+                            LengthLimitingTextInputFormatter(11),
                           ],
                           cursorColor: Colors.grey,
                           obscureText: false,
                           autofocus: false,
                           onChanged: (String value) {
                             userPhoneNumber = value;
-                            if(userPhoneNumber.length == 13){
+                            if(userPhoneNumber.length == 11){
                               setState(() {
                               });
                               FocusScope.of(context).unfocus();
@@ -527,10 +526,15 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                               borderRadius: BorderRadius.circular(8.0)),
                           elevation: 0.0),
                       onPressed: () async {
-                          // setState(() {
-                          //   onClickSendButton = true;
-                          // });
-                          // startTimer();
+                          setState(() {
+                            onClickSendButton = true;
+                          });
+                          startTimer();
+                        Dio dio = Dio();
+                        final Response resp = await dio.post(serverUrl, data: {
+                          "to" : userPhoneNumber,
+                        });
+                        print(resp);
                       },
                       child: Container(
                         alignment: Alignment.center,

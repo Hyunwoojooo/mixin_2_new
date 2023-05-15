@@ -3,6 +3,7 @@ import 'package:flip_card/flip_card.dart';
 
 import '../../const/colors.dart';
 import '../../layout/custom_floating_action_button.dart';
+import '../moim_screens/moim_main_screen.dart';
 import 'back_profile_card_screen.dart';
 import 'front_profile_card_screen.dart';
 
@@ -23,11 +24,10 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
         text: '환영해요',
         fillColor: MIXIN_POINT_COLOR,
         onPressed: () {
-          null;
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //       builder: (context) => const MakeIntroduceScreen()),
-          // );
+          Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => const MoimMainScreen()),
+          );
         },
       ),
       backgroundColor: Colors.white.withOpacity(0.4),

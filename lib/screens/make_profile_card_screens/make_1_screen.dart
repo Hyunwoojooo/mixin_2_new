@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
 import '../../const/colors.dart';
@@ -12,7 +15,7 @@ class MakePositionScreen extends StatefulWidget {
 }
 
 class _MakePositionScreenState extends State<MakePositionScreen> {
-
+  final storage = FlutterSecureStorage();
   
   List<bool> positionList = List.filled(4, false);
 
@@ -34,12 +37,13 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
       floatingActionButton: CustomFloatingActionButton(
         text: '다음',
         fillColor: (positionList.where((element) => element).length == 1) ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-        onPressed: () {
+        onPressed: () async {
             if (positionList.where((element) => element).length == 1){
               Navigator.of(context).push(
                 MaterialPageRoute(
                     builder: (context) => const MakeCharacterScreen()),
               );
+              await storage.write(key: 'userPosition', value: jsonEncode(positionList));
             } else {
               null;
             }

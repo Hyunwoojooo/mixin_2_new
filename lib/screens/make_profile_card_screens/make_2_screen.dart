@@ -1,3 +1,4 @@
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';
@@ -37,6 +38,31 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
   ];
   List<String> selectList = [];
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(introduceList);
+    print(selectList);
+  }
+
+
+  void selectType(int index, String title){
+    if (introduceList[index] == true && introduceList.where((element) => element).length >= 3){
+      introduceList[index] = !introduceList[index];
+      selectList.removeWhere((String t) => t == title);
+    } else if(introduceList[index] == false && introduceList.where((element) => element).length >= 3){
+      return;
+    } else if(introduceList[index] == false && introduceList.where((element) => element).length < 3){
+      introduceList[index] = !introduceList[index];
+      selectList.add(introduceListText[index]);
+    } else if(introduceList[index] == true && introduceList.where((element) => element).length < 3){
+      introduceList[index] = !introduceList[index];
+      selectList.removeWhere((String t) => t == title);
+    }
+    print('selectList : $selectList');
+    print('introduceList : $introduceList');
+  }
 
   final PageController controller = PageController(initialPage: 0);
 
@@ -79,9 +105,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 29.0,
-                  ),
+                  const SizedBox(height: 29.0),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -129,9 +153,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
+                  const SizedBox(height: 24.0),
                   const Text(
                     '나를 3가지 단어로\n소개하자면?',
                     style: TextStyle(
@@ -140,9 +162,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                         fontSize: 24.0),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 12.0,
-                  ),
+                  const SizedBox(height: 12.0),
                   Container(
                     width: 81,
                     height: 36,
@@ -162,9 +182,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 54,
-                  ),
+                  const SizedBox(height: 54),
                   SizedBox(
                     width: 294,
                     height: 228,
@@ -198,16 +216,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList.where((element) => element).length == 3) {
-                                            null;
-                                          } else {
-                                            introduceList[0] = !introduceList[0];
-                                          }
-                                          if (introduceList[0] == true){
-                                            selectList.add(introduceListText[0]);
-                                          } else if(introduceList[0] == false){
-                                            selectList.removeLast();
-                                          }
+                                          selectType(0, '논쟁을 좋아하는');
                                         });
                                       },
                                       child: Container(
@@ -225,9 +234,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                         ),
                                       )),
                                 ),
-                                const SizedBox(
-                                  width: 18.0,
-                                ),
+                                const SizedBox(width: 18.0),
                                 SizedBox(
                                   width: 138,
                                   height: 48,
@@ -249,15 +256,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[1] =
-                                                !introduceList[1];
-                                          }
+                                          selectType(1, '평화를 좋아하는');
                                         });
                                       },
                                       child: Container(
@@ -277,9 +276,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 12.0,
-                            ),
+                            const SizedBox(height: 12.0),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -305,15 +302,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[2] =
-                                                !introduceList[2];
-                                          }
+                                          selectType(2, '수줍음을 타는');
                                         });
                                       },
                                       child: Container(
@@ -355,14 +344,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length ==
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[3] = !introduceList[3];
-                                        }
+                                        selectType(3, '말주변이 좋은');
                                       });
                                     },
                                     child: Container(
@@ -411,15 +393,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[4] =
-                                                !introduceList[4];
-                                          }
+                                          selectType(4, '진지한');
                                         });
                                       },
                                       child: Container(
@@ -461,14 +435,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length ==
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[5] = !introduceList[5];
-                                        }
+                                        selectType(5, '장난끼가 많은');
                                       });
                                     },
                                     child: Container(
@@ -517,15 +484,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[6] =
-                                                !introduceList[6];
-                                          }
+                                          selectType(6, '계획적인');
                                         });
                                       },
                                       child: Container(
@@ -567,14 +526,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length >=
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[7] = !introduceList[7];
-                                        }
+                                        selectType(7, '즉흥적인');
                                       });
                                     },
                                     child: Container(
@@ -624,15 +576,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[8] =
-                                                !introduceList[8];
-                                          }
+                                          selectType(8, '느긋한');
                                         });
                                       },
                                       child: Container(
@@ -674,15 +618,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[9] =
-                                                !introduceList[9];
-                                          }
+                                          selectType(9, '성격이 급한');
                                         });
                                       },
                                       child: Container(
@@ -730,15 +666,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[10] =
-                                                !introduceList[10];
-                                          }
+                                          selectType(10, '파티를 좋아하는');
                                         });
                                       },
                                       child: Container(
@@ -780,15 +708,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length ==
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[11] =
-                                              !introduceList[11];
-                                        }
+                                        selectType(11, '소수모임을 좋아하는');
                                       });
                                     },
                                     child: Container(
@@ -822,7 +742,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[4] == true
+                                              color: introduceList[12] == true
                                                   ? MIXIN_2
                                                   : MIXIN_BLACK_5,
                                               width: 1.5),
@@ -837,15 +757,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[12] =
-                                                !introduceList[12];
-                                          }
+                                          selectType(12, '단호한');
                                         });
                                       },
                                       child: Container(
@@ -887,15 +799,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length ==
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[13] =
-                                              !introduceList[13];
-                                        }
+                                        selectType(13, '우유부단한');
                                       });
                                     },
                                     child: Container(
@@ -929,7 +833,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           side: BorderSide(
-                                              color: introduceList[6] == true
+                                              color: introduceList[14] == true
                                                   ? MIXIN_2
                                                   : MIXIN_BLACK_5,
                                               width: 1.5),
@@ -944,15 +848,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                   : Colors.white),
                                       onPressed: () {
                                         setState(() {
-                                          if (introduceList
-                                                  .where((element) => element)
-                                                  .length ==
-                                              3) {
-                                            null;
-                                          } else {
-                                            introduceList[14] =
-                                                !introduceList[14];
-                                          }
+                                          selectType(14, '감성적인');
                                         });
                                       },
                                       child: Container(
@@ -994,19 +890,11 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                                 : Colors.white),
                                     onPressed: () {
                                       setState(() {
-                                        if (introduceList
-                                                .where((element) => element)
-                                                .length >=
-                                            3) {
-                                          null;
-                                        } else {
-                                          introduceList[15] =
-                                              !introduceList[15];
-                                        }
+                                        selectType(15, '이성적인');
                                       });
                                     },
                                     child: Container(
-                                      color: introduceList[7] == true
+                                      color: introduceList[15] == true
                                           ? MIXIN_
                                           : Colors.white,
                                       child: const Text(
@@ -1028,9 +916,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 50.0,
-                  ),
+                  const SizedBox(height: 50.0),
                   SmoothPageIndicator(
                     controller: controller, // PageController
                     count: 2,
@@ -1043,73 +929,11 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                     ), // your preferred effect
                     onDotClicked: (index) {},
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  const SizedBox(height: 20.0),
                   Row(
                     children: [
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            width: 107,
-                            height: 37,
-                            padding: EdgeInsets.zero,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: MIXIN_,
-                              border: Border.all(color: MIXIN_2, width: 1.5),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Text(
-                              '진지한',
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 12,
-                            left: 81,
-                            child: IconButton(
-                              onPressed: (){},
-                              icon: Image.asset('assets/images/cancel_button.png'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 6.0,
-                      ),
-                      Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            width: 107,
-                            height: 37,
-                            padding: EdgeInsets.zero,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: MIXIN_,
-                              border: Border.all(color: MIXIN_2, width: 1.5),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Text(
-                              '단호한',
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 12,
-                            left: 81,
-                            child: IconButton(
-                              onPressed: (){},
-                              icon: Image.asset('assets/images/cancel_button.png'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 6.0,
-                      ),
                       Visibility(
-                        visible: true,
+                        visible: introduceList.where((element) => element).length >= 1 ? true : false,
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -1124,21 +948,95 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Text(
-                                // '${selectList[0]}',
-                                '소수모임을 좋아하는',
+                                introduceList.where((element) => element).length >= 1 ? selectList[0] : '0',
+                                style: TextStyle(
+                                    fontSize: 12
+                                ),
+                              ),
+                            ),
+                            // Positioned(
+                            //   bottom: 12,
+                            //   left: 81,
+                            //   child: IconButton(
+                            //     onPressed: (){
+                            //     },
+                            //     icon: Image.asset('assets/images/cancel_button.png'),
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 6.0),
+                      Visibility(
+                        visible: introduceList.where((element) => element).length >= 2 ? true : false,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              width: 107,
+                              height: 37,
+                              padding: EdgeInsets.zero,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: MIXIN_,
+                                border: Border.all(color: MIXIN_2, width: 1.5),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Text(
+                                introduceList.where((element) => element).length >= 2 ? selectList[1] : '1',
+                                style: TextStyle(
+                                    fontSize: 12
+                                ),
+                              ),
+                            ),
+                            // Positioned(
+                            //   bottom: 12,
+                            //   left: 81,
+                            //   child: IconButton(
+                            //     onPressed: (){
+                            //     },
+                            //     icon: Image.asset('assets/images/cancel_button.png'),
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 6.0),
+                      Visibility(
+                        visible: introduceList.where((element) => element).length == 3 ? true : false,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              width: 107,
+                              height: 37,
+                              padding: EdgeInsets.zero,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: MIXIN_,
+                                border: Border.all(color: MIXIN_2, width: 1.5),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Text(
+                                introduceList.where((element) => element).length == 3 ? selectList[2] : '2',
                                 style: TextStyle(
                                   fontSize: 12
                                 ),
                               ),
                             ),
-                            Positioned(
-                              bottom: 12,
-                              left: 81,
-                              child: IconButton(
-                                onPressed: (){},
-                                icon: Image.asset('assets/images/cancel_button.png'),
-                              ),
-                            ),
+                            // Positioned(
+                            //   bottom: 12,
+                            //   left: 81,
+                            //   child: IconButton(
+                            //     onPressed: (){
+                            //       selectList.removeLast();
+                            //       setState(() {
+                            //
+                            //       });
+                            //     },
+                            //     icon: Image.asset('assets/images/cancel_button.png'),
+                            //   ),
+                            // ),
                           ],
                         ),
                       )

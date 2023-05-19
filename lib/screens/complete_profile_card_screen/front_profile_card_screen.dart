@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../const/colors.dart';
 
-class FrontProfileCardScreen extends StatelessWidget {
-  const FrontProfileCardScreen({Key? key}) : super(key: key);
+class FrontProfileCardScreen extends StatefulWidget {
+  FrontProfileCardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FrontProfileCardScreen> createState() => _FrontProfileCardScreenState();
+}
+
+class _FrontProfileCardScreenState extends State<FrontProfileCardScreen> {
+  final storage = const FlutterSecureStorage();
+  String? userNickName = ' ';
+  String? userIntroduceText = ' ';
+  late String? userDepartment = '';
+  late String? userName = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _bringData();
+    });
+  }
+
+  void _bringData() async {
+    userNickName = await storage.read(key: 'userNickName');
+    userIntroduceText = await storage.read(key: 'userIntroduceText');
+    userDepartment = await storage.read(key: 'userDepartment');
+    userName = await storage.read(key: 'userName');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+  return Container(
       width: 342,
       height: 425,
-      padding: EdgeInsets.fromLTRB(31, 27, 31, 0),
+      padding: const EdgeInsets.fromLTRB(31, 27, 31, 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(23.0),
         color: Colors.white,
@@ -105,12 +133,10 @@ class FrontProfileCardScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
+            const SizedBox(height: 12.0),
             Text(
-              '믹스인',
-              style: TextStyle(
+              userNickName??userName!,
+              style: const TextStyle(
                 fontFamily: 'SUIT',
                 fontWeight: FontWeight.w600,
                 fontSize: 18.0,
@@ -120,8 +146,8 @@ class FrontProfileCardScreen extends StatelessWidget {
               height: 8.0,
             ),
             Text(
-              '자동화공학과',
-              style: TextStyle(
+              userDepartment!,
+              style: const TextStyle(
                 fontFamily: 'SUIT',
                 fontWeight: FontWeight.w500,
                 fontSize: 14.0,
@@ -138,7 +164,9 @@ class FrontProfileCardScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(32.0),
                 color: MIXIN_BLACK_5,
               ),
-              child: Text('반갑습니다. 자동화공학과 23학번 주현우입니다.'),
+              child: Text(
+                userIntroduceText ?? ' ',
+              ),
             ),
           ],
         ),

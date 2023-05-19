@@ -44,6 +44,7 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                     builder: (context) => const MakeCharacterScreen()),
               );
               await storage.write(key: 'userPosition', value: jsonEncode(positionList));
+              print('userPosition : $positionList');
             } else {
               null;
             }

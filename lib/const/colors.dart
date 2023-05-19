@@ -19,3 +19,5 @@ const WHITE = Color(0xFFFFFFFF);
 const MIXIN_ = Color(0xFFDAF3F0);
 
 const MIXIN_2 = Color(0xFF8DCAC2);
+
+const MIXIN_47 = Color(0xFF474747);

@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
 import '../../const/colors.dart';
 import '../complete_profile_card_screen/complete_profile_card_screen.dart';
@@ -17,17 +15,16 @@ class MakeIntroduceScreen extends StatefulWidget {
 }
 
 class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
-
   XFile? _pickedFile;
-
+  final storage = FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
-
     final _imageSize = MediaQuery.of(context).size.width / 4;
     String userNickName = '';
+    String userIntroduceText = '';
     String userNickNameLength = '0';
-
+    String userIntroduceTextLength = '';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -124,15 +121,17 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                     textAlign: TextAlign.center,
                     scrollPadding: EdgeInsets.all(0.0),
                     maxLength: 5,
-                    // inputFormatters: [
-                    //   LengthLimitingTextInputFormatter(5),
-                    // ],
                     cursorColor: Colors.grey,
                     obscureText: false,
                     autofocus: false,
+                    onFieldSubmitted: (text){
+                      setState(() {
+                        userNickNameLength = text.length.toString();
+                        print(userNickNameLength);
+                      });
+                    },
                     onChanged: (String value) {
                       userNickName = value;
-                      userNickNameLength = userNickName.length.toString();
                     },
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(20),
@@ -151,39 +150,44 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
+                              BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5))
-                          .copyWith(
-                          borderSide: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide(
-                                  color: MIXIN_BLACK_5, width: 1.5))
-                              .borderSide
-                        // .copyWith(color: Colors.red)),
-                      ),
+                              borderSide:
+                                  BorderSide(color: MIXIN_BLACK_5, width: 1.5))
+                          .copyWith(
+                              borderSide: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderSide: const BorderSide(
+                                          color: MIXIN_BLACK_5, width: 1.5))
+                                  .borderSide
+                              // .copyWith(color: Colors.red)),
+                              ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 36),
                 Container(
-                  constraints: BoxConstraints.expand(
-                    width: 342,
-                    height: 160
-                  ),
                   width: 342,
-                  height: 160,
+                  height: 240,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: MIXIN_BLACK_5, width: 1.5)),
                   child: TextFormField(
                     textAlign: TextAlign.start,
-                    scrollPadding: EdgeInsets.all(0.0),
+                    scrollPadding: EdgeInsets.zero,
                     cursorColor: Colors.grey,
                     obscureText: false,
-                    autofocus: true,
+                    autofocus: false,
+
                     onChanged: (String value) {
-                      userNickName = value;
+                      userIntroduceText = value;
+                      userIntroduceTextLength = userIntroduceText.length.toString();
+                      print(userIntroduceText);
+                      setState(() {
+                      });
                     },
+                    style: TextStyle(fontSize: 16.0),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(20),
                       hintText: '자기 소개를 작성해주세요.',
@@ -199,40 +203,48 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide:
-                          BorderSide(color: MIXIN_BLACK_5, width: 1.5))
-                          .copyWith(
-                          borderSide: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide(
-                                  color: MIXIN_BLACK_5, width: 1.5))
-                              .borderSide
-                        // .copyWith(color: Colors.red)),
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                        ),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                        ),
+                      ).copyWith(
+                          borderSide: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                        ),
+                      ).borderSide
+                          // .copyWith(color: Colors.red)),
+                          ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 120,
+                Text(
+                  '$userIntroduceTextLength/80',
                 ),
+                const SizedBox(height: 42),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: MIXIN_POINT_COLOR,
+                        backgroundColor: MIXIN_POINT_COLOR,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0),
                     onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => const CompleteProfileCardScreen()),
+                            builder: (context) =>
+                                const CompleteProfileCardScreen()),
                       );
-                    },
+                      await storage.write(key: 'userNickName', value: userNickName);
+                      await storage.write(key: 'userIntroduceText', value: userIntroduceText);
+                      },
                     child: const SizedBox(
                       width: 342,
                       height: 56,
@@ -240,10 +252,10 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                         child: Text(
                           '다음',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -258,72 +270,71 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
     );
   }
 
-  // _showBottomSheet() {
-  //   return showModalBottomSheet(
-  //     context: context,
-  //     shape: const RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.vertical(
-  //         top: Radius.circular(25),
-  //       ),
-  //     ),
-  //     builder: (context) {
-  //       return Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           const SizedBox(
-  //             height: 20,
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: () => _getCameraImage(),
-  //             child: const Text('사진찍기'),
-  //           ),
-  //           const SizedBox(
-  //             height: 10,
-  //           ),
-  //           const Divider(
-  //             thickness: 3,
-  //           ),
-  //           const SizedBox(
-  //             height: 10,
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: () => _getPhotoLibraryImage(),
-  //             child: const Text('라이브러리에서 불러오기'),
-  //           ),
-  //           const SizedBox(
-  //             height: 20,
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-  //
-  // _getCameraImage() async {
-  //   final pickedFile =
-  //   await ImagePicker().pickImage(source: ImageSource.camera);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _pickedFile = pickedFile;
-  //     });
-  //   } else {
-  //     if (kDebugMode) {
-  //       print('이미지 선택안함');
-  //     }
-  //   }
-  // }
-  // _getPhotoLibraryImage() async {
-  //   final pickedFile =
-  //   await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _pickedFile = _pickedFile;
-  //     });
-  //   } else {
-  //     if (kDebugMode) {
-  //       print('이미지 선택안함');
-  //     }
-  //   }
-  // }
+// _showBottomSheet() {
+//   return showModalBottomSheet(
+//     context: context,
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.vertical(
+//         top: Radius.circular(25),
+//       ),
+//     ),
+//     builder: (context) {
+//       return Column(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           const SizedBox(
+//             height: 20,
+//           ),
+//           ElevatedButton(
+//             onPressed: () => _getCameraImage(),
+//             child: const Text('사진찍기'),
+//           ),
+//           const SizedBox(
+//             height: 10,
+//           ),
+//           const Divider(
+//             thickness: 3,
+//           ),
+//           const SizedBox(
+//             height: 10,
+//           ),
+//           ElevatedButton(
+//             onPressed: () => _getPhotoLibraryImage(),
+//             child: const Text('라이브러리에서 불러오기'),
+//           ),
+//           const SizedBox(
+//             height: 20,
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
+//
+// _getCameraImage() async {
+//   final pickedFile =
+//   await ImagePicker().pickImage(source: ImageSource.camera);
+//   if (pickedFile != null) {
+//     setState(() {
+//       _pickedFile = pickedFile;
+//     });
+//   } else {
+//     if (kDebugMode) {
+//       print('이미지 선택안함');
+//     }
+//   }
+// }
+// _getPhotoLibraryImage() async {
+//   final pickedFile =
+//   await ImagePicker().pickImage(source: ImageSource.gallery);
+//   if (pickedFile != null) {
+//     setState(() {
+//       _pickedFile = _pickedFile;
+//     });
+//   } else {
+//     if (kDebugMode) {
+//       print('이미지 선택안함');
+//     }
+//   }
+// }
 }
-

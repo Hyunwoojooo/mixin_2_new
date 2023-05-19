@@ -48,6 +48,10 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
               ),
               SizedBox(height: 40),
               FlipCard(
+                onFlip: (){
+                  setState(() {
+                  });
+                },
                 fill: Fill.fillBack,
                 // Fill the back side of the card to make in the same size as the front.
                 direction: FlipDirection.HORIZONTAL,
@@ -68,7 +72,7 @@ class _CompleteProfileCardScreenState extends State<CompleteProfileCardScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                child: Text(
+                child: const Text(
                   '추후 수정은 내 프로필에서 할 수 있어요!',
                   style: TextStyle(
                     color: MIXIN_POINT_COLOR,

@@ -17,7 +17,7 @@ class MakeCategoryScreen extends StatefulWidget {
 }
 
 class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   List<bool> categoryList = List.filled(14, false);
   List<String> selectedOptions = [];
 
@@ -44,6 +44,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const MakePositionScreen()),
               );
+              print('categoryList : $categoryList');
               await storage.write(key: 'userKeyword', value: jsonEncode(categoryList));
             } else {null;}
           },
@@ -84,13 +85,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 101,
                       borderSideColor: categoryList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[0] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[0] = !categoryList[0];
                         });
                       },
-                      containerColor: categoryList[0] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[0] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/IT.png',
                       imageWidth: 24,
                       imageHeight: 21.47,
@@ -101,13 +102,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 92,
                       borderSideColor: categoryList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[1] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[1] = !categoryList[1];
                         });
                       },
-                      containerColor: categoryList[1] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[1] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/design.png',
                       imageWidth: 18,
                       imageHeight: 18,
@@ -118,13 +119,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 108,
                       borderSideColor: categoryList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[2] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[2] = !categoryList[2];
                         });
                       },
-                      containerColor: categoryList[2] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[2] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/culture.png',
                       imageWidth: 24,
                       imageHeight: 24,
@@ -139,13 +140,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[3] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[3] = !categoryList[3];
                         });
                       },
-                      containerColor: categoryList[3] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[3] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/music.png',
                       imageWidth: 24,
                       imageHeight: 24,
@@ -156,13 +157,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[4] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[4] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[4] = !categoryList[4];
                         });
                       },
-                      containerColor: categoryList[4] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[4] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/trip.png',
                       imageWidth: 19.24,
                       imageHeight: 24,
@@ -173,13 +174,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 108,
                       borderSideColor: categoryList[5] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[5] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[5] = !categoryList[5];
                         });
                       },
-                      containerColor: categoryList[5] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[5] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/bongsa.png',
                       imageWidth: 23,
                       imageHeight: 22,
@@ -194,13 +195,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[6] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[6] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[6] = !categoryList[6];
                         });
                       },
-                      containerColor: categoryList[6] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[6] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/health.png',
                       imageWidth: 24,
                       imageHeight: 24,
@@ -211,13 +212,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 108,
                       borderSideColor: categoryList[7] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[7] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[7] = !categoryList[7];
                         });
                       },
-                      containerColor: categoryList[7] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[7] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/animal.png',
                       imageWidth: 21.72,
                       imageHeight: 17.39,
@@ -228,13 +229,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[8] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[8] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[8] = !categoryList[8];
                         });
                       },
-                      containerColor: categoryList[8] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[8] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/sagyo.png',
                       imageWidth: 20.0,
                       imageHeight: 23.0,
@@ -249,13 +250,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[9] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[9] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[9] = !categoryList[9];
                         });
                       },
-                      containerColor: categoryList[9] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[9] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/class.png',
                       imageWidth: 24.0,
                       imageHeight: 22.79,
@@ -266,13 +267,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 92,
                       borderSideColor: categoryList[10] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[10] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[10] = !categoryList[10];
                         });
                       },
-                      containerColor: categoryList[10] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[10] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/class.png',
                       imageWidth: 24.84,
                       imageHeight: 23.0,
@@ -283,13 +284,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[11] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[11] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[11] = !categoryList[11];
                         });
                       },
-                      containerColor: categoryList[11] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[11] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/restuarant.png',
                       imageWidth: 18.67,
                       imageHeight: 24.0,
@@ -304,13 +305,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[12] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[12] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[12] = !categoryList[12];
                         });
                       },
-                      containerColor: categoryList[12] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[12] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/cook.png',
                       imageWidth: 24,
                       imageHeight: 19.86,
@@ -321,13 +322,13 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     CategoryLayout(
                       mainSizedBoxWidth: 80,
                       borderSideColor: categoryList[13] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                      backgroundColor: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      backgroundColor: categoryList[13] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[13] = !categoryList[13];
                         });
                       },
-                      containerColor: categoryList[13] == true ? MIXIN_ : MIXIN_BLACK_5,
+                      containerColor: categoryList[13] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/finance.png',
                       imageWidth: 24.17,
                       imageHeight: 25.0,

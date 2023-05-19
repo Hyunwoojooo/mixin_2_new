@@ -1,8 +1,8 @@
+import 'dart:convert';
 
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';
-import 'package:mixin_2/screens/make_profile_card_screens/make_introduce_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../const/colors.dart';
@@ -17,6 +17,7 @@ class MakeCharacterScreen extends StatefulWidget {
 
 class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
   List<bool> introduceList = List.filled(16, false);
+  final storage = const FlutterSecureStorage();
 
   List<String> introduceListText = [
     '논쟁을 좋아하는',
@@ -46,17 +47,20 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
     print(selectList);
   }
 
-
-  void selectType(int index, String title){
-    if (introduceList[index] == true && introduceList.where((element) => element).length >= 3){
+  void selectType(int index, String title) {
+    if (introduceList[index] == true &&
+        introduceList.where((element) => element).length >= 3) {
       introduceList[index] = !introduceList[index];
       selectList.removeWhere((String t) => t == title);
-    } else if(introduceList[index] == false && introduceList.where((element) => element).length >= 3){
+    } else if (introduceList[index] == false &&
+        introduceList.where((element) => element).length >= 3) {
       return;
-    } else if(introduceList[index] == false && introduceList.where((element) => element).length < 3){
+    } else if (introduceList[index] == false &&
+        introduceList.where((element) => element).length < 3) {
       introduceList[index] = !introduceList[index];
       selectList.add(introduceListText[index]);
-    } else if(introduceList[index] == true && introduceList.where((element) => element).length < 3){
+    } else if (introduceList[index] == true &&
+        introduceList.where((element) => element).length < 3) {
       introduceList[index] = !introduceList[index];
       selectList.removeWhere((String t) => t == title);
     }
@@ -86,16 +90,20 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
           fillColor: introduceList.where((element) => element).length == 3
               ? MIXIN_POINT_COLOR
               : MIXIN_BLACK_4,
-            onPressed: () {
-              if (introduceList.where((element) => element).length == 3) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => const MakeImportantScreen()),
-                );
-              } else {
-                null;
-              }
-            },
+          onPressed: () async {
+            if (introduceList.where((element) => element).length == 3) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) => const MakeImportantScreen()),
+              );
+              await storage.write(
+                key: 'userPersonality',
+                value: jsonEncode(selectList),
+              );
+            } else {
+              null;
+            }
+          },
         ),
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -933,7 +941,11 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                   Row(
                     children: [
                       Visibility(
-                        visible: introduceList.where((element) => element).length >= 1 ? true : false,
+                        visible:
+                            introduceList.where((element) => element).length >=
+                                    1
+                                ? true
+                                : false,
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -948,10 +960,13 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Text(
-                                introduceList.where((element) => element).length >= 1 ? selectList[0] : '0',
-                                style: TextStyle(
-                                    fontSize: 12
-                                ),
+                                introduceList
+                                            .where((element) => element)
+                                            .length >=
+                                        1
+                                    ? selectList[0]
+                                    : '0',
+                                style: TextStyle(fontSize: 12),
                               ),
                             ),
                             // Positioned(
@@ -968,7 +983,11 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                       ),
                       const SizedBox(width: 6.0),
                       Visibility(
-                        visible: introduceList.where((element) => element).length >= 2 ? true : false,
+                        visible:
+                            introduceList.where((element) => element).length >=
+                                    2
+                                ? true
+                                : false,
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -983,10 +1002,13 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Text(
-                                introduceList.where((element) => element).length >= 2 ? selectList[1] : '1',
-                                style: TextStyle(
-                                    fontSize: 12
-                                ),
+                                introduceList
+                                            .where((element) => element)
+                                            .length >=
+                                        2
+                                    ? selectList[1]
+                                    : '1',
+                                style: TextStyle(fontSize: 12),
                               ),
                             ),
                             // Positioned(
@@ -1003,7 +1025,11 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                       ),
                       const SizedBox(width: 6.0),
                       Visibility(
-                        visible: introduceList.where((element) => element).length == 3 ? true : false,
+                        visible:
+                            introduceList.where((element) => element).length ==
+                                    3
+                                ? true
+                                : false,
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -1018,10 +1044,13 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Text(
-                                introduceList.where((element) => element).length == 3 ? selectList[2] : '2',
-                                style: TextStyle(
-                                  fontSize: 12
-                                ),
+                                introduceList
+                                            .where((element) => element)
+                                            .length ==
+                                        3
+                                    ? selectList[2]
+                                    : '2',
+                                style: TextStyle(fontSize: 12),
                               ),
                             ),
                             // Positioned(

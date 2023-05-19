@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/custom_appbar.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';
 
@@ -16,6 +19,7 @@ class MakeImportantScreen extends StatefulWidget {
 class _MakeImportantScreenState extends State<MakeImportantScreen> {
   bool nextButtonColor = false;
   List<bool> selectList = List.filled(3, false);
+  final storage = const FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +41,13 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
           fillColor: selectList.where((element) => element).isNotEmpty
               ? MIXIN_POINT_COLOR
               : MIXIN_BLACK_4,
-          onPressed: () {
+          onPressed: () async {
             if (selectList.where((element) => element).isNotEmpty) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                     builder: (context) => const MakeIntroduceScreen()),
+              );
+              await storage.write(key: 'userValues', value: jsonEncode(selectList),
               );
             } else {
               null;

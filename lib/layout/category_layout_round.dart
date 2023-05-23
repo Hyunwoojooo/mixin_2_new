@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../const/colors.dart';
 
-class CategoryLayout extends StatelessWidget {
+class CategoryLayoutRound extends StatelessWidget {
   final double? mainSizedBoxWidth;
   final Color borderSideColor;
   final Color? backgroundColor;
@@ -14,18 +14,18 @@ class CategoryLayout extends StatelessWidget {
   final double? sizedBoxWidth;
   final String? text;
 
-  const CategoryLayout(
+  const CategoryLayoutRound(
       {this.mainSizedBoxWidth,
-      this.text,
-      required this.borderSideColor,
-      required this.onPressed,
-      this.sizedBoxWidth,
-      this.imageHeight,
-      this.imageWidth,
-      this.imageAsset,
-      this.containerColor,
-      this.backgroundColor,
-      Key? key})
+        this.text,
+        required this.borderSideColor,
+        required this.onPressed,
+        this.sizedBoxWidth,
+        this.imageHeight,
+        this.imageWidth,
+        this.imageAsset,
+        this.containerColor,
+        this.backgroundColor,
+        Key? key})
       : super(key: key);
 
   @override
@@ -35,13 +35,14 @@ class CategoryLayout extends StatelessWidget {
       height: 48,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            side: BorderSide(color: borderSideColor),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: EdgeInsets.zero,
-            elevation: 0.0,
-            backgroundColor: backgroundColor),
+          side: BorderSide(color: borderSideColor),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          padding: EdgeInsets.zero,
+          elevation: 0.0,
+          backgroundColor: backgroundColor,
+        ),
         onPressed: onPressed,
         child: Container(
           color: containerColor,

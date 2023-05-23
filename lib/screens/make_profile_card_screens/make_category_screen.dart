@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:mixin_2/layout/category_layout.dart';
+import 'package:mixin_2/layout/category_layout_square.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/layout/custom_floating_action_button.dart';

@@ -23,7 +23,7 @@ class _FrontProfileCardScreenState extends State<FrontProfileCardScreen> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _bringData();
+      // _bringData();
     });
   }
 

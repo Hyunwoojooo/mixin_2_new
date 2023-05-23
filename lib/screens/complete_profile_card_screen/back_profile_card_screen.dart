@@ -31,9 +31,9 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
     // TODO: implement initState
     super.initState();
     _bringData();
-    toBoolList(userPosition!);
-    toBoolList(userPersonality!);
-    toBoolList(userValues!);
+    // toBoolList(userPosition!);
+    // toBoolList(userPersonality!);
+    // toBoolList(userValues!);
   }
 
   List<bool> toBoolList(String string) {
@@ -154,8 +154,7 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Text(
                   '가치관',
                   style: TextStyle(

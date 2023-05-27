@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../const/colors.dart';
 
@@ -12,8 +13,8 @@ class HeadlineText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$text',
-      style: const TextStyle(
-        fontSize: 28,
+      style: TextStyle(
+        fontSize: 28.sp,
         fontWeight: FontWeight.w600,
         fontFamily: 'SUIT',
       ),
@@ -31,10 +32,10 @@ class InfoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$text',
-      style: const TextStyle(
+      style:  TextStyle(
         fontFamily: 'SUIT',
         fontWeight: FontWeight.w500,
-        fontSize: 12.0,
+        fontSize: 12.0.sp,
         color: MIXIN_BLACK_3,
       ),
     );

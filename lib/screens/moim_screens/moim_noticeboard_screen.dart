@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mixin_2/const/colors.dart';
 
 class MoimNoticeboardScreen extends StatefulWidget {
@@ -75,11 +76,11 @@ class _MoimNoticeboardScreenState extends State<MoimNoticeboardScreen> {
                   ],
                 ),
                 Container(
-                  height: 135,
+                  height: 135.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: Colors.red),
+                    border: Border.all(color: MIXIN_BLACK_5),
                   ),
                   padding: EdgeInsets.only(left: 20, top: 12),
                   child: Column(
@@ -234,9 +235,9 @@ class _MoimNoticeboardScreenState extends State<MoimNoticeboardScreen> {
                     )
                   ],
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24.h),
                 SizedBox(
-                  height: 171,
+                  height: 171.h,
                   child: Column(
                     children: [
                       Row(
@@ -248,7 +249,7 @@ class _MoimNoticeboardScreenState extends State<MoimNoticeboardScreen> {
                                 radius: 18,
                                 backgroundColor: Colors.grey,
                               ),
-                              SizedBox(width: 12),
+                              SizedBox(width: 12.w),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -287,101 +288,103 @@ class _MoimNoticeboardScreenState extends State<MoimNoticeboardScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
-
+                      SizedBox(height: 16.h),
                       // 텍스트
                       Padding(
-                        padding: const EdgeInsets.only(left: 48.0),
+                        padding: EdgeInsets.only(left: 48.0.w),
                         child: Text(
                           '오픈데이터 항목인데, 여기 들어가면 다전공 학생들의 통계랑 졸업자수, 개설된 강의들이 어떤 교재 쓰는지 다나와!!! 대박인데? ...더보기',
                           style: TextStyle(
                             fontFamily: 'SUIT',
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             color: MIXIN_BLACK_2,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            width: 45,
-                            height: 20,
-                            padding: EdgeInsets.only(left: 2),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: Color(0xFFE55E74).withOpacity(0.3),
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 16,
-                                  height: 16,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFE55E74),
-                                    shape: BoxShape.circle,
+                      SizedBox(height: 16.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 48.0.w),
+                        child: Row(
+                          children: [
+                            // 좋아요 아이콘
+                            Container(
+                              width: 45.w,
+                              height: 20.h,
+                              padding: EdgeInsets.only(left: 2.w),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xFFE55E74).withOpacity(0.3),
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Row(
+                                children: [
+                                  Container(
+                                      width: 16.w,
+                                      height: 16.h,
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFE55E74),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/icons/heart.png',
+                                      )),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    '18',
+                                    style: TextStyle(
+                                        fontFamily: 'SUIT',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12.sp,
+                                        color: const Color(0xFFE55E74)),
                                   ),
-                                  padding: EdgeInsets.all(4),
-                                  child: Image.asset(
-                                      'assets/images/icons/heart.png',
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 8.w),
+                            // 댓글 아이콘
+                            Container(
+                              width: 45.w,
+                              height: 20.h,
+                              padding: EdgeInsets.only(left: 2.w),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: MIXIN_,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 16,
+                                    height: 16,
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: const BoxDecoration(
+                                      color: MIXIN_POINT_COLOR,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/icons/talk.png',
+                                      fit: BoxFit.contain,
+                                      height: 13,
+                                      width: 12,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    '3',
+                                    style: TextStyle(
+                                        fontFamily: 'SUIT',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12.sp,
+                                        color: MIXIN_POINT_COLOR),
                                   )
-                                ),
-                                const SizedBox(width: 6),
-                                Text(
-                                  '18',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: Color(0xFFE55E74)),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            width: 45,
-                            height: 20,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: MIXIN_,
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(16)),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 16,
-                                  height: 16,
-                                  padding: EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    color: MIXIN_POINT_COLOR,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/icons/talk.png',
-                                    fit: BoxFit.contain,
-                                    height: 13,
-                                    width: 12,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  '3',
-                                  style: TextStyle(
-                                      fontFamily: 'SUIT',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: MIXIN_POINT_COLOR),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       )
                     ],
                   ),

@@ -176,19 +176,19 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                           key: 'userPassword', value: userPassword);
                       print('비밀번호 : $userPassword');
 
-                      // final Response resp = await dio.post(serverUrl, data: {
-                      //   "agradInfrm": agradInfrm,
-                      //   "userName": userName,
-                      //   "userGender": userGender,
-                      //   "userPhoneNumber": userPhoneNumber,
-                      //   "userCarrier": userCarrier,
-                      //   "userStudentId": userStudentId,
-                      //   "userUniversity": userUniversity,
-                      //   "userDepartment": userDepartment,
-                      //   "userEmail": userEmail,
-                      //   "userPassword": userPassword,
-                      // });
-                      // print(resp);
+                      final Response resp = await dio.post(serverUrl, data: {
+                        "agradInfrm": agradInfrm,
+                        "userName": userName,
+                        "userGender": userGender,
+                        "userPhoneNumber": userPhoneNumber,
+                        "userCarrier": userCarrier,
+                        "userStudentId": userStudentId,
+                        "userUniversity": userUniversity,
+                        "userDepartment": userDepartment,
+                        "userEmail": userEmail,
+                        "userPassword": userPassword,
+                      });
+                      print(resp);
 
                       Navigator.of(context).push(
                         MaterialPageRoute(

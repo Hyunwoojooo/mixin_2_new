@@ -10,8 +10,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mixin_2/main.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:xml/xml.dart';
 
-void main() {
-  List l1 = List.filled(10, 1, );
+void main() => runApp(MyApp());
+
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return SfDateRangePicker(
+      view: DateRangePickerView.month,
+      monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+      selectionMode: DateRangePickerSelectionMode.single,
+    );
+  }
 }

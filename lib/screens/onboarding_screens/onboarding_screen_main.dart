@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/login_screen.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'dart:async';
+
+/*
+  각 PageView 이미지 넣어야 됨
+ */
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -12,7 +18,44 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController controller = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
+
+
+  Timer? _timer;
+  int _currentPage = 0;
+  final int _pageCount = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _stopTimer();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if (_currentPage < _pageCount - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
+    });
+  }
+
+  void _stopTimer() {
+    _timer?.cancel();
+    _timer = null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +63,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: ListView(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 100 * 62,
+            height: 517.h,
             child: SafeArea(
               child: PageView(
-                controller: controller,
+                controller: _pageController,
+                onPageChanged: (int page){
+                  setState(() {
+                    _currentPage = page;
+                  });
+                },
                 children: [
                   Center(
                     child: Column(
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.height / 100 * 20),
-                        const CircleAvatar(
+                        SizedBox(height: 180.h),
+                        CircleAvatar(
                           backgroundColor: Colors.grey,
-                          radius: 105,
+                          radius: 105.r,
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 100 * 8,
+                          height: 63.h,
                         ),
-                        const Text(
+                        Text(
                           '우리들의 놀이터,\n믹스인!',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'SUIT',
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w600,
+                            color: Colors.black
                           ),
                         ),
                       ],
@@ -51,20 +100,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Center(
                     child: Column(
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.height / 100 * 20),
-                        const CircleAvatar(
+                        SizedBox(height: 180.h),
+                        CircleAvatar(
                           backgroundColor: Colors.grey,
-                          radius: 105,
+                          radius: 105.r,
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height / 100 * 8,
-                        ),
-                        const Text(
+                        SizedBox(height: 63.h),
+                        Text(
                           '당신이 관심있는 분야들로만\n보여드릴게요',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'SUIT',
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -74,20 +121,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Center(
                     child: Column(
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.height / 100 * 20),
-                        const CircleAvatar(
+                        SizedBox(height: 180.h),
+                        CircleAvatar(
                           backgroundColor: Colors.grey,
-                          radius: 105,
+                          radius: 105.r,
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height / 100 * 8,
-                        ),
-                        const Text(
+                        SizedBox(height: 63.h),
+                        Text(
                           '인증된 나만의 프로필카드',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'SUIT',
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -98,48 +143,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 100 * 6.6,
-          ),
+          SizedBox(height: 56.h),
           Center(
             child: SmoothPageIndicator(
-              controller: controller,  // PageController
-              count:  3,
-              effect: const WormEffect(
-                spacing: 18,
+              controller: _pageController,  // PageController
+              count: 3,
+              effect: WormEffect(
+                spacing: 18.w,
                 dotColor: MIXIN_BLACK_5,
                 activeDotColor: MIXIN_POINT_COLOR,
-                dotHeight: 8,
-                dotWidth: 8,
+                dotHeight: 8.h,
+                dotWidth: 8.w,
               ),  // your preferred effect
               onDotClicked: (index){},
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 100 * 9.3,
-          ),
+          SizedBox(height: 90.h),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: MIXIN_POINT_COLOR,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)),
+                      borderRadius: BorderRadius.circular(8.0.r)),
                   elevation: 0.0),
               onPressed: () async {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const SignUpScreen1()),
                 );
               },
-              child: const SizedBox(
-                width: 300,
-                height: 56,
+              child: SizedBox(
+                width: 300.w,
+                height: 56.h,
                 child: Center(
                   child: Text(
                     '회원가입하고 시작하기',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w600),
                   ),
@@ -147,27 +188,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 12,
-          ),
+          SizedBox(height: 12.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 '이미 계정이 있나요?',
                 style: TextStyle(
                   color: Color(0xFFB1B1B7),
                   fontFamily: 'SUIT',
                   fontWeight: FontWeight.w500,
-                  fontSize: 14,
+                  fontSize: 14.sp,
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              SizedBox(width: 10.w),
               SizedBox(
-                width: 102,
-                height: 20,
+                width: 102.w,
+                height: 20.h,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white, elevation: 0.0),
@@ -178,10 +215,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           builder: (context) => const LoginScreen()),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     '로그인하기',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w500,
                         color: MIXIN_POINT_COLOR,

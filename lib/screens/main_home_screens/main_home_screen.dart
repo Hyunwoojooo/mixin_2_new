@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../const/colors.dart';
 import '../../layout/category_layout_round.dart';
 
@@ -10,6 +11,8 @@ class MainHomeScreen extends StatefulWidget {
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
+  final List<bool> _selectScript = List.filled(3, false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,32 +24,35 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             child: Stack(
               children: [
                 Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 176,
-                    color: const Color(0xFF495FE7),
-                    alignment: Alignment.center,
-                    child: const Column(
-                      children: [
-                        SizedBox(height: 24.0),
-                        Text(
-                          '우리들의 놀이터, 믹스인',
-                          style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: Colors.white),
+                  width: MediaQuery.of(context).size.width,
+                  height: 176,
+                  color: const Color(0xFF495FE7),
+                  alignment: Alignment.center,
+                  child: const Column(
+                    children: [
+                      SizedBox(height: 24.0),
+                      Text(
+                        '우리들의 놀이터, 믹스인',
+                        style: TextStyle(
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.0,
+                          color: Colors.white,
                         ),
-                        SizedBox(height: 4),
-                        Text(
-                          '더 잘 활용하는 방법은?',
-                          style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24.0,
-                              color: Colors.white),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        '더 잘 활용하는 방법은?',
+                        style: TextStyle(
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 24.0,
+                          color: Colors.white,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
                 Positioned(
                     top: 91,
                     left: 24,
@@ -208,23 +214,21 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                         Container(
                           height: 101,
-                          padding:
-                              EdgeInsets.only(top: 8, left: 16, right: 16),
+                          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(8),
                                 bottomRight: Radius.circular(8),
                               ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 1,
-                                blurRadius: 10,
-                                offset: Offset(1, 1),
-                              ),
-                            ]
-                          ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: Offset(1, 1),
+                                ),
+                              ]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -281,27 +285,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                      color: MIXIN_
-                                    ),
-                                    child: Text(
-                                      '#필카',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                      fontWeight: FontWeight.w500,
-                                        fontSize: 12.0,
-                                        color: MIXIN_POINT_COLOR,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  Container(
-                                    width: 56,
-                                    height: 28,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -319,8 +303,25 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
+                                        color: MIXIN_),
+                                    child: Text(
+                                      '#필카',
+                                      style: TextStyle(
+                                        fontFamily: 'SUIT',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12.0,
+                                        color: MIXIN_POINT_COLOR,
+                                      ),
                                     ),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Container(
+                                    width: 56,
+                                    height: 28,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -405,8 +406,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                         Container(
                           height: 101,
-                          padding:
-                          EdgeInsets.only(top: 8, left: 16, right: 16),
+                          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -420,14 +420,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                   blurRadius: 10,
                                   offset: Offset(1, 1),
                                 ),
-                              ]
-                          ),
+                              ]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -478,8 +477,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -497,8 +495,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -516,8 +513,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -602,8 +598,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                         Container(
                           height: 101,
-                          padding:
-                          EdgeInsets.only(top: 8, left: 16, right: 16),
+                          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -617,14 +612,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                   blurRadius: 10,
                                   offset: Offset(1, 1),
                                 ),
-                              ]
-                          ),
+                              ]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -675,8 +669,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -694,8 +687,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -713,8 +705,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -799,8 +790,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                         Container(
                           height: 101,
-                          padding:
-                          EdgeInsets.only(top: 8, left: 16, right: 16),
+                          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -814,14 +804,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                   blurRadius: 10,
                                   offset: Offset(1, 1),
                                 ),
-                              ]
-                          ),
+                              ]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -872,8 +861,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -891,8 +879,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -910,8 +897,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -996,8 +982,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                         Container(
                           height: 101,
-                          padding:
-                          EdgeInsets.only(top: 8, left: 16, right: 16),
+                          padding: EdgeInsets.only(top: 8, left: 16, right: 16),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
@@ -1011,14 +996,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                   blurRadius: 10,
                                   offset: Offset(1, 1),
                                 ),
-                              ]
-                          ),
+                              ]),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
@@ -1069,8 +1053,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -1088,8 +1071,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -1107,8 +1089,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: MIXIN_
-                                    ),
+                                        color: MIXIN_),
                                     child: Text(
                                       '#필카',
                                       style: TextStyle(
@@ -1131,11 +1112,299 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               ),
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 8,
             color: MIXIN_BLACK_5,
           ),
-          Text('asdf'),
+          // 활동 추천
+          Padding(
+            padding:
+                EdgeInsets.only(left: 24.w, top: 24.h, right: 0, bottom: 32.h),
+            child: Column(
+              children: [
+                // 타이틀
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '이 활동(추천)은 어떠세요?',
+                      style: TextStyle(
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22.sp),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 24.0.w),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          padding: EdgeInsets.symmetric(vertical: 7.h),
+                          backgroundColor: Colors.white,
+                        ),
+                        child: const Text(
+                          'All >',
+                          style: TextStyle(
+                              color: MIXIN_BLACK_4,
+                              fontSize: 14,
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 25.h),
+                // 콘텐츠
+                Column(
+                  children: [
+                    // 콘텐츠 1
+                    Row(
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
+                          decoration: BoxDecoration(
+                            color: MIXIN_BLACK_5,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        SizedBox(width: 25.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '안양시청',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.sp,
+                                  color: MIXIN_POINT_COLOR),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              '안양시 캐릭터 콘테스트',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.sp,
+                                  color: MIXIN_BLACK_1),
+                            ),
+                            SizedBox(height: 12.h),
+                            Container(
+                              width: 180.w,
+                              height: 28.h,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: MIXIN_BLACK_5,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Text(
+                                '2023.12.01 ~ 2023.12.31',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                    color: MIXIN_BLACK_2),
+                              ),
+                            )
+                          ],
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                _selectScript[0] ? Colors.white : MIXIN_BLACK_5,
+                            fixedSize: Size(16.w, 16.h),
+                            shape: const CircleBorder(),
+                            side: const BorderSide(
+                                width: 2, color: MIXIN_BLACK_5),
+                            elevation: 0,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _selectScript[0] = !_selectScript[0];
+                            });
+                          },
+                          child: Image.asset(
+                            'assets/images/icons/subscribe_icon.png',
+                            width: 14.w,
+                            height: 20.h,
+                            color: _selectScript[0]
+                                ? MIXIN_POINT_COLOR
+                                : MIXIN_BLACK_4,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12.h),
+                    // 콘텐츠 2
+                    Row(
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
+                          decoration: BoxDecoration(
+                            color: MIXIN_BLACK_5,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        SizedBox(width: 25.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '미분당',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.sp,
+                                  color: MIXIN_POINT_COLOR),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              '미분당 로고 리뉴얼',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.sp,
+                                  color: MIXIN_BLACK_1),
+                            ),
+                            SizedBox(height: 12.h),
+                            Container(
+                              width: 180.w,
+                              height: 28.h,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: MIXIN_BLACK_5,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Text(
+                                '2023.12.01 ~ 2023.12.31',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                    color: MIXIN_BLACK_2),
+                              ),
+                            )
+                          ],
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                _selectScript[1] ? Colors.white : MIXIN_BLACK_5,
+                            fixedSize: Size(16.w, 16.h),
+                            shape: const CircleBorder(),
+                            side: const BorderSide(
+                                width: 2, color: MIXIN_BLACK_5),
+                            elevation: 0,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _selectScript[1] = !_selectScript[1];
+                            });
+                          },
+                          child: Image.asset(
+                            'assets/images/icons/subscribe_icon.png',
+                            width: 14.w,
+                            height: 20.h,
+                            color: _selectScript[1]
+                                ? MIXIN_POINT_COLOR
+                                : MIXIN_BLACK_4,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12.h),
+                    // 콘텐츠 3
+                    Row(
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
+                          decoration: BoxDecoration(
+                            color: MIXIN_BLACK_5,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        SizedBox(width: 25.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '이마트24',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.sp,
+                                  color: MIXIN_POINT_COLOR),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              '신메뉴 네이밍 콘테스트',
+                              style: TextStyle(
+                                  fontFamily: 'SUIT',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.sp,
+                                  color: MIXIN_BLACK_1),
+                            ),
+                            SizedBox(height: 12.h),
+                            Container(
+                              width: 180.w,
+                              height: 28.h,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: MIXIN_BLACK_5,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Text(
+                                '2023.12.01 ~ 2023.12.31',
+                                style: TextStyle(
+                                    fontFamily: 'SUIT',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                    color: MIXIN_BLACK_2),
+                              ),
+                            )
+                          ],
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                _selectScript[2] ? Colors.white : MIXIN_BLACK_5,
+                            fixedSize: Size(16.w, 16.h),
+                            shape: const CircleBorder(),
+                            side: const BorderSide(
+                                width: 2, color: MIXIN_BLACK_5),
+                            elevation: 0,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _selectScript[2] = !_selectScript[2];
+                            });
+                          },
+                          child: Image.asset(
+                            'assets/images/icons/subscribe_icon.png',
+                            width: 14.w,
+                            height: 20.h,
+                            color: _selectScript[2]
+                                ? MIXIN_POINT_COLOR
+                                : MIXIN_BLACK_4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          const Divider(
+            thickness: 8,
+            color: MIXIN_BLACK_5,
+          ),
         ],
       ),
     );

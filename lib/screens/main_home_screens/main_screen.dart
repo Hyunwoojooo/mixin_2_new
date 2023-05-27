@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../const/colors.dart';
 import 'main_home_screen.dart';
+import 'main_moim_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,6 +14,19 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  void onTap(int index) {
+    setState(() {});
+  }
+
+  Color indicatorColor() {
+    if (_tabController.index == 0) {
+      return Colors.black;
+    } else if (_tabController.index == 1) {
+      return Colors.black;
+    }
+    return Colors.transparent;
+  }
 
   @override
   void initState() {
@@ -29,65 +44,83 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(86),
+        preferredSize: Size.fromHeight(76.h),
         child: AppBar(
           backgroundColor: Colors.white,
-          toolbarHeight: 150,
-          titleSpacing: 0,
+          toolbarHeight: 120,
           elevation: 0.0,
           centerTitle: true,
-          title: SizedBox(
-            width: 180,
-            height: 36,
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: MIXIN_POINT_COLOR,
-              isScrollable: false,
-              tabs: const [
-                Tab(
-                  child: Text(
-                    'home',
-                    style: TextStyle(
-                        fontFamily: 'SUIT',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.0,
-                        color: Colors.black),
+          titleSpacing: 100,
+          title: Column(
+            children: [
+              SizedBox(height: 20.h),
+              Container(
+                margin: EdgeInsets.zero,
+                padding: EdgeInsets.zero,
+                width: 145.w,
+                height: 36.h,
+                child: TabBar(
+                  tabAlignment: TabAlignment.fill,
+                  labelColor: WHITE,
+                  unselectedLabelColor: MIXIN_BLACK_1,
+                  controller: _tabController,
+                  indicatorColor: Colors.blue,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(23.5.r),
+                    color: indicatorColor(),
                   ),
-                ),
-                Tab(
-                  child: Text(
-                    'momim',
-                    style: TextStyle(
-                        fontFamily: 'SUIT',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.0,
-                        color: Colors.black),
+                  dividerColor: Colors.orange,
+                  isScrollable: false,
+                  onTap: onTap,
+                  labelStyle: TextStyle(
+                    fontFamily: 'SUIT',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.0.sp,
                   ),
+                  tabs: const [
+                    Tab(text: 'home'),
+                    Tab(text: 'moim')
+                  ],
                 ),
-              ],
+              ),
+            ],
+          ),
+          flexibleSpace: Container(
+            height: 76.h,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: EdgeInsets.only(right: 10.w),
+              child: Column(
+                children: [
+                  SizedBox(height: 25.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        padding: EdgeInsets.only(top: 6.h),
+                        icon: Image.asset(
+                          'assets/images/icon_search.png',
+                          // width: 30,
+                          // height: 30,
+                          color: Colors.black,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Image.asset(
+                          'assets/images/icons/bell.png',
+                          color: Colors.black,
+                          width: 26,
+                          height: 26,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-          actions: [
-            IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {},
-              icon: Image.asset(
-                'assets/images/icon_search.png',
-                width: 26,
-                height: 26,
-                color: Colors.black,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Image.asset(
-                'assets/images/icons/bell.png',
-                color: Colors.black,
-                width: 26,
-                height: 26,
-              ),
-            ),
-          ],
         ),
       ),
       body: TabBarView(
@@ -95,32 +128,9 @@ class _MainScreenState extends State<MainScreen>
         physics: const NeverScrollableScrollPhysics(),
         children: [
           MainHomeScreen(),
-          MainHomeScreen(),
+          MainMoimScreen(),
         ],
       ),
-      bottomNavigationBar:
-      BottomNavigationBar(fixedColor: Colors.black, items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: '홈',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.ac_unit_sharp),
-          label: '모임',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.group),
-          label: '커뮤니티',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: '채팅',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: '프로필',
-        ),
-      ]),
     );
   }
 }

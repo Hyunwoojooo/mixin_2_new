@@ -52,6 +52,8 @@ dependencies:
   flip_card: ^0.7.0
   syncfusion_flutter_gauges: ^21.1.41
   flutter_secure_storage: ^8.0.0
+  flutter_screenutil: ^5.8.2
+  syncfusion_flutter_datepicker: ^21.2.6
 
 
 dev_dependencies:
@@ -91,6 +93,7 @@ flutter:
     - assets/images/
     - assets/images/icons/
     - assets/images/category_images/
+    - assets/images/bottom_navigation_bar_icons/
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

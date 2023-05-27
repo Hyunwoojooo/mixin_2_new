@@ -92,7 +92,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[0] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/IT.png',
+                      imageAsset: 'assets/images/category_images/IT.png',
                       imageWidth: 24,
                       imageHeight: 21.47,
                       sizedBoxWidth: 8.0,
@@ -109,7 +109,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[1] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/design.png',
+                      imageAsset: 'assets/images/category_images/design.png',
                       imageWidth: 18,
                       imageHeight: 18,
                       sizedBoxWidth: 9.0,
@@ -126,7 +126,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[2] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/culture.png',
+                      imageAsset: 'assets/images/category_images/culture.png',
                       imageWidth: 24,
                       imageHeight: 24,
                       sizedBoxWidth: 8.0,
@@ -147,7 +147,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[3] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/music.png',
+                      imageAsset: 'assets/images/category_images/music.png',
                       imageWidth: 24,
                       imageHeight: 24,
                       sizedBoxWidth: 8.0,
@@ -164,7 +164,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[4] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/trip.png',
+                      imageAsset: 'assets/images/category_images/trip.png',
                       imageWidth: 19.24,
                       imageHeight: 24,
                       sizedBoxWidth: 8.71,
@@ -181,7 +181,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[5] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/bongsa.png',
+                      imageAsset: 'assets/images/category_images/bongsa.png',
                       imageWidth: 23,
                       imageHeight: 22,
                       sizedBoxWidth: 6.0,
@@ -202,7 +202,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[6] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/health.png',
+                      imageAsset: 'assets/images/category_images/health.png',
                       imageWidth: 24,
                       imageHeight: 24,
                       sizedBoxWidth: 8.0,
@@ -219,7 +219,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[7] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/animal.png',
+                      imageAsset: 'assets/images/category_images/animal.png',
                       imageWidth: 21.72,
                       imageHeight: 17.39,
                       sizedBoxWidth: 9.28,
@@ -236,7 +236,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[8] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/sagyo.png',
+                      imageAsset: 'assets/images/category_images/sagyo.png',
                       imageWidth: 20.0,
                       imageHeight: 23.0,
                       sizedBoxWidth: 7.0,
@@ -257,7 +257,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[9] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/class.png',
+                      imageAsset: 'assets/images/category_images/class.png',
                       imageWidth: 24.0,
                       imageHeight: 22.79,
                       sizedBoxWidth: 6.0,
@@ -274,7 +274,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[10] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/class.png',
+                      imageAsset: 'assets/images/category_images/class.png',
                       imageWidth: 24.84,
                       imageHeight: 23.0,
                       sizedBoxWidth: 5.16,
@@ -291,7 +291,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[11] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/restuarant.png',
+                      imageAsset: 'assets/images/category_images/restuarant.png',
                       imageWidth: 18.67,
                       imageHeight: 24.0,
                       sizedBoxWidth: 12.33,
@@ -312,7 +312,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[12] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/cook.png',
+                      imageAsset: 'assets/images/category_images/cook.png',
                       imageWidth: 24,
                       imageHeight: 19.86,
                       sizedBoxWidth: 7.0,
@@ -329,7 +329,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                         });
                       },
                       containerColor: categoryList[13] == true ? MIXIN_ : WHITE,
-                      imageAsset: 'assets/images/finance.png',
+                      imageAsset: 'assets/images/category_images/finance.png',
                       imageWidth: 24.17,
                       imageHeight: 25.0,
                       sizedBoxWidth: 8.65,

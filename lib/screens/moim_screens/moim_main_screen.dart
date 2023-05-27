@@ -66,7 +66,7 @@ class _MoimMainScreenState extends State<MoimMainScreen>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/health.png'),
+                      Image.asset('assets/images/category_images/health.png'),
                       SizedBox(width: 8.0),
                       Text(
                         '운동',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mixin_2/const/term_of_service_text/ad_term_text.dart';
 
 import '../../const/colors.dart';
@@ -13,15 +14,28 @@ class AdIfmTerm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.3,
-        leading: GestureDetector(
-          child: Image.asset('assets/images/close.png'),
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(height: 20.h),
+                Image.asset(
+                  'assets/images/icons/close_icon_black_3x.png',
+                  width: 26.w,
+                  height: 26.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -35,8 +49,8 @@ class AdIfmTerm extends StatelessWidget {
             ),
           ],
         ),
-        width: 342,
-        height: 56,
+        width: 342.w,
+        height: 56.h,
         child: RawMaterialButton(
           elevation: 0.0,
           fillColor: MIXIN_POINT_COLOR,
@@ -46,11 +60,11 @@ class AdIfmTerm extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text(
+          child: Text(
             '확인하고 전체동의',
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 18.sp,
                 fontFamily: 'SUIT',
                 fontWeight: FontWeight.w600),
           ),
@@ -59,27 +73,25 @@ class AdIfmTerm extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   '광고성 정보 수신 동의 (선택)',
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 24.0,
+                    fontSize: 24.0.sp,
                   ),
                 ),
-                const SizedBox(
-                  height: 24.0,
-                ),
+                SizedBox(height: 24.0.h),
                 Text(
-                  '$first',
-                  style: const TextStyle(
+                  first,
+                  style:  TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
+                    fontSize: 12.0.sp,
                   ),
                 ),
               ],

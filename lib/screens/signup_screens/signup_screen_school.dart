@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,7 +18,11 @@ class SignUpScreenSchool extends StatefulWidget {
 }
 
 class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
+  final String serverSchoolUrl = 'http://122.37.227.143:8080/school';
+  final String serverDepartmentUrl = 'http://122.37.227.143:8080/동양미래대학교/Department';
+
   final storage = FlutterSecureStorage();
+  final dio = Dio();
 
 
   List<int> studentNumber = List<int>.generate(24, (index) => index + 1);
@@ -126,6 +131,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                       ),
                       elevation: 0.0),
                   onPressed: () async {
+
+                    final resp = await dio.get(serverSchoolUrl);
+                    print('school : ${resp.data}');
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -221,6 +229,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                       ),
                       elevation: 0.0),
                   onPressed: () async {
+                    final resp1 = await dio.get(serverDepartmentUrl);
+                    print('school : ${resp1.data}');
+
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {

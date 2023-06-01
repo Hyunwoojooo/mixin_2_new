@@ -54,6 +54,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_screenutil: ^5.8.2
   syncfusion_flutter_datepicker: ^21.2.6
+  flutter_speed_dial: ^7.0.0
 
 
 dev_dependencies:

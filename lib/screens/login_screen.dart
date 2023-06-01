@@ -6,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/components/default_layout.dart';
 import 'package:mixin_2/const/colors.dart';
-import 'package:mixin_2/const/data.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 
 import '../components/custom_textformfield.dart';
+import '../const/data.dart';
 import 'make_profile_card_screens/make_category_screen.dart';
 
 
@@ -119,9 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     final refreshToken = resp.headers['Authorization'];
                     print('refreshToken : $refreshToken');
+                    print('refreshTokenEncode : ${jsonEncode(refreshToken)}');
+
                     // final accessToken = resp.data['accessToken'];
-                    //
-                    // await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
+                    await storage.write(key: REFRESH_TOKEN_KEY, value: jsonEncode(refreshToken));
                     // await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
 
                     Navigator.of(context).push(
@@ -198,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => const SignUpScreen1()),
+                                builder: (context) => const SignUpTosScreen()),
                           );
                         },
                         child: Text(

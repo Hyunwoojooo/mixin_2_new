@@ -26,6 +26,8 @@ class ServiceUseTerm extends StatelessWidget {
   final String fourteenth = ServiceTermText().fourteenth;
   final String fifteenth = ServiceTermText().fifteenth;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +36,7 @@ class ServiceUseTerm extends StatelessWidget {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          titleSpacing: -35,
+          titleSpacing: -35.w,
           title: GestureDetector(
             child: Column(
               children: [
@@ -55,13 +57,15 @@ class ServiceUseTerm extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        decoration: const BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            spreadRadius: 30.0,
-            blurRadius: 20.0,
-          ),
-        ]),
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: 30.0,
+              blurRadius: 20.0,
+            ),
+          ],
+        ),
         width: 342.w,
         height: 56.h,
         child: RawMaterialButton(
@@ -76,10 +80,11 @@ class ServiceUseTerm extends StatelessWidget {
           child: Text(
             '확인하고 전체동의',
             style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600),
+              color: Colors.white,
+              fontSize: 18.sp,
+              fontFamily: 'SUIT',
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -164,7 +169,7 @@ class ServiceUseTerm extends StatelessWidget {
                 SizedBox(height: 16.h),
                 Text(
                   fourth,
-                  style:  TextStyle(
+                  style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
                     fontSize: 11.0.sp,
@@ -287,7 +292,7 @@ class ServiceUseTerm extends StatelessWidget {
                     fontSize: 18.0.sp,
                   ),
                 ),
-                 SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
                 Text(
                   eleventh,
                   style: TextStyle(
@@ -344,10 +349,10 @@ class ServiceUseTerm extends StatelessWidget {
                 SizedBox(height: 16.h),
                 Text(
                   fourteenth,
-                  style:  TextStyle(
+                  style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp ,
+                    fontSize: 11.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),

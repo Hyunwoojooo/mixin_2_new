@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/category_layout_square.dart';
 import 'package:mixin_2/layout/text_layout.dart';
@@ -57,9 +58,9 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 29.0),
+                SizedBox(height: 29.0.h),
                 const HeadlineText(text: '요즘 관심가는 주제가\n무엇인가요?'),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 Container(
                   width: 201,
                   height: 36,
@@ -189,7 +190,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 Row(
                   children: [
                     CategoryLayout(

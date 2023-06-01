@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../const/colors.dart';
-import 'main_home_screen.dart';
-import 'main_moim_screen.dart';
+import 'package:mixin_2/screens/main_screens/main_home_screens/main_home_home_screen.dart';
+import '../../../const/colors.dart';
+import 'main_home_moim_screen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class MainHomeScreen extends StatefulWidget {
+  const MainHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
+class _MainHomeScreenState extends State<MainHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -47,10 +47,11 @@ class _MainScreenState extends State<MainScreen>
         preferredSize: Size.fromHeight(76.h),
         child: AppBar(
           backgroundColor: Colors.white,
-          toolbarHeight: 120,
+          toolbarHeight: 100.h,
+          automaticallyImplyLeading: false,
           elevation: 0.0,
           centerTitle: true,
-          titleSpacing: 100,
+          titleSpacing: 100.w,
           title: Column(
             children: [
               SizedBox(height: 20.h),
@@ -85,7 +86,7 @@ class _MainScreenState extends State<MainScreen>
               ),
             ],
           ),
-          flexibleSpace: Container(
+          flexibleSpace: SizedBox(
             height: 76.h,
             width: MediaQuery.of(context).size.width,
             child: Padding(
@@ -127,8 +128,8 @@ class _MainScreenState extends State<MainScreen>
         controller: _tabController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          MainHomeScreen(),
-          MainMoimScreen(),
+          MainHomeHomeScreen(),
+          MainHomeMoimScreen(),
         ],
       ),
     );

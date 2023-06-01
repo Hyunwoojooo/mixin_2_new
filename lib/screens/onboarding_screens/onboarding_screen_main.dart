@@ -169,7 +169,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   elevation: 0.0),
               onPressed: () async {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SignUpScreen1()),
+                  MaterialPageRoute(builder: (context) => const SignUpTosScreen()),
                 );
               },
               child: SizedBox(

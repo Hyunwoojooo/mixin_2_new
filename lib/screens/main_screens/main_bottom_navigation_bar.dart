@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mixin_2/screens/main_home_screens/main_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import '../../const/colors.dart';
+import '../make_moim_screens/make_moim_1.dart';
+import 'main_moim_screens/main_moim_screen.dart';
+import 'main_home_screens/main_home_screen.dart';
 
 class MainBottomNavigationBar extends StatefulWidget {
   const MainBottomNavigationBar({Key? key}) : super(key: key);
@@ -21,11 +25,11 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   }
 
   final List<Widget> _bNBWidgetOptions = [
-    MainScreen(),
-    MainScreen(),
-    MainScreen(),
-    MainScreen(),
-    MainScreen(),
+    MainHomeScreen(),
+    MainMoimScreen(),
+    MainHomeScreen(),
+    MainHomeScreen(),
+    MainHomeScreen(),
   ];
 
   @override
@@ -34,8 +38,9 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       body: SafeArea(
         child: _bNBWidgetOptions.elementAt(_bNBSelectedIndex),
       ),
+      floatingActionButton: floatingButtons(),
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
         ),
@@ -102,6 +107,63 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget? floatingButtons() {
+    return SpeedDial(
+      overlayColor: const Color(0xFF000000).withOpacity(0.64),
+      animatedIcon: AnimatedIcons.menu_close,
+      visible: true,
+      curve: Curves.bounceIn,
+      backgroundColor: MIXIN_POINT_COLOR,
+      spaceBetweenChildren: 10.h,
+      spacing: 12.h,
+      elevation: 0.0,
+      children: [
+        SpeedDialChild(
+          child: const Icon(Icons.settings_sharp, color: Colors.white,),
+          label: '모임 만들기',
+          labelStyle: TextStyle(
+            fontFamily: 'SUIT',
+            fontWeight: FontWeight.w500,
+            fontSize: 16.sp,
+            color: WHITE,
+          ),
+          backgroundColor: MIXIN_POINT_COLOR,
+          labelBackgroundColor: const Color(0xFF000000).withOpacity(0.001),
+          labelShadow: [
+            const BoxShadow(
+              color: Colors.transparent,
+            )
+          ],
+          onTap: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => MakeMoim1()),
+            );
+          },
+        ),
+        SpeedDialChild(
+          child: const Icon(Icons.settings_sharp, color: Colors.white,),
+          elevation: 0.0,
+          label: '모임 가입',
+          labelStyle: TextStyle(
+            fontFamily: 'SUIT',
+            fontWeight: FontWeight.w500,
+            fontSize: 16.sp,
+            color: WHITE,
+          ),
+          backgroundColor: MIXIN_POINT_COLOR,
+          labelBackgroundColor: const Color(0xFF000000).withOpacity(0.001),
+          labelShadow: [
+            const BoxShadow(
+              color: Colors.transparent,
+            )
+          ],
+          onTap: (){},
+        ),
+      ],
     );
   }
 }

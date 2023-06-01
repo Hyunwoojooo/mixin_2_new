@@ -13,6 +13,7 @@ import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
 
 /*
   통신사 선택된 것만 색 다른 색으로 하게
+  인증번호 6개가 입력됐을 경우에만 다음버튼 활성화
  */
 
 class SignUpScreenNamePhone extends StatefulWidget {
@@ -572,7 +573,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                 ],
               ),
-              SizedBox(height: 142.h),
+              SizedBox(height: 118.h),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

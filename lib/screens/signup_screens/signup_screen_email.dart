@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_password.dart';
@@ -20,7 +21,6 @@ class SignUpScreenEmail extends StatefulWidget {
 class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
   final storage = FlutterSecureStorage();
   final String serverUrl = 'http://122.37.227.143:8080/api/email/send';
-
 
   List<int> studentNumber = List<int>.generate(24, (index) => index + 1);
   final _userEmailTextEditController = TextEditingController();
@@ -41,6 +41,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
     countdownTimer =
         Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
   }
+
   void setCountDown() {
     final reduceSecondsBy = 1;
     setState(() {
@@ -59,6 +60,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
     super.initState();
     userCertificationNumber = '';
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -69,6 +71,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -85,25 +88,24 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 29.0),
+                SizedBox(height: 29.0.h),
                 const HeadlineText(text: '학교 이메일에서\n인증번호를 입력해주세요!'),
-                const SizedBox(height: 50.0),
+                SizedBox(height: 50.0.h),
                 const InfoText(text: '학교 이메일'),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 CustomTextFormField(
                   controller: _userEmailTextEditController,
                   hintText: '학교 이메일을 작성해주세요',
                   onChanged: (String value) {
                     userEmail = value;
-                    setState(() {
-                    });
+                    setState(() {});
                   },
                 ),
-                const SizedBox(height: 8.0),
+                SizedBox(height: 8.0.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -113,8 +115,8 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                       maintainState: true,
                       visible: onClickSendButton == true ? true : false,
                       child: Container(
-                        width: 216,
-                        height: 56,
+                        width: 216.w,
+                        height: 56.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                           border: Border.all(
@@ -128,9 +130,9 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              width: 140,
-                              height: 56,
+                              padding: EdgeInsets.only(top: 8.0.h),
+                              width: 140.w,
+                              height: 56.h,
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
                                 scrollPadding: EdgeInsets.zero,
@@ -144,13 +146,11 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                 autofocus: false,
                                 onChanged: (String value) {
                                   userCertificationNumber = value;
-                                  if(userCertificationNumber.length == 6){
-                                    setState(() {
-                                    });
+                                  if (userCertificationNumber.length == 6) {
+                                    setState(() {});
                                     FocusScope.of(context).unfocus();
                                   } else {
-                                    setState(() {
-                                    });
+                                    setState(() {});
                                   }
                                 },
                                 decoration: InputDecoration(
@@ -166,41 +166,41 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                   filled: false,
                                   // 모든 Input 상태의 기본 스타일 세팅
                                   border: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.transparent)),
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
                                   enabledBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.transparent)),
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
                                   // focus 일 때 세팅
                                   focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.transparent))
-                                      .copyWith(
-                                      borderSide: const OutlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.5))
-                                          .borderSide
-                                    // .copyWith(color: Colors.red)),
-                                  ),
+                                              color: Colors.transparent))
+                                      .copyWith(
+                                          borderSide: const OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.5))
+                                              .borderSide
+                                          // .copyWith(color: Colors.red)),
+                                          ),
                                 ),
                               ),
                             ),
                             Text('$minutes:$seconds'),
-                            const SizedBox(
-                              width: 8,
-                            ),
+                            SizedBox(width: 8.w),
                           ],
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 32,
-                      width: 110,
+                      height: 32.h,
+                      width: 110.w,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.zero,
-                            backgroundColor: userEmail.isNotEmpty ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+                            backgroundColor: userEmail.isNotEmpty
+                                ? MIXIN_POINT_COLOR
+                                : MIXIN_BLACK_4,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0)),
                             elevation: 0.0),
@@ -210,20 +210,24 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                           });
                           startTimer();
                           Dio dio = Dio();
-                          final Response resp = await dio.post(serverUrl, data: {
-                            "userEmail" : userEmail,
+                          final Response resp =
+                              await dio.post(serverUrl, data: {
+                            "userEmail": userEmail,
                           });
                           print(resp);
                         },
                         child: Container(
                           alignment: Alignment.center,
                           child: Text(
-                            onClickSendButton == false ? sendText : sendAgainText,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                                fontFamily: 'SUIT',
-                                fontWeight: FontWeight.w500),
+                            onClickSendButton == false
+                                ? sendText
+                                : sendAgainText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.sp,
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -231,11 +235,13 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 321),
+                SizedBox(height: 321.h),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: userCertificationNumber.length ==6 ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+                        backgroundColor: userCertificationNumber.length == 6
+                            ? MIXIN_POINT_COLOR
+                            : MIXIN_BLACK_4,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         elevation: 0.0),
@@ -246,17 +252,18 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                       );
                       await storage.write(key: 'userEmail', value: userEmail);
                     },
-                    child: const SizedBox(
-                      width: 342,
-                      height: 56,
+                    child: SizedBox(
+                      width: 342.w,
+                      height: 56.h,
                       child: Center(
                         child: Text(
                           '다음',
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600),
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

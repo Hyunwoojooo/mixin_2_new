@@ -17,14 +17,14 @@ import '../terms_of_use_screen/service_use_term_screen.dart';
   세부사항으로 들어가면 글자 행간 간격을 좀 벌렸으면 좋겠다
  */
 
-class SignUpScreen1 extends StatefulWidget {
-  const SignUpScreen1({Key? key}) : super(key: key);
+class SignUpTosScreen extends StatefulWidget {
+  const SignUpTosScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen1> createState() => _SignUpScreen1State();
+  State<SignUpTosScreen> createState() => _SignUpTosScreenState();
 }
 
-class _SignUpScreen1State extends State<SignUpScreen1> {
+class _SignUpTosScreenState extends State<SignUpTosScreen> {
   AndroidOptions _getAndroidOptions() => const AndroidOptions(
         encryptedSharedPreferences: true,
       );
@@ -75,8 +75,8 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                 ),
                 Image.asset(
                   'assets/images/icons/back_icon_black_4x.png',
-                  width: 26,
-                  height: 26,
+                  width: 26.w,
+                  height: 26.h,
                   fit: BoxFit.contain,
                 ),
               ],
@@ -87,249 +87,211 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomFloatingActionButton(
-        text: '다음',
-        fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-        onPressed: () async {
-          if (nextButtonColor == true) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SignUpScreenNamePhone()));
-            print('광고성 약관 : $isAdIfmCheckedText');
-          } else {}
-        },
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 29.0.h),
-            const HeadlineText(text: '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!'),
-            SizedBox(height: 50.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Transform.scale(
-                  scale: 1.2.w,
-                  child: SizedBox(
-                    width: 20.w,
-                    height: 20.w,
-                    child: Checkbox(
-                      activeColor: MIXIN_POINT_COLOR,
-                      hoverColor: Colors.purple,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Positioned(
+      //   bottom: 34.h,
+      //   child: CustomFloatingActionButton(
+      //     text: '다음',
+      //     fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+      //     onPressed: () async {
+      //       if (nextButtonColor == true) {
+      //         Navigator.of(context).push(MaterialPageRoute(
+      //             builder: (context) => SignUpScreenNamePhone()));
+      //         print('광고성 약관 : $isAdIfmCheckedText');
+      //       } else {}
+      //     },
+      //   ),
+      // ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 29.0.h),
+              const HeadlineText(text: '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!'),
+              SizedBox(height: 50.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Transform.scale(
+                    scale: 1.2.w,
+                    child: SizedBox(
+                      width: 20.w,
+                      height: 20.w,
+                      child: Checkbox(
+                        activeColor: MIXIN_POINT_COLOR,
+                        hoverColor: Colors.purple,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        value:
+                            (nextButtonColor == true && isAdIfmChecked == true)
+                                ? true
+                                : isTotalChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isTotalChecked = value!;
+                            isServiceUserChecked = value;
+                            isPersonalIfmChecked = value;
+                            isCommunityChecked = value;
+                            isAdIfmChecked = value;
+                            isProgressChecked = value;
+                            isAgeChecked = value;
+                            isMaintainChecked[0] = value;
+                            isMaintainChecked[1] = value;
+                            isMaintainChecked[2] = value;
+                            isMaintainChecked[3] = value;
+                            isMaintainChecked[4] = value;
+                            if (isAdIfmChecked == true) {
+                              isAdIfmCheckedText = '동의';
+                            } else if (isAdIfmChecked == false) {
+                              isAdIfmCheckedText = '비동의';
+                            }
+                            storage.write(
+                                key: 'isAdIfmChecked',
+                                value: isAdIfmCheckedText);
+                            changeData();
+                          });
+                        },
                       ),
-                      value: (nextButtonColor == true && isAdIfmChecked == true)
-                          ? true
-                          : isTotalChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isTotalChecked = value!;
-                          isServiceUserChecked = value;
-                          isPersonalIfmChecked = value;
-                          isCommunityChecked = value;
-                          isAdIfmChecked = value;
-                          isProgressChecked = value;
-                          isAgeChecked = value;
-                          isMaintainChecked[0] = value;
-                          isMaintainChecked[1] = value;
-                          isMaintainChecked[2] = value;
-                          isMaintainChecked[3] = value;
-                          isMaintainChecked[4] = value;
-                          if (isAdIfmChecked == true) {
-                            isAdIfmCheckedText = '동의';
-                          } else if (isAdIfmChecked == false) {
-                            isAdIfmCheckedText = '비동의';
-                          }
-                          storage.write(
-                              key: 'isAdIfmChecked', value: isAdIfmCheckedText);
-                          changeData();
-                        });
-                      },
                     ),
                   ),
-                ),
-                SizedBox(width: 12.w),
-                Text(
-                  '약관 정책동의',
-                  style: TextStyle(
-                    color: MIXIN_BLACK_1,
-                    fontFamily: 'SUIT',
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
+                  SizedBox(width: 12.w),
+                  Text(
+                    '약관 정책동의',
+                    style: TextStyle(
+                      color: MIXIN_BLACK_1,
+                      fontFamily: 'SUIT',
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const Divider(
-              thickness: 1.0,
-              color: MIXIN_BLACK_5,
-            ),
-            SizedBox(height: 15.0.h),
-            Column(
-              children: [
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Transform.scale(
-                            scale: 0.9.w,
-                            child: SizedBox(
-                              width: 18.w,
-                              height: 18.w,
-                              child: Checkbox(
-                                activeColor: MIXIN_POINT_COLOR,
-                                value: isServiceUserChecked,
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    isServiceUserChecked = value!;
-                                    isMaintainChecked[0] = value;
-                                    changeData();
-                                    print('main[0] = ${nextButtonColor}');
-                                  });
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
+                ],
+              ),
+              const Divider(
+                thickness: 1.0,
+                color: MIXIN_BLACK_5,
+              ),
+              SizedBox(height: 15.0.h),
+              Column(
+                children: [
+                  // 서비스이용약관
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.9.w,
+                              child: SizedBox(
+                                width: 18.w,
+                                height: 18.w,
+                                child: Checkbox(
+                                  activeColor: MIXIN_POINT_COLOR,
+                                  value: isServiceUserChecked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isServiceUserChecked = value!;
+                                      isMaintainChecked[0] = value;
+                                      changeData();
+                                      print(
+                                        'main[0] = $nextButtonColor',
+                                      );
+                                    });
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            '서비스이용약관 동의 (필수)',
-                            style: TextStyle(
-                              color: MIXIN_BLACK_1,
-                              fontFamily: 'SUIT',
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        iconSize: 18.0.w,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ServiceUseTerm()),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_rounded),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10.0.h),
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Transform.scale(
-                            scale: 0.9.w,
-                            child: SizedBox(
-                              width: 18.w,
-                              height: 18.w,
-                              child: Checkbox(
-                                activeColor: MIXIN_POINT_COLOR,
-                                value: isPersonalIfmChecked,
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    isPersonalIfmChecked = value!;
-                                    isMaintainChecked[1] = value;
-                                    changeData();
-                                    print('main[1] = ${isMaintainChecked[1]}');
-                                  });
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
+                            SizedBox(width: 8.w),
+                            Text(
+                              '서비스이용약관 동의 (필수)',
+                              style: TextStyle(
+                                color: MIXIN_BLACK_1,
+                                fontFamily: 'SUIT',
+                                fontSize: 14.0.sp,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            '개인정보처리방침 동의 (필수)',
-                            style: TextStyle(
-                              color: MIXIN_BLACK_1,
-                              fontFamily: 'SUIT',
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        iconSize: 18.0.w,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PersonalIfmterm()),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_rounded),
-                      ),
-                    ],
+                          ],
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          iconSize: 18.0.w,
+                          onPressed: () {
+                            setState(() {
+                              isServiceUserChecked = true;
+                              // isMaintainChecked[0] = true;
+                              // changeData();
+                              print(
+                                'main[0] = $nextButtonColor',
+                              );
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ServiceUseTerm(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios_rounded),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 10.0.h),
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Transform.scale(
-                            scale: 0.9.w,
-                            child: SizedBox(
-                              width: 18.w,
-                              height: 18.h,
-                              child: Checkbox(
-                                activeColor: MIXIN_POINT_COLOR,
-                                value: isCommunityChecked,
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    isCommunityChecked = value!;
-                                    isMaintainChecked[2] = value;
-                                    changeData();
-                                    print('main[2] = ${isMaintainChecked[2]}');
-                                  });
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
+                  SizedBox(height: 10.0.h),
+                  // 개인정보처리방침
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.9.w,
+                              child: SizedBox(
+                                width: 18.w,
+                                height: 18.w,
+                                child: Checkbox(
+                                  activeColor: MIXIN_POINT_COLOR,
+                                  value: isPersonalIfmChecked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isPersonalIfmChecked = value!;
+                                      isMaintainChecked[1] = value;
+                                      changeData();
+                                      print(
+                                          'main[1] = ${isMaintainChecked[1]}');
+                                    });
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            '커뮤니티이용규칙 확인 (필수)',
-                            style: TextStyle(
-                              color: MIXIN_BLACK_1,
-                              fontFamily: 'SUIT',
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.w500,
+                            SizedBox(width: 8.w),
+                            Text(
+                              '개인정보처리방침 동의 (필수)',
+                              style: TextStyle(
+                                color: MIXIN_BLACK_1,
+                                fontFamily: 'SUIT',
+                                fontSize: 14.0.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
+                          ],
+                        ),
+                        IconButton(
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                           highlightColor: Colors.transparent,
@@ -339,200 +301,298 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CommunityUseTerm()),
+                                  builder: (context) => PersonalIfmterm()),
                             );
                           },
-                          icon: const Icon(Icons.arrow_forward_ios_rounded))
-                    ],
+                          icon: const Icon(Icons.arrow_forward_ios_rounded),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 10.0.h),
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Transform.scale(
-                            scale: 0.9.w,
-                            child: SizedBox(
-                              width: 18.w,
-                              height: 18.h,
-                              child: Checkbox(
-                                activeColor: MIXIN_POINT_COLOR,
-                                value: isAdIfmChecked,
-                                onChanged: (bool? value) async {
-                                  setState(() {
-                                    isAdIfmChecked = value!;
-                                    if (isAdIfmChecked == true) {
-                                      isAdIfmCheckedText = '동의';
-                                    } else if (isAdIfmChecked == false) {
-                                      isAdIfmCheckedText = '비동의';
-                                    }
-                                  });
-                                  storage.write(
-                                      key: 'isAdIfmChecked',
-                                      value: isAdIfmCheckedText);
-                                  setState(() {});
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
+                  SizedBox(height: 10.0.h),
+                  // 커뮤니티이용규칙
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.9.w,
+                              child: SizedBox(
+                                width: 18.w,
+                                height: 18.h,
+                                child: Checkbox(
+                                  activeColor: MIXIN_POINT_COLOR,
+                                  value: isCommunityChecked,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      isCommunityChecked = value!;
+                                      isMaintainChecked[2] = value;
+                                      changeData();
+                                      print(
+                                          'main[2] = ${isMaintainChecked[2]}');
+                                    });
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            '광고성 정보 수신 동의 (선택)',
-                            style: TextStyle(
-                              color: MIXIN_BLACK_1,
-                              fontFamily: 'SUIT',
-                              fontSize: 14.0.sp,
-                              fontWeight: FontWeight.w500,
+                            SizedBox(width: 8.w),
+                            Text(
+                              '커뮤니티이용규칙 확인 (필수)',
+                              style: TextStyle(
+                                color: MIXIN_BLACK_1,
+                                fontFamily: 'SUIT',
+                                fontSize: 14.0.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            iconSize: 18.0.w,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CommunityUseTerm()),
+                              );
+                            },
+                            icon: const Icon(Icons.arrow_forward_ios_rounded))
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10.0.h),
+                  // 광고성 정보 수신
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Transform.scale(
+                              scale: 0.9.w,
+                              child: SizedBox(
+                                width: 18.w,
+                                height: 18.h,
+                                child: Checkbox(
+                                  activeColor: MIXIN_POINT_COLOR,
+                                  value: isAdIfmChecked,
+                                  onChanged: (bool? value) async {
+                                    setState(() {
+                                      isAdIfmChecked = value!;
+                                      if (isAdIfmChecked == true) {
+                                        isAdIfmCheckedText = '동의';
+                                      } else if (isAdIfmChecked == false) {
+                                        isAdIfmCheckedText = '비동의';
+                                      }
+                                    });
+                                    storage.write(
+                                        key: 'isAdIfmChecked',
+                                        value: isAdIfmCheckedText);
+                                    setState(() {});
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 8.w),
+                            Text(
+                              '광고성 정보 수신 동의 (선택)',
+                              style: TextStyle(
+                                color: MIXIN_BLACK_1,
+                                fontFamily: 'SUIT',
+                                fontSize: 14.0.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          iconSize: 18.0.w,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdIfmTerm()),
+                            );
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios_rounded),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 34.h),
+                  // 본인 명의
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      children: [
+                        Transform.scale(
+                          scale: 0.9.w,
+                          child: SizedBox(
+                            width: 18.w,
+                            height: 18.h,
+                            child: Checkbox(
+                              activeColor: MIXIN_POINT_COLOR,
+                              value: isProgressChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isProgressChecked = value!;
+                                  isMaintainChecked[3] = value;
+                                  changeData();
+                                  print('main[3] = ${isMaintainChecked[3]}');
+                                });
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0)),
                             ),
                           ),
-                        ],
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        iconSize: 18.0.w,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdIfmTerm()),
-                          );
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_rounded),
-                      ),
-                    ],
+                        ),
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        Text(
+                          '본인 명의를 이용하여 가입을 진행하겠습니다.',
+                          style: TextStyle(
+                            color: MIXIN_BLACK_1,
+                            fontFamily: 'SUIT',
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 34.h),
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: 0.9.w,
-                        child: SizedBox(
-                          width: 18.w,
-                          height: 18.h,
-                          child: Checkbox(
-                            activeColor: MIXIN_POINT_COLOR,
-                            value: isProgressChecked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isProgressChecked = value!;
-                                isMaintainChecked[3] = value;
-                                changeData();
-                                print('main[3] = ${isMaintainChecked[3]}');
-                              });
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
+                  SizedBox(height: 15.h),
+                  // 본인 명의 내용
+                  Container(
+                    padding: EdgeInsets.only(left: 12.w),
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFF2F3F7),
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                            color: const Color(0xFFCED0D5), width: 1.0)),
+                    width: 342.w,
+                    height: 100.h,
+                    child: Text(
+                      progressTextMain,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        fontFamily: 'SUIT',
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 34.0.h),
+                  // 14세 이상
+                  SizedBox(
+                    height: 25.0.h,
+                    child: Row(
+                      children: [
+                        Transform.scale(
+                          scale: 0.9.w,
+                          child: SizedBox(
+                            width: 18.w,
+                            height: 18.h,
+                            child: Checkbox(
+                              activeColor: MIXIN_POINT_COLOR,
+                              value: isAgeChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isAgeChecked = value!;
+                                  isMaintainChecked[4] = value;
+                                  changeData();
+                                  print('main[4] = ${isMaintainChecked[4]}');
+                                });
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          '만 14세 이상입니다.',
+                          style: TextStyle(
+                            color: MIXIN_BLACK_1,
+                            fontFamily: 'SUIT',
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15.w),
+                  // 14세 이상 내용
+                  Container(
+                    padding: EdgeInsets.only(left: 12.w, right: 12.w),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFF2F3F7),
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                            color: const Color(0xFFCED0D5), width: 1.0)),
+                    width: 342.w,
+                    height: 50.h,
+                    child: Text(
+                      ageTextMain,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12.0.sp,
+                        fontFamily: 'SUIT',
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        elevation: 0.0),
+                    onPressed: () async {
+                      if (nextButtonColor == true) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SignUpScreenNamePhone()));
+                        print('광고성 약관 : $isAdIfmCheckedText');
+                      } else {}
+                    },
+                    child: const SizedBox(
+                      width: 342,
+                      height: 56,
+                      child: Center(
+                        child: Text(
+                          '다음',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.w,),
-                      Text(
-                        '본인 명의를 이용하여 가입을 진행하겠습니다.',
-                        style: TextStyle(
-                          color: MIXIN_BLACK_1,
-                          fontFamily: 'SUIT',
-                          fontSize: 16.0.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15.h),
-                Container(
-                  padding: EdgeInsets.only(left: 12.w),
-                  alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFF2F3F7),
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                          color: const Color(0xFFCED0D5), width: 1.0)),
-                  width: 342.w,
-                  height: 100.h,
-                  child: Text(
-                    progressTextMain,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      fontFamily: 'SUIT',
                     ),
                   ),
-                ),
-                SizedBox(height: 34.0.h),
-                SizedBox(
-                  height: 25.0.h,
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: 0.9.w,
-                        child: SizedBox(
-                          width: 18.w,
-                          height: 18.h,
-                          child: Checkbox(
-                            activeColor: MIXIN_POINT_COLOR,
-                            value: isAgeChecked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isAgeChecked = value!;
-                                isMaintainChecked[4] = value;
-                                changeData();
-                                print('main[4] = ${isMaintainChecked[4]}');
-                              });
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 8.w),
-                      Text(
-                        '만 14세 이상입니다.',
-                        style: TextStyle(
-                          color: MIXIN_BLACK_1,
-                          fontFamily: 'SUIT',
-                          fontSize: 16.0.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15.w),
-                Container(
-                  padding: EdgeInsets.only(left: 12.w,right: 12.w),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: const Color(0xFFF2F3F7),
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                          color: const Color(0xFFCED0D5), width: 1.0)),
-                  width: 342.w,
-                  height: 50.h,
-                  child: Text(
-                    ageTextMain,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.0.sp,
-                      fontFamily: 'SUIT',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 100.h),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

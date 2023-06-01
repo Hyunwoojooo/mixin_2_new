@@ -5,6 +5,10 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'moim_info_screen.dart';
 import 'moim_noticeboard_screen.dart';
 
+
+/*
+  초록색 지우고 선택된 페이지만 검정색
+ */
 class MoimMainScreen extends StatefulWidget {
   const MoimMainScreen({Key? key}) : super(key: key);
 

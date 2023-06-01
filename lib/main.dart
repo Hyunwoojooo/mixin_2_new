@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mixin_2/screens/complete_profile_card_screen/complete_profile_card_screen.dart';
+import 'package:mixin_2/screens/complete_profile_card_screen/front_profile_card_screen.dart';
 import 'package:mixin_2/screens/login_screen.dart';
-import 'package:mixin_2/screens/main_home_screens/main_bottom_navigation_bar.dart';
-import 'package:mixin_2/screens/main_home_screens/main_home_screen.dart';
-import 'package:mixin_2/screens/main_home_screens/main_screen.dart';
+import 'package:mixin_2/screens/main_screens/main_bottom_navigation_bar.dart';
 import 'package:mixin_2/screens/make_moim_screens/make_moim_1.dart';
 import 'package:mixin_2/screens/make_moim_screens/make_moim_2.dart';
 import 'package:mixin_2/screens/make_moim_screens/make_moim_4.dart';
 import 'package:mixin_2/screens/make_moim_screens/make_moim_tag.dart';
 import 'package:mixin_2/screens/make_profile_card_screens/make_2_screen.dart';
 import 'package:mixin_2/screens/make_profile_card_screens/make_category_screen.dart';
+import 'package:mixin_2/screens/make_profile_card_screens/make_introduce_screen.dart';
 import 'package:mixin_2/screens/moim_screens/moim_main_screen.dart';
 import 'package:mixin_2/screens/moim_screens/moim_noticeboard_screen.dart';
 import 'package:mixin_2/screens/onboarding_screens/onboarding_screen_main.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
+import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 import 'package:mixin_2/screens/splash_screen.dart';
 import 'package:mixin_2/screens/make_moim_screens/make_moim_3.dart';
 
@@ -39,7 +41,7 @@ class Mixin extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) =>  const MainBottomNavigationBar(),
+              '/': (context) =>  MakeIntroduceScreen(),
             },
           );
         });

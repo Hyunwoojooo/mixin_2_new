@@ -54,7 +54,7 @@ class SchoolCard extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: MIXIN_POINT_COLOR,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(8.0.r),
                 ),
                 padding: EdgeInsets.zero,
                 fixedSize: Size(70.w, 32.h),

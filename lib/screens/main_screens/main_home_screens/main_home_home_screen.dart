@@ -244,7 +244,7 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                       style: TextStyle(
                           fontFamily: 'SUIT',
                           fontWeight: FontWeight.w700,
-                          fontSize: 22.sp),
+                          fontSize: 22.sp,),
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 24.0.w),
@@ -255,11 +255,11 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                           padding: EdgeInsets.symmetric(vertical: 7.h),
                           backgroundColor: Colors.white,
                         ),
-                        child: const Text(
+                        child: Text(
                           'All >',
                           style: TextStyle(
                               color: MIXIN_BLACK_4,
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w500),
                         ),
@@ -276,11 +276,11 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                     Row(
                       children: [
                         Container(
-                          height: 90,
-                          width: 90,
+                          height: 90.h,
+                          width: 90.w,
                           decoration: BoxDecoration(
                             color: MIXIN_BLACK_5,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(16.r),
                           ),
                         ),
                         SizedBox(width: 25.w),
@@ -312,7 +312,7 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: MIXIN_BLACK_5,
-                                  borderRadius: BorderRadius.circular(16)),
+                                  borderRadius: BorderRadius.circular(16.r)),
                               child: Text(
                                 '2023.12.01 ~ 2023.12.31',
                                 style: TextStyle(
@@ -330,8 +330,8 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                                 _selectScript[0] ? Colors.white : MIXIN_BLACK_5,
                             fixedSize: Size(16.w, 16.h),
                             shape: const CircleBorder(),
-                            side: const BorderSide(
-                                width: 2, color: MIXIN_BLACK_5),
+                            side: BorderSide(
+                                width: 2.w, color: MIXIN_BLACK_5),
                             elevation: 0,
                           ),
                           onPressed: () {
@@ -355,11 +355,11 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                     Row(
                       children: [
                         Container(
-                          height: 90,
-                          width: 90,
+                          height: 90.h,
+                          width: 90.w,
                           decoration: BoxDecoration(
                             color: MIXIN_BLACK_5,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(16.r),
                           ),
                         ),
                         SizedBox(width: 25.w),
@@ -391,7 +391,7 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: MIXIN_BLACK_5,
-                                  borderRadius: BorderRadius.circular(16)),
+                                  borderRadius: BorderRadius.circular(16.r),),
                               child: Text(
                                 '2023.12.01 ~ 2023.12.31',
                                 style: TextStyle(
@@ -409,8 +409,8 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                                 _selectScript[1] ? Colors.white : MIXIN_BLACK_5,
                             fixedSize: Size(16.w, 16.h),
                             shape: const CircleBorder(),
-                            side: const BorderSide(
-                                width: 2, color: MIXIN_BLACK_5),
+                            side: BorderSide(
+                                width: 2.w, color: MIXIN_BLACK_5),
                             elevation: 0,
                           ),
                           onPressed: () {
@@ -434,11 +434,11 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                     Row(
                       children: [
                         Container(
-                          height: 90,
-                          width: 90,
+                          height: 90.h,
+                          width: 90.w,
                           decoration: BoxDecoration(
                             color: MIXIN_BLACK_5,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(16.r),
                           ),
                         ),
                         SizedBox(width: 25.w),
@@ -470,7 +470,7 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   color: MIXIN_BLACK_5,
-                                  borderRadius: BorderRadius.circular(16)),
+                                  borderRadius: BorderRadius.circular(16.r),),
                               child: Text(
                                 '2023.12.01 ~ 2023.12.31',
                                 style: TextStyle(
@@ -488,8 +488,8 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                                 _selectScript[2] ? Colors.white : MIXIN_BLACK_5,
                             fixedSize: Size(16.w, 16.h),
                             shape: const CircleBorder(),
-                            side: const BorderSide(
-                                width: 2, color: MIXIN_BLACK_5),
+                            side: BorderSide(
+                                width: 2.w, color: MIXIN_BLACK_5),
                             elevation: 0,
                           ),
                           onPressed: () {

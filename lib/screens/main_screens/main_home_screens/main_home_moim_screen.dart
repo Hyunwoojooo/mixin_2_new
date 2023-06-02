@@ -56,23 +56,23 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                 children: [
                                   Container(
                                     height: 192.h,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8.r),
+                                        topLeft: Radius.circular(8.r),
                                       ),
                                       color: Colors.orange,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
-                                    right: 16.3,
+                                    top: 16.h,
+                                    right: 16.3.w,
                                     child: Container(
-                                      width: 62,
-                                      height: 32,
+                                      width: 62.w,
+                                      height: 32.h,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                         color: MIXIN_BLACK_5,
                                       ),
                                       child: Text(
@@ -109,9 +109,9 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     top: 8.h, left: 16.w, right: 16.w),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      bottomRight: Radius.circular(8.r),
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -170,7 +170,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(8),
+                                                      BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '여기저기',
@@ -178,7 +178,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                                   fontFamily: 'SUIT',
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14.sp,
-                                                  color: Color(0xFFB1B1B7),
+                                                  color: const Color(0xFFB1B1B7),
                                                 ),
                                               ),
                                             ),
@@ -189,7 +189,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(8),
+                                                      BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '매주 화요일',
@@ -242,23 +242,23 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                 children: [
                                   Container(
                                     height: 192.h,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8.r),
+                                        topLeft: Radius.circular(8.r),
                                       ),
                                       color: Colors.orange,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
-                                    right: 16.3,
+                                    top: 16.h,
+                                    right: 16.3.w,
                                     child: Container(
-                                      width: 62,
-                                      height: 32,
+                                      width: 62.w,
+                                      height: 32.h,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                         color: MIXIN_BLACK_5,
                                       ),
                                       child: Text(
@@ -295,9 +295,9 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     top: 8.h, left: 16.w, right: 16.w),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      bottomRight: Radius.circular(8.r),
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -356,7 +356,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '여기저기',
@@ -364,7 +364,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                                   fontFamily: 'SUIT',
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14.sp,
-                                                  color: Color(0xFFB1B1B7),
+                                                  color: const Color(0xFFB1B1B7),
                                                 ),
                                               ),
                                             ),
@@ -375,7 +375,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '매주 화요일',
@@ -429,23 +429,23 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                 children: [
                                   Container(
                                     height: 192.h,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8.r),
+                                        topLeft: Radius.circular(8.r),
                                       ),
                                       color: Colors.orange,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
-                                    right: 16.3,
+                                    top: 16.h,
+                                    right: 16.3.w,
                                     child: Container(
-                                      width: 62,
-                                      height: 32,
+                                      width: 62.w,
+                                      height: 32.h,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                         color: MIXIN_BLACK_5,
                                       ),
                                       child: Text(
@@ -482,9 +482,9 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     top: 8.h, left: 16.w, right: 16.w),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      bottomRight: Radius.circular(8.r),
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -543,7 +543,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '여기저기',
@@ -551,7 +551,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                                   fontFamily: 'SUIT',
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14.sp,
-                                                  color: Color(0xFFB1B1B7),
+                                                  color: const Color(0xFFB1B1B7),
                                                 ),
                                               ),
                                             ),
@@ -562,7 +562,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '매주 화요일',
@@ -616,23 +616,23 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                 children: [
                                   Container(
                                     height: 192.h,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8.r),
+                                        topLeft: Radius.circular(8.r),
                                       ),
                                       color: Colors.orange,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
-                                    right: 16.3,
+                                    top: 16.h,
+                                    right: 16.3.w,
                                     child: Container(
-                                      width: 62,
-                                      height: 32,
+                                      width: 62.w,
+                                      height: 32.h,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                         color: MIXIN_BLACK_5,
                                       ),
                                       child: Text(
@@ -652,12 +652,12 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          _isBellSelect[3] = !_isBellSelect[3];
+                                          _isBellSelect[2] = !_isBellSelect[2];
                                         });
                                       },
                                       icon: Image.asset(
                                         'assets/images/icons/bell.png',
-                                        color: _isBellSelect[3] ? null : MIXIN_BLACK_4,
+                                        color: _isBellSelect[2] ? null : MIXIN_BLACK_4,
                                       ),
                                     ),
                                   )
@@ -669,9 +669,9 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     top: 8.h, left: 16.w, right: 16.w),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      bottomRight: Radius.circular(8.r),
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -730,7 +730,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '여기저기',
@@ -738,7 +738,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                                   fontFamily: 'SUIT',
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14.sp,
-                                                  color: Color(0xFFB1B1B7),
+                                                  color: const Color(0xFFB1B1B7),
                                                 ),
                                               ),
                                             ),
@@ -749,7 +749,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '매주 화요일',
@@ -803,23 +803,23 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                 children: [
                                   Container(
                                     height: 192.h,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8.r),
+                                        topLeft: Radius.circular(8.r),
                                       ),
                                       color: Colors.orange,
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
-                                    right: 16.3,
+                                    top: 16.h,
+                                    right: 16.3.w,
                                     child: Container(
-                                      width: 62,
-                                      height: 32,
+                                      width: 62.w,
+                                      height: 32.h,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(8.r),
                                         color: MIXIN_BLACK_5,
                                       ),
                                       child: Text(
@@ -839,12 +839,12 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          _isBellSelect[4] = !_isBellSelect[4];
+                                          _isBellSelect[2] = !_isBellSelect[2];
                                         });
                                       },
                                       icon: Image.asset(
                                         'assets/images/icons/bell.png',
-                                        color: _isBellSelect[4] ? null : MIXIN_BLACK_4,
+                                        color: _isBellSelect[2] ? null : MIXIN_BLACK_4,
                                       ),
                                     ),
                                   )
@@ -856,9 +856,9 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                     top: 8.h, left: 16.w, right: 16.w),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(8),
-                                      bottomRight: Radius.circular(8),
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8.r),
+                                      bottomRight: Radius.circular(8.r),
                                     ),
                                     boxShadow: [
                                       BoxShadow(
@@ -917,7 +917,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '여기저기',
@@ -925,7 +925,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                                   fontFamily: 'SUIT',
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 14.sp,
-                                                  color: Color(0xFFB1B1B7),
+                                                  color: const Color(0xFFB1B1B7),
                                                 ),
                                               ),
                                             ),
@@ -936,7 +936,7 @@ class _MainHomeMoimScreenState extends State<MainHomeMoimScreen> {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.r),
                                                   color: MIXIN_BLACK_5),
                                               child: Text(
                                                 '매주 화요일',

@@ -25,15 +25,30 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.0,
-        leading: GestureDetector(
-          child: Image.asset('assets/images/back_icon.png'),
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35.w,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Image.asset(
+                  'assets/images/icons/back_icon_black_4x.png',
+                  width: 26.w,
+                  height: 26.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -45,8 +60,8 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const MakePositionScreen()),
               );
-              print('categoryList : $categoryList');
-              await storage.write(key: 'userKeyword', value: jsonEncode(categoryList));
+              print('categoryList : $selectedOptions');
+              await storage.write(key: 'userKeyword', value: jsonEncode(selectedOptions));
             } else {null;}
           },
       ),
@@ -173,43 +188,55 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                       },
                       containerColor: categoryList[3] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/music.png',
-                      imageWidth: 24,
-                      imageHeight: 24,
-                      sizedBoxWidth: 8.0,
+                      imageWidth: 24.w,
+                      imageHeight: 24.h,
+                      sizedBoxWidth: 8.0.w,
                       text: '음악',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[4] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[4] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[4] = !categoryList[4];
+                          if(categoryList[4] == true){
+                            selectedOptions.add('여행');
+                          } else if(categoryList[4] == false){
+                            selectedOptions.remove('여행');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[4] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/trip.png',
-                      imageWidth: 19.24,
-                      imageHeight: 24,
-                      sizedBoxWidth: 8.71,
+                      imageWidth: 19.24.w,
+                      imageHeight: 24.h,
+                      sizedBoxWidth: 8.71.w,
                       text: '여행',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 108,
+                      mainSizedBoxWidth: 108.w,
                       borderSideColor: categoryList[5] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[5] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[5] = !categoryList[5];
+                          if(categoryList[5] == true){
+                            selectedOptions.add('봉사활동');
+                          } else if(categoryList[5] == false){
+                            selectedOptions.remove('봉사활동');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[5] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/bongsa.png',
-                      imageWidth: 23,
-                      imageHeight: 22,
-                      sizedBoxWidth: 6.0,
+                      imageWidth: 23.w,
+                      imageHeight: 22.h,
+                      sizedBoxWidth: 6.0.w,
                       text: '봉사활동',
                     ),
                   ],
@@ -218,146 +245,194 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 Row(
                   children: [
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[6] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[6] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[6] = !categoryList[6];
+                          if(categoryList[6] == true){
+                            selectedOptions.add('운동');
+                          } else if(categoryList[6] == false){
+                            selectedOptions.remove('운동');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[6] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/health.png',
-                      imageWidth: 24,
-                      imageHeight: 24,
-                      sizedBoxWidth: 8.0,
+                      imageWidth: 24.w,
+                      imageHeight: 24.h,
+                      sizedBoxWidth: 8.0.w,
                       text: '운동',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 108,
+                      mainSizedBoxWidth: 108.w,
                       borderSideColor: categoryList[7] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[7] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[7] = !categoryList[7];
+                          if(categoryList[7] == true){
+                            selectedOptions.add('반려동물');
+                          } else if(categoryList[7] == false){
+                            selectedOptions.remove('반려동물');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[7] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/animal.png',
-                      imageWidth: 21.72,
-                      imageHeight: 17.39,
-                      sizedBoxWidth: 9.28,
+                      imageWidth: 21.72.w,
+                      imageHeight: 17.39.h,
+                      sizedBoxWidth: 9.28.w,
                       text: '반려동물',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[8] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[8] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[8] = !categoryList[8];
+                          if(categoryList[8] == true){
+                            selectedOptions.add('사교');
+                          } else if(categoryList[8] == false){
+                            selectedOptions.remove('사교');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[8] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/sagyo.png',
-                      imageWidth: 20.0,
-                      imageHeight: 23.0,
-                      sizedBoxWidth: 7.0,
+                      imageWidth: 20.0.w,
+                      imageHeight: 23.0.h,
+                      sizedBoxWidth: 7.0.w,
                       text: '사교',
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 Row(
                   children: [
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[9] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[9] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[9] = !categoryList[9];
+                          if(categoryList[9] == true){
+                            selectedOptions.add('수업');
+                          } else if(categoryList[9] == false){
+                            selectedOptions.remove('수업');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[9] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/class.png',
-                      imageWidth: 24.0,
-                      imageHeight: 22.79,
-                      sizedBoxWidth: 6.0,
+                      imageWidth: 24.0.w,
+                      imageHeight: 22.79.h,
+                      sizedBoxWidth: 6.0.w,
                       text: '수업',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 92,
+                      mainSizedBoxWidth: 92.w,
                       borderSideColor: categoryList[10] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[10] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[10] = !categoryList[10];
+                          if(categoryList[10] == true){
+                            selectedOptions.add('외국어');
+                          } else if(categoryList[10] == false){
+                            selectedOptions.remove('외국어');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[10] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/class.png',
-                      imageWidth: 24.84,
-                      imageHeight: 23.0,
-                      sizedBoxWidth: 5.16,
+                      imageWidth: 24.84.w,
+                      imageHeight: 23.0.h,
+                      sizedBoxWidth: 5.16.w,
                       text: '외국어',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[11] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[11] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[11] = !categoryList[11];
+                          if(categoryList[11] == true){
+                            selectedOptions.add('맛집');
+                          } else if(categoryList[11] == false){
+                            selectedOptions.remove('맛집');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[11] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/restuarant.png',
-                      imageWidth: 18.67,
-                      imageHeight: 24.0,
-                      sizedBoxWidth: 12.33,
+                      imageWidth: 18.67.w,
+                      imageHeight: 24.0.h,
+                      sizedBoxWidth: 12.33.w,
                       text: '맛집',
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 Row(
                   children: [
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[12] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[12] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[12] = !categoryList[12];
+                          if(categoryList[12] == true){
+                            selectedOptions.add('요리');
+                          } else if(categoryList[12] == false){
+                            selectedOptions.remove('요리');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[12] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/cook.png',
-                      imageWidth: 24,
-                      imageHeight: 19.86,
-                      sizedBoxWidth: 7.0,
+                      imageWidth: 24.w,
+                      imageHeight: 19.86.h,
+                      sizedBoxWidth: 7.0.w,
                       text: '요리',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[13] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[13] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[13] = !categoryList[13];
+                          if(categoryList[13] == true){
+                            selectedOptions.add('금융');
+                          } else if(categoryList[13] == false){
+                            selectedOptions.remove('금융');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[13] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/finance.png',
-                      imageWidth: 24.17,
-                      imageHeight: 25.0,
-                      sizedBoxWidth: 8.65,
+                      imageWidth: 24.17.w,
+                      imageHeight: 25.0.h,
+                      sizedBoxWidth: 8.65.w,
                       text: '금융',
                     ),
                   ],

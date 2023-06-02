@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../const/colors.dart';
 
@@ -32,12 +33,12 @@ class CategoryLayoutRound extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: mainSizedBoxWidth,
-      height: 48,
+      height: 48.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(color: borderSideColor),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24.0),
+            borderRadius: BorderRadius.circular(24.0.r),
           ),
           padding: EdgeInsets.zero,
           elevation: 0.0,
@@ -59,9 +60,9 @@ class CategoryLayoutRound extends StatelessWidget {
               ),
               Text(
                 '$text',
-                style: const TextStyle(
+                style: TextStyle(
                     fontFamily: 'SUIT',
-                    fontSize: 16.0,
+                    fontSize: 16.0.sp,
                     fontWeight: FontWeight.w500,
                     color: MIXIN_BLACK_1),
               ),

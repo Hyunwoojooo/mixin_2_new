@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../const/colors.dart';
 
 class BackProfileCardScreen extends StatefulWidget {
-  BackProfileCardScreen({Key? key}) : super(key: key);
+  const BackProfileCardScreen({Key? key}) : super(key: key);
+
   @override
   State<BackProfileCardScreen> createState() => _BackProfileCardScreenState();
 }
@@ -24,7 +26,6 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
   List<bool> userPositionBool = [];
   List<bool> userPersonalityBool = [];
   List<bool> userValuesBool = [];
-
 
   @override
   void initState() {
@@ -44,7 +45,6 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
     userPosition = await storage.read(key: 'userPosition');
     userPersonality = await storage.read(key: 'userPersonality');
     userValues = await storage.read(key: 'userValues');
-
   }
 
   List<String> userPositionText = [
@@ -86,16 +86,14 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
     '약속은 기본 매너 아니겠어?',
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 342,
-      height: 425,
-      padding: EdgeInsets.fromLTRB(32, 29, 32, 32),
+      width: 342.w,
+      height: 425.h,
+      padding: EdgeInsets.fromLTRB(32.w, 29.h, 32.w, 32.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(23.0),
+        borderRadius: BorderRadius.circular(23.0.r),
         color: Colors.white,
       ),
       child: ListView(
@@ -103,25 +101,23 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
           Row(
             children: [
               Container(
-                width: 48,
-                height: 48,
+                width: 48.w,
+                height: 48.h,
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: Colors.grey),
               ),
-              const SizedBox(width: 14.0),
+              SizedBox(width: 14.0.w),
               Text(
                 '믹스인',
                 style: TextStyle(
                   fontFamily: 'SUIT',
                   fontWeight: FontWeight.w600,
-                  fontSize: 18.0,
+                  fontSize: 18.0.sp,
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 16.0,
-          ),
+          SizedBox(height: 16.0.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -136,7 +132,7 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
+                    fontSize: 16.0.sp,
                     color: _currentPage == 0 ? MIXIN_47 : MIXIN_BLACK_4,
                   ),
                 ),
@@ -148,7 +144,7 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
+                    fontSize: 16.0.sp,
                     color: _currentPage == 1 ? MIXIN_47 : MIXIN_BLACK_4,
                   ),
                 ),
@@ -160,7 +156,7 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 16.0,
+                    fontSize: 16.0.sp,
                     color: _currentPage == 2 ? MIXIN_47 : MIXIN_BLACK_4,
                   ),
                 ),
@@ -168,12 +164,12 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
             ],
           ),
           Container(
-            height: 300,
+            height: 300.h,
             alignment: Alignment.center,
             padding: EdgeInsets.zero,
             child: PageView(
               controller: pageController,
-              onPageChanged: (value){
+              onPageChanged: (value) {
                 setState(() {
                   _currentPage = value;
                   print('value: $_currentPage');
@@ -181,62 +177,61 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
               },
               children: [
                 Container(
-                    width: 200,
-                    height: 151,
-                    color: Colors.white,
+                  width: 200.w,
+                  height: 151.h,
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 57.w),
+                    width: 200.w,
+                    height: 151.h,
                     alignment: Alignment.center,
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 57),
-                      width: 200,
-                      height: 151,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        // gradient: LinearGradient(
-                        //     colors: [MIXIN_2, Colors.white],
-                        //   begin: Alignment.topLeft,
-                        //   end: Alignment.bottomRight,
-                        // ),
-                        color: Color(0xFFDAF3F0),
-                        boxShadow: [
-                          BoxShadow(
+                    decoration: BoxDecoration(
+                      // gradient: LinearGradient(
+                      //     colors: [MIXIN_2, Colors.white],
+                      //   begin: Alignment.topLeft,
+                      //   end: Alignment.bottomRight,
+                      // ),
+                      color: const Color(0xFFDAF3F0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: MIXIN_POINT_COLOR,
+                          blurRadius: 2.0,
+                          offset: Offset(2, 4),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(36.r),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '분위기메이커형',
+                          style: TextStyle(
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.0.sp,
                             color: MIXIN_POINT_COLOR,
-                            blurRadius: 2.0,
-                            offset: Offset(2, 4),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '분위기메이커형',
-                            style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20.0,
-                              color: MIXIN_POINT_COLOR,
-                            ),
                           ),
-                          const SizedBox(
-                            height: 18.0,
+                        ),
+                        SizedBox(height: 18.0.h),
+                        Text(
+                          '이 모임 분위기는\n내가 책임진다!',
+                          style: TextStyle(
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.0.sp,
+                            color: MIXIN_POINT_COLOR,
                           ),
-                          Text(
-                            '이 모임 분위기는\n내가 책임진다!',
-                            style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: MIXIN_POINT_COLOR,
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 68, 42, 0),
-                  height: 108,
-                  width: 248,
+                  padding: EdgeInsets.fromLTRB(10.w, 68.h, 42.w, 0),
+                  height: 108.h,
+                  width: 248.w,
                   child: Column(
                     children: [
                       Row(
@@ -246,18 +241,16 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                             style: TextStyle(
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w600,
-                              fontSize: 16.0,
+                              fontSize: 16.0.sp,
                             ),
                           ),
-                          SizedBox(
-                            width: 14,
-                          ),
+                          SizedBox(width: 14.w),
                           Container(
-                            width: 154,
-                            height: 48,
+                            width: 154.w,
+                            height: 48.h,
                             decoration: BoxDecoration(
                               color: MIXIN_2,
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.0.r),
                             ),
                             alignment: Alignment.center,
                             child: Text(
@@ -265,27 +258,23 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                               style: TextStyle(
                                 fontFamily: 'SUIT',
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize: 16.0.sp,
                                 color: Colors.white,
                               ),
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 12,
-                      ),
+                      SizedBox(height: 12.h),
                       Row(
                         children: [
-                          SizedBox(
-                            width: 10,
-                          ),
+                          SizedBox(width: 10.w),
                           Container(
-                            width: 94,
-                            height: 48,
+                            width: 94.w,
+                            height: 48.h,
                             decoration: BoxDecoration(
                               color: MIXIN_2,
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.0.r),
                             ),
                             alignment: Alignment.center,
                             child: Text(
@@ -293,20 +282,18 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                               style: TextStyle(
                                 fontFamily: 'SUIT',
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize: 16.0.sp,
                                 color: Colors.white,
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
+                          SizedBox(width: 10.w),
                           Container(
-                            width: 66,
-                            height: 48,
+                            width: 66.w,
+                            height: 48.h,
                             decoration: BoxDecoration(
                               color: MIXIN_2,
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(30.0.r),
                             ),
                             alignment: Alignment.center,
                             child: Text(
@@ -314,20 +301,18 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                               style: TextStyle(
                                 fontFamily: 'SUIT',
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16.0,
+                                fontSize: 16.0.sp,
                                 color: Colors.white,
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 14,
-                          ),
+                          SizedBox(width: 14.w),
                           Text(
                             '사람',
                             style: TextStyle(
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w600,
-                              fontSize: 16.0,
+                              fontSize: 16.0.sp,
                             ),
                           ),
                         ],
@@ -336,58 +321,57 @@ class _BackProfileCardScreenState extends State<BackProfileCardScreen> {
                   ),
                 ),
                 Container(
-                    width: 200,
-                    height: 151,
-                    color: Colors.white,
+                  width: 200.w,
+                  height: 151.h,
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 57.h),
+                    width: 200.w,
+                    height: 151.h,
                     alignment: Alignment.center,
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 57),
-                      width: 200,
-                      height: 151,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        // gradient: LinearGradient(
-                        //     colors: [MIXIN_2, Colors.white],
-                        //   begin: Alignment.topLeft,
-                        //   end: Alignment.bottomRight,
-                        // ),
-                        color: Color(0xFFDAF3F0),
-                        boxShadow: [
-                          BoxShadow(
+                    decoration: BoxDecoration(
+                      // gradient: LinearGradient(
+                      //     colors: [MIXIN_2, Colors.white],
+                      //   begin: Alignment.topLeft,
+                      //   end: Alignment.bottomRight,
+                      // ),
+                      color: const Color(0xFFDAF3F0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: MIXIN_POINT_COLOR,
+                          blurRadius: 2.0,
+                          offset: Offset(2, 4),
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(36.r),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '소통',
+                          style: TextStyle(
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20.0.sp,
                             color: MIXIN_POINT_COLOR,
-                            blurRadius: 2.0,
-                            offset: Offset(2, 4),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '소통',
-                            style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20.0,
-                              color: MIXIN_POINT_COLOR,
-                            ),
                           ),
-                          const SizedBox(
-                            height: 18.0,
+                        ),
+                        SizedBox(height: 18.0.h),
+                        Text(
+                          '소통이 원할하게\n이루어지는 게 중요하지!',
+                          style: TextStyle(
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.0.sp,
+                            color: MIXIN_POINT_COLOR,
                           ),
-                          Text(
-                            '소통이 원할하게\n이루어지는 게 중요하지!',
-                            style: TextStyle(
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.0,
-                              color: MIXIN_POINT_COLOR,
-                            ),
-                          )
-                        ],
-                      ),
-                    )),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mixin_2/const/colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -22,10 +23,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8.0),
-      borderSide: const BorderSide(
+      borderRadius: BorderRadius.circular(8.0.r),
+      borderSide: BorderSide(
         color: MIXIN_BLACK_5,
-        width: 1.5,
+        width: 1.5.w,
       ),
     );
     return TextFormField(
@@ -35,12 +36,12 @@ class CustomTextFormField extends StatelessWidget {
       autofocus: autoFocus,
       onChanged: onChanged,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(20),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         hintText: hintText,
         errorText: errorText,
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           color: MIXIN_BLACK_4,
-          fontSize: 16.0,
+          fontSize: 16.0.sp,
           fontFamily: 'SUIT',
           fontWeight: FontWeight.w500,
         ),

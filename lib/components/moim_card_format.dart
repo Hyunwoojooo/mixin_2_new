@@ -55,7 +55,7 @@ class MoimCardBig extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             )),
         onPressed: () {},
         child: Column(
@@ -64,10 +64,10 @@ class MoimCardBig extends StatelessWidget {
               children: [
                 Container(
                   height: 192.h,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(8),
-                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8.r),
+                      topLeft: Radius.circular(8.r),
                     ),
                     color: Colors.orange,
                   ),
@@ -80,7 +80,7 @@ class MoimCardBig extends StatelessWidget {
                     height: 32.h,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       color: MIXIN_,
                     ),
                     child: Text(
@@ -102,7 +102,7 @@ class MoimCardBig extends StatelessWidget {
                     height: 32.h,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       color: MIXIN_BLACK_5,
                     ),
                     child: Text(
@@ -137,9 +137,9 @@ class MoimCardBig extends StatelessWidget {
               padding: EdgeInsets.only(top: 8.h, left: 16.w, right: 16.w),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(8.r),
+                  bottomRight: Radius.circular(8.r),
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -222,7 +222,7 @@ class MoimCardBig extends StatelessWidget {
                           height: 32.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[0]}',
@@ -243,7 +243,7 @@ class MoimCardBig extends StatelessWidget {
                           height: 32.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[1]}',
@@ -264,7 +264,7 @@ class MoimCardBig extends StatelessWidget {
                           height: 32.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[2]}',
@@ -340,7 +340,7 @@ class MoimCardSmall extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
             )),
         onPressed: () {},
         child: Column(
@@ -349,10 +349,10 @@ class MoimCardSmall extends StatelessWidget {
               children: [
                 Container(
                   height: 158.h,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(8),
-                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8.r),
+                      topLeft: Radius.circular(8.r),
                     ),
                     color: Colors.orange,
                   ),
@@ -365,7 +365,7 @@ class MoimCardSmall extends StatelessWidget {
                     height: 32.h,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       color: MIXIN_,
                     ),
                     child: Text(
@@ -387,7 +387,7 @@ class MoimCardSmall extends StatelessWidget {
                     height: 32.h,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                       color: MIXIN_BLACK_5,
                     ),
                     child: Text(
@@ -422,9 +422,9 @@ class MoimCardSmall extends StatelessWidget {
               padding: EdgeInsets.only(top: 8.h, left: 16.w, right: 16.w),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(8.r),
+                    bottomRight: Radius.circular(8.r),
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -504,7 +504,7 @@ class MoimCardSmall extends StatelessWidget {
                           height: 28.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[0]}',
@@ -525,7 +525,7 @@ class MoimCardSmall extends StatelessWidget {
                           height: 28.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[1]}',
@@ -546,7 +546,7 @@ class MoimCardSmall extends StatelessWidget {
                           height: 28.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                               color: MIXIN_),
                           child: Text(
                             '#${tagText[2]}',
@@ -612,7 +612,7 @@ class MoimThunder extends StatelessWidget {
       padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 16.h),
       margin: EdgeInsets.only(bottom: 12.h, left: 24.w, right: 24.w),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         color: WHITE,
         boxShadow: [
           BoxShadow(
@@ -656,7 +656,7 @@ class MoimThunder extends StatelessWidget {
                   height: 32.h,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
+                    borderRadius: BorderRadius.circular(24.r),
                     color: MIXIN_,
                   ),
                   child: Row(
@@ -709,7 +709,7 @@ class MoimThunder extends StatelessWidget {
             // alignment: Alignment.center,
             decoration: BoxDecoration(
               color: MIXIN_BLACK_5,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

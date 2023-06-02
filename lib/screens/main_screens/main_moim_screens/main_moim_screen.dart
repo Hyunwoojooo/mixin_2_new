@@ -33,7 +33,7 @@ class _MainMoimScreenState extends State<MainMoimScreen>
           automaticallyImplyLeading: false,
           toolbarHeight: 110.h,
           elevation: 0.0,
-          titleSpacing: 24,
+          titleSpacing: 24.w,
           title: Column(
             children: [
               SizedBox(height: 25.h),
@@ -74,8 +74,8 @@ class _MainMoimScreenState extends State<MainMoimScreen>
                         icon: Image.asset(
                           'assets/images/icons/bell.png',
                           color: Colors.black,
-                          width: 26,
-                          height: 26,
+                          width: 26.w,
+                          height: 26.h,
                         ),
                       ),
                     ],

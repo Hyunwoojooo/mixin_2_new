@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Color? backgroundColor;
@@ -35,7 +36,7 @@ class DefaultLayout extends StatelessWidget {
         title: Text(
           title!,
           style: TextStyle(
-            fontSize: 16.0,
+            fontSize: 16.0.sp,
             fontWeight: FontWeight.w500,
           ),
         ),

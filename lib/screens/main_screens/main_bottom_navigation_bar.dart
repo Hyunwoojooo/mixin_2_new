@@ -40,19 +40,19 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       ),
       floatingActionButton: floatingButtons(),
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.r),
+          topRight: Radius.circular(16.r),
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           enableFeedback: true,
           currentIndex: _bNBSelectedIndex,
-          iconSize: 26,
+          iconSize: 26.w,
           selectedItemColor: MIXIN_BLACK_1,
           unselectedItemColor: MIXIN_BLACK_4,
-          selectedFontSize: 11,
-          unselectedFontSize: 11,
+          selectedFontSize: 11.sp,
+          unselectedFontSize: 11.sp,
           showUnselectedLabels: true,
           selectedLabelStyle: const TextStyle(
             fontFamily: 'SUIT',
@@ -67,8 +67,8 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/bottom_navigation_bar_icons/bottomNavigationBar_home.png',
-                width: 26,
-                height: 26,
+                width: 26.w,
+                height: 26.h,
                 color: _bNBSelectedIndex == 0 ? MIXIN_BLACK_1 : MIXIN_BLACK_4,
               ),
               label: '홈',
@@ -76,8 +76,8 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/bottom_navigation_bar_icons/bottomNavigationBar_moim.png',
-                width: 26,
-                height: 26,
+                width: 26.w,
+                height: 26.h,
                 color: _bNBSelectedIndex == 1 ? MIXIN_BLACK_1 : MIXIN_BLACK_4,
               ),
               label: '모임',
@@ -89,8 +89,8 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/bottom_navigation_bar_icons/bottomNavigationBar_chatting.png',
-                width: 26,
-                height: 26,
+                width: 26.w,
+                height: 26.h,
                 color: _bNBSelectedIndex == 3 ? MIXIN_BLACK_1 : MIXIN_BLACK_4,
               ),
               label: '채팅',
@@ -98,8 +98,8 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/images/bottom_navigation_bar_icons/bottomNavigationBar_profile.png',
-                width: 26,
-                height: 26,
+                width: 26.w,
+                height: 26.h,
                 color: _bNBSelectedIndex == 4 ? MIXIN_BLACK_1 : MIXIN_BLACK_4,
               ),
               label: '프로필',

@@ -112,8 +112,8 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                         icon: Image.asset(
                           'assets/images/icons/bell.png',
                           color: Colors.black,
-                          width: 26,
-                          height: 26,
+                          width: 26.w,
+                          height: 26.h,
                         ),
                       ),
                     ],

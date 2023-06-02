@@ -53,7 +53,7 @@ class CustomTextFormField extends StatelessWidget {
         enabledBorder: baseBorder,
         // focus 일 때 세팅
         focusedBorder: baseBorder.copyWith(
-            borderSide: baseBorder.borderSide.copyWith(color: Colors.red)),
+            borderSide: baseBorder.borderSide.copyWith(color: MIXIN_BLACK_5)),
       ),
     );
   }

@@ -12,8 +12,8 @@ import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
 
 /*
-  통신사 선택된 것만 색 다른 색으로 하게
-  인증번호 6개가 입력됐을 경우에만 다음버튼 활성화
+  통신사 선택된 것만 색 다른 색으로 하게 O
+  인증번호 6개가 입력됐을 경우에만 다음버튼 활성화 O
  */
 
 class SignUpScreenNamePhone extends StatefulWidget {
@@ -32,6 +32,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
   List<bool> isSelected = [false, false];
   List<String> genderList = ['여자', '남자'];
   String userGender = '';
+  bool nextButton = false;
 
   bool onClickSendButton = false;
   String sendText = '인증번호 전송';
@@ -107,10 +108,10 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
   }
 
   List<Widget> items = [
-    const Text(
+    Text(
       'KT',
       style: TextStyle(
-          fontFamily: 'SUIT', fontWeight: FontWeight.w600, fontSize: 24.0),
+          fontFamily: 'SUIT', fontWeight: FontWeight.w600, fontSize: 24.0.sp),
     ),
     const Text(
       'SKT',
@@ -157,11 +158,13 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          titleSpacing: -35,
+          titleSpacing: -35.w,
           title: GestureDetector(
             child: Column(
               children: [
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Image.asset(
                   'assets/images/icons/back_icon_black_4x.png',
                   width: 26.w,
@@ -239,7 +242,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                         child: Ink(
                           decoration: BoxDecoration(
                             color: isSelected[index] ? MIXIN_ : Colors.white,
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.r),
                             border: isSelected[index]
                                 ? Border.all(color: MIXIN_CLICK)
                                 : Border.all(color: MIXIN_BLACK_5),
@@ -275,12 +278,12 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            side: const BorderSide(
+                            side: BorderSide(
                               color: MIXIN_BLACK_5,
-                              width: 1.5,
+                              width: 1.5.w,
                             ),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
+                                borderRadius: BorderRadius.circular(8.0.r)),
                             elevation: 0.0,
                           ),
                           onPressed: () {
@@ -292,28 +295,31 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                   height: 370.h,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(24),
-                                      topRight: Radius.circular(24)
-                                    ),
-                                    color: Colors.white
-                                  ),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(24.r),
+                                          topRight: Radius.circular(24.r)),
+                                      color: Colors.white),
                                   child: Column(
                                     children: [
                                       Container(
                                         height: 280.h,
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(24),
-                                            color: Colors.white
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(24.r),
+                                            color: Colors.white),
                                         child: Center(
                                           child: ListWheelScrollView(
+                                            squeeze: 1,
+                                            overAndUnderCenterOpacity: 0.2,
+                                            useMagnifier: true,
+                                            magnification: 1.3,
                                             itemExtent: 75,
-                                            physics: FixedExtentScrollPhysics(),
-                                            onSelectedItemChanged: (index) => {
-                                              newsAgency = index,
-                                            },
+                                            diameterRatio: 2,
+                                            physics:
+                                                const FixedExtentScrollPhysics(),
+                                            onSelectedItemChanged: (index) =>
+                                                {newsAgency = index},
                                             children: items,
                                           ),
                                         ),
@@ -322,11 +328,14 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                         child: Center(
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
-                                              primary: MIXIN_POINT_COLOR,
+                                              backgroundColor:
+                                                  MIXIN_POINT_COLOR,
                                               shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0)),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  8.0.r,
+                                                ),
+                                              ),
                                               elevation: 8.0,
                                             ),
                                             onPressed: () async {
@@ -419,23 +428,23 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                             filled: false,
                             // 모든 Input 상태의 기본 스타일 세팅
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8.0.r),
                                 borderSide: const BorderSide(
                                     color: MIXIN_BLACK_5, width: 1.5)),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8.0.r),
                                 borderSide: const BorderSide(
                                     color: MIXIN_BLACK_5, width: 1.5)),
                             // focus 일 때 세팅
                             focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(8.0.r),
                                     borderSide: const BorderSide(
                                         color: MIXIN_BLACK_5, width: 1.5))
                                 .copyWith(
                               borderSide: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8.0),
                                 borderSide: const BorderSide(
-                                  color: Colors.white,
+                                  color: MIXIN_BLACK_5,
                                   width: 1.5,
                                 ),
                               ).borderSide,
@@ -460,10 +469,10 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                       width: 216.w,
                       height: 56.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         border: Border.all(
                           color: MIXIN_BLACK_5,
-                          width: 1.5,
+                          width: 1.5.w,
                         ),
                         color: Colors.transparent,
                       ),
@@ -489,7 +498,9 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                               onChanged: (String value) {
                                 userCertificationNumber = value;
                                 if (userCertificationNumber.length == 6) {
-                                  setState(() {});
+                                  setState(() {
+                                    nextButton = true;
+                                  });
                                   FocusScope.of(context).unfocus();
                                 } else {
                                   setState(() {});
@@ -518,17 +529,25 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                                         borderSide: BorderSide(
                                             color: Colors.transparent))
                                     .copyWith(
-                                        borderSide: const OutlineInputBorder(
+                                        borderSide: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Colors.transparent,
-                                                    width: 1.5))
+                                                    width: 1.5.w))
                                             .borderSide
                                         // .copyWith(color: Colors.red)),
                                         ),
                               ),
                             ),
                           ),
-                          Text('$minutes:$seconds'),
+                          Text(
+                            '$minutes:$seconds',
+                            style: TextStyle(
+                              fontFamily: 'SUIT',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp,
+                              color: MIXIN_POINT_COLOR,
+                            ),
+                          ),
                           SizedBox(width: 8.w),
                         ],
                       ),
@@ -536,7 +555,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                   SizedBox(
                     height: 32.h,
-                    width: 110.w,
+                    width: 105.w,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -547,25 +566,30 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                               borderRadius: BorderRadius.circular(8.0)),
                           elevation: 0.0),
                       onPressed: () async {
-                        setState(() {
-                          onClickSendButton = true;
-                        });
-                        startTimer();
-                        Dio dio = Dio();
-                        final Response resp = await dio.post(serverUrl, data: {
-                          "to": userPhoneNumber,
-                        });
-                        print(resp);
+                        if(userPhoneNumber.isNotEmpty){
+                          setState(() {
+                            onClickSendButton = true;
+                          });
+                          startTimer();
+                          Dio dio = Dio();
+                          final Response resp = await dio.post(serverUrl, data: {
+                            "to": userPhoneNumber,
+                          });
+                          print(resp);
+                        } else{
+                          null;
+                        }
                       },
                       child: Container(
                         alignment: Alignment.center,
                         child: Text(
                           onClickSendButton == false ? sendText : sendAgainText,
-                          style:  TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.sp,
-                              fontFamily: 'SUIT',
-                              fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w500,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -573,7 +597,7 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                   ),
                 ],
               ),
-              SizedBox(height: 118.h),
+              SizedBox(height: 147.h),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -584,31 +608,40 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                           borderRadius: BorderRadius.circular(8.0)),
                       elevation: 0.0),
                   onPressed: () async {
+                    // if(nextButton == true){
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const SignUpScreenSchool()),
+                    //   );
+                    //   await storage.write(key: 'userName', value: userName);
+                    //   await storage.write(key: 'userGender', value: userGender);
+                    //   await storage.write(key: 'userAgent', value: selectAgency);
+                    //   await storage.write(
+                    //       key: 'userPhoneNumber', value: userPhoneNumber);
+                    //   print('이름 : $userName');
+                    //   print('통신사 : $selectAgency');
+                    //   print('성별 : $userGender');
+                    //   print('전화번호 : $userPhoneNumber');
+                    // } else{
+                    //   null;
+                    // }
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) => const SignUpScreenSchool()),
                     );
-                    await storage.write(key: 'userName', value: userName);
-                    await storage.write(key: 'userGender', value: userGender);
-                    await storage.write(key: 'userAgent', value: selectAgency);
-                    await storage.write(
-                        key: 'userPhoneNumber', value: userPhoneNumber);
-                    print('이름 : $userName');
-                    print('통신사 : $selectAgency');
-                    print('성별 : $userGender');
-                    print('전화번호 : $userPhoneNumber');
                   },
-                  child: const SizedBox(
-                    width: 342,
-                    height: 56,
+                  child: SizedBox(
+                    width: 342.w,
+                    height: 56.h,
                     child: Center(
                       child: Text(
                         '다음',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'SUIT',
-                            fontWeight: FontWeight.w600),
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),

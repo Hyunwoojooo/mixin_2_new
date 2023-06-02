@@ -4,7 +4,6 @@ import 'package:mixin_2/const/term_of_service_text/personal_term_text.dart';
 
 import '../../const/colors.dart';
 
-
 class PersonalIfmterm extends StatelessWidget {
   PersonalIfmterm({Key? key}) : super(key: key);
 
@@ -22,7 +21,7 @@ class PersonalIfmterm extends StatelessWidget {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          titleSpacing: -35,
+          titleSpacing: -35.w,
           title: GestureDetector(
             child: Column(
               children: [
@@ -58,18 +57,19 @@ class PersonalIfmterm extends StatelessWidget {
           fillColor: MIXIN_POINT_COLOR,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0.r),
           ),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text(
-            '확인하고 동의',
+            '확인',
             style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.sp,
-                fontFamily: 'SUIT',
-                fontWeight: FontWeight.w600),
+              color: Colors.white,
+              fontSize: 18.sp,
+              fontFamily: 'SUIT',
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -80,24 +80,24 @@ class PersonalIfmterm extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text(
+                Text(
                   '개인정보 수집 및 이용 동의 (필수)',
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 24.0.sp,
+                    fontSize: 26.0.sp,
                   ),
                 ),
-                 SizedBox(height: 24.0.h),
+                SizedBox(height: 24.0.h),
                 Text(
                   '수집하는 개인정보의 항목',
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
-                 SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
                 Text(
                   first,
                   style: TextStyle(
@@ -112,7 +112,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -121,7 +121,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -130,7 +130,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -139,7 +139,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -148,7 +148,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -157,7 +157,7 @@ class PersonalIfmterm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 100.0.h)

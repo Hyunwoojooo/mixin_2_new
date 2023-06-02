@@ -62,90 +62,114 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 const HeadlineText(text: '요즘 관심가는 주제가\n무엇인가요?'),
                 SizedBox(height: 12.0.h),
                 Container(
-                  width: 201,
-                  height: 36,
+                  width: 201.w,
+                  height: 36.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(18.0.r),
                     color: MIXIN_BLACK_5,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       '최소 3가지 이상 선택해주세요.',
                       style: TextStyle(
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w500,
-                        fontSize: 14.0,
-                        color: Color(0xFF51B49F),
+                        fontSize: 14.0.sp,
+                        color: const Color(0xFF51B49F),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 54),
+                SizedBox(height: 54.h),
                 Row(
                   children: [
                     CategoryLayout(
-                      mainSizedBoxWidth: 101,
+                      mainSizedBoxWidth: 101.w,
                       borderSideColor: categoryList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[0] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[0] = !categoryList[0];
+                          if(categoryList[0] == true){
+                            selectedOptions.add('IT/개발');
+                          } else if(categoryList[0] == false){
+                            selectedOptions.remove('IT/개발');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[0] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/IT.png',
-                      imageWidth: 24,
-                      imageHeight: 21.47,
-                      sizedBoxWidth: 8.0,
+                      imageWidth: 24.w,
+                      imageHeight: 21.47.h,
+                      sizedBoxWidth: 8.0.w,
                       text: 'IT/개발',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 92,
+                      mainSizedBoxWidth: 92.w,
                       borderSideColor: categoryList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[1] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[1] = !categoryList[1];
+                          if(categoryList[1] == true){
+                            selectedOptions.add('디자인');
+                          } else if(categoryList[1] == false){
+                            selectedOptions.remove('디자인');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[1] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/design.png',
-                      imageWidth: 18,
-                      imageHeight: 18,
-                      sizedBoxWidth: 9.0,
+                      imageWidth: 18.w,
+                      imageHeight: 18.h,
+                      sizedBoxWidth: 9.0.w,
                       text: '디자인',
                     ),
-                    const SizedBox(width: 12.0),
+                    SizedBox(width: 12.0.w),
                     CategoryLayout(
-                      mainSizedBoxWidth: 108,
+                      mainSizedBoxWidth: 108.w,
                       borderSideColor: categoryList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[2] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[2] = !categoryList[2];
+                          if(categoryList[2] == true){
+                            selectedOptions.add('문화활동');
+                          } else if(categoryList[2] == false){
+                            selectedOptions.remove('문화활동');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[2] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/culture.png',
-                      imageWidth: 24,
-                      imageHeight: 24,
-                      sizedBoxWidth: 8.0,
+                      imageWidth: 24.w,
+                      imageHeight: 24.h,
+                      sizedBoxWidth: 8.0.w,
                       text: '문화활동',
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
+                SizedBox(height: 12.0.h),
                 Row(
                   children: [
                     CategoryLayout(
-                      mainSizedBoxWidth: 80,
+                      mainSizedBoxWidth: 80.w,
                       borderSideColor: categoryList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
                       backgroundColor: categoryList[3] == true ? MIXIN_ : WHITE,
                       onPressed: () {
                         setState(() {
                           categoryList[3] = !categoryList[3];
+                          if(categoryList[3] == true){
+                            selectedOptions.add('음악');
+                          } else if(categoryList[3] == false){
+                            selectedOptions.remove('음악');
+                          }
                         });
+                        print(selectedOptions);
                       },
                       containerColor: categoryList[3] == true ? MIXIN_ : WHITE,
                       imageAsset: 'assets/images/category_images/music.png',

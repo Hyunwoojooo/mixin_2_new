@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   final Color? fillColor;
@@ -15,7 +16,7 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
           boxShadow: const [
             BoxShadow(
               color: Colors.white,
@@ -24,20 +25,20 @@ class CustomFloatingActionButton extends StatelessWidget {
             ),
           ]
       ),
-      width: 342,
-      height: 56,
+      width: 342.w,
+      height: 56.h,
       child: RawMaterialButton(
         fillColor: fillColor,
         elevation: 0.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
         ),
         onPressed: onPressed,
         child: Text(
           '$text',
-          style: const TextStyle(
+          style: TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 18.sp,
               fontFamily: 'SUIT',
               fontWeight: FontWeight.w600
           ),

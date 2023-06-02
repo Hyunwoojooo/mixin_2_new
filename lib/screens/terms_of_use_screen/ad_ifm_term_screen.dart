@@ -19,7 +19,7 @@ class AdIfmTerm extends StatelessWidget {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          titleSpacing: -35,
+          titleSpacing: -35.w,
           title: GestureDetector(
             child: Column(
               children: [
@@ -44,8 +44,6 @@ class AdIfmTerm extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.white,
-              // spreadRadius: 30.0,
-              // blurRadius: 20.0,
             ),
           ],
         ),
@@ -55,13 +53,13 @@ class AdIfmTerm extends StatelessWidget {
           elevation: 0.0,
           fillColor: MIXIN_POINT_COLOR,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0.r),
           ),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text(
-            '확인하고 전체동의',
+            '확인',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.sp,
@@ -82,7 +80,7 @@ class AdIfmTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 24.0.sp,
+                    fontSize: 26.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -91,7 +89,7 @@ class AdIfmTerm extends StatelessWidget {
                   style:  TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 12.0.sp,
+                    fontSize: 13.0.sp,
                   ),
                 ),
               ],

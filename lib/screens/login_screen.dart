@@ -104,26 +104,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     backgroundColor: MIXIN_POINT_COLOR,
                   ),
                   onPressed: () async {
-                    final idPassword = '$username:$password';
-
-                    // 일반 String을 base64로 변환
-                    Codec<String, String> stringToBase64 = utf8.fuse(base64);
-
-                    String token = stringToBase64.encode(idPassword);
-
-                    final resp = await dio.post(serverUrl, data: {
-                      "userEmail": username,
-                      "userPassword": password,
-                    });
-                    print('resp : $resp');
-
-                    final refreshToken = resp.headers['Authorization'];
-                    print('refreshToken : $refreshToken');
-                    print('refreshTokenEncode : ${jsonEncode(refreshToken)}');
-
-                    // final accessToken = resp.data['accessToken'];
-                    await storage.write(key: REFRESH_TOKEN_KEY, value: jsonEncode(refreshToken));
-                    // await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
+                    // final idPassword = '$username:$password';
+                    //
+                    // // 일반 String을 base64로 변환
+                    // Codec<String, String> stringToBase64 = utf8.fuse(base64);
+                    //
+                    // String token = stringToBase64.encode(idPassword);
+                    //
+                    // final resp = await dio.post(serverUrl, data: {
+                    //   "userEmail": username,
+                    //   "userPassword": password,
+                    // });
+                    // print('resp : $resp');
+                    //
+                    // final refreshToken = resp.headers['Authorization'];
+                    // print('refreshToken : $refreshToken');
+                    // print('refreshTokenEncode : ${jsonEncode(refreshToken)}');
+                    //
+                    // // final accessToken = resp.data['accessToken'];
+                    // await storage.write(key: REFRESH_TOKEN_KEY, value: jsonEncode(refreshToken));
+                    // // await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
 
                     Navigator.of(context).push(
                       MaterialPageRoute(

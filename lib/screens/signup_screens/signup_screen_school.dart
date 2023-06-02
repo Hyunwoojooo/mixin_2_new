@@ -73,15 +73,30 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.0,
-        leading: GestureDetector(
-          child: Image.asset('assets/images/back_icon.png'),
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35.w,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Image.asset(
+                  'assets/images/icons/back_icon_black_4x.png',
+                  width: 26.w,
+                  height: 26.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -116,11 +131,12 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                       userStudentId = value;
                     },
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 20.w, vertical: 20.h),
                       hintText: '학번을 작성해주세요',
-                      hintStyle: const TextStyle(
+                      hintStyle: TextStyle(
                         color: MIXIN_BLACK_4,
-                        fontSize: 16.0,
+                        fontSize: 16.0.sp,
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w500,
                       ),
@@ -130,33 +146,32 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                       filled: false,
                       // 모든 Input 상태의 기본 스타일 세팅
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         // borderSide:
                         //     BorderSide(color: MIXIN_BLACK_5, width: 1.5)
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.circular(8.0.r),
+                        borderSide: BorderSide(
                           color: MIXIN_BLACK_5,
-                          width: 1.5,
+                          width: 1.5.w,
                         ),
                       ),
                       // focus 일 때 세팅
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.circular(8.0.r),
+                        borderSide: BorderSide(
                           color: MIXIN_BLACK_5,
-                          width: 1.5,
+                          width: 1.5.w,
                         ),
                       ).copyWith(
                         borderSide: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: const BorderSide(
+                          borderRadius: BorderRadius.circular(8.r),
+                          borderSide: BorderSide(
                             color: MIXIN_BLACK_5,
-                            width: 1.5,
+                            width: 1.5.w,
                           ),
                         ).borderSide,
-                        // .copyWith(color: Colors.red)),
                       ),
                     ),
                   ),
@@ -168,9 +183,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
-                    side: const BorderSide(width: 1.5, color: MIXIN_BLACK_5),
+                    side: BorderSide(width: 1.5.w, color: MIXIN_BLACK_5),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(8.0.r),
                     ),
                     elevation: 0.0,
                   ),
@@ -179,9 +194,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342.w,
                     height: 56.h,
                     child: Text(
-                      '동양미래대학교',
+                      '대학교를 선택해주세요',
                       style: TextStyle(
-                        color: MIXIN_BLACK_1,
+                        color: MIXIN_BLACK_4,
                         fontSize: 16.sp,
                         fontFamily: 'SUIT',
                         fontWeight: FontWeight.w400,
@@ -198,7 +213,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0),
+                              borderRadius: BorderRadius.circular(24.0.r),
                             ),
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -218,7 +233,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                   },
                                   icon: Image.asset(
                                     'assets/images/icons/close_icon_black_3x.png',
-                                    width: 26,
+                                    width: 26.w,
                                     color: MIXIN_BLACK_1,
                                   ),
                                 ),
@@ -254,7 +269,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                       filled: true,
                                       border: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(8.0.r),
                                         borderSide: const BorderSide(
                                           color: MIXIN_BLACK_4,
                                           width: 1,
@@ -262,17 +277,18 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        borderSide: const BorderSide(
+                                            BorderRadius.circular(8.0.r),
+                                        borderSide: BorderSide(
                                           color: MIXIN_BLACK_4,
-                                          width: 1,
+                                          width: 1.w,
                                         ),
                                       ),
                                     ),
                                     onChanged: (value) {
                                       setState(() {
                                         dataSchoolList = filterData(value);
-                                        print('dataSchoolList : $dataSchoolList');
+                                        print(
+                                            'dataSchoolList : $dataSchoolList');
                                       });
                                     },
                                   ),
@@ -303,21 +319,23 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                 SizedBox(height: 12.0.h),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent,
-                      side: const BorderSide(width: 1.5, color: MIXIN_BLACK_5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      elevation: 0.0),
+                    backgroundColor: Colors.transparent,
+                    side: BorderSide(width: 1.5.w, color: MIXIN_BLACK_5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0.r),
+                    ),
+                    elevation: 0.0,
+                  ),
                   onPressed: () async {
                     final resp1 = await dio.get(serverDepartmentUrl);
                     print('school : ${resp1.data}');
+                    if (!mounted) return;
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0),
+                              borderRadius: BorderRadius.circular(24.0.r),
                             ),
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -336,7 +354,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                   },
                                   icon: Image.asset(
                                     'assets/images/icons/close_icon_black_3x.png',
-                                    width: 26,
+                                    width: 26.w,
                                     color: MIXIN_BLACK_1,
                                   ),
                                 ),
@@ -344,7 +362,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                             ),
                             content: Column(
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 294.0.w,
                                   height: 48.0.h,
                                   child: TextFormField(
@@ -355,7 +373,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                       prefixIcon: Image.asset(
                                           'assets/images/icon_search.png'),
                                       contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.0, horizontal: 12.0),
+                                          vertical: 0.0, horizontal: 12.0.w),
                                       hintText: '학과검색',
                                       hintStyle: TextStyle(
                                         color: MIXIN_BLACK_4,
@@ -367,7 +385,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                       filled: true,
                                       border: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(8.0.r),
                                         borderSide: const BorderSide(
                                           color: MIXIN_BLACK_4,
                                           width: 1,
@@ -375,7 +393,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                            BorderRadius.circular(8.0.r),
                                         borderSide: const BorderSide(
                                           color: MIXIN_BLACK_4,
                                           width: 1,
@@ -394,23 +412,26 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342.w,
                     height: 56.h,
                     child: Text(
-                      '자동화공학과',
+                      '학과를 선택해주세요',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.sp,
-                          fontFamily: 'SUIT',
-                          fontWeight: FontWeight.w400),
+                        color: MIXIN_BLACK_4,
+                        fontSize: 16.sp,
+                        fontFamily: 'SUIT',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: 186.h),
+                SizedBox(height: 216.h),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: MIXIN_POINT_COLOR,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        elevation: 0.0),
+                      backgroundColor: MIXIN_POINT_COLOR,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0.r),
+                      ),
+                      elevation: 0.0,
+                    ),
                     onPressed: () async {
                       Navigator.of(context).push(
                         MaterialPageRoute(

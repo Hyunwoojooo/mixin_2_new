@@ -12,9 +12,9 @@ import '../terms_of_use_screen/personal_ifm_term_screen.dart';
 import '../terms_of_use_screen/service_use_term_screen.dart';
 
 /*
-  FloatingActionButton에 blur 처리가 되어있는데 있는게 맞나 없는게 맞나 물어봐야 됨
-  세부사항으로 들어가서 '확인하고 동의' 눌렀을 때 동의 버튼 체크
-  세부사항으로 들어가면 글자 행간 간격을 좀 벌렸으면 좋겠다
+  FloatingActionButton에 blur 처리가 되어있는데 있는게 맞나 없는게 맞나 물어봐야 됨 O
+  세부사항으로 들어가서 '확인하고 동의' 눌렀을 때 동의 버튼 체크 O
+  세부사항으로 들어가면 글자 행간 간격을 좀 벌렸으면 좋겠다 O
  */
 
 class SignUpTosScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
   AndroidOptions _getAndroidOptions() => const AndroidOptions(
         encryptedSharedPreferences: true,
       );
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   List<bool> isMaintainChecked = [false, false, false, false, false];
   bool isTotalChecked = false;
@@ -66,13 +66,11 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          titleSpacing: -35,
+          titleSpacing: -35.w,
           title: GestureDetector(
             child: Column(
               children: [
-                SizedBox(
-                  height: 20.h,
-                ),
+                SizedBox(height: 20.h),
                 Image.asset(
                   'assets/images/icons/back_icon_black_4x.png',
                   width: 26.w,
@@ -87,21 +85,18 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
           ),
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Positioned(
-      //   bottom: 34.h,
-      //   child: CustomFloatingActionButton(
-      //     text: '다음',
-      //     fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-      //     onPressed: () async {
-      //       if (nextButtonColor == true) {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //             builder: (context) => SignUpScreenNamePhone()));
-      //         print('광고성 약관 : $isAdIfmCheckedText');
-      //       } else {}
-      //     },
-      //   ),
-      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomFloatingActionButton(
+        text: '다음',
+        fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+        onPressed: () async {
+          if (nextButtonColor == true) {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SignUpScreenNamePhone()));
+            print('광고성 약관 : $isAdIfmCheckedText');
+          } else {}
+        },
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -109,7 +104,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 29.0.h),
+              SizedBox(height: 25.0.h),
               const HeadlineText(text: '믹스인이 처음이신가요?\n이용약관 동의가 필요해요!'),
               SizedBox(height: 50.h),
               Row(
@@ -124,7 +119,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                         activeColor: MIXIN_POINT_COLOR,
                         hoverColor: Colors.purple,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15.r),
                         ),
                         value:
                             (nextButtonColor == true && isAdIfmChecked == true)
@@ -170,16 +165,17 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                   ),
                 ],
               ),
+              SizedBox(height: 15.h),
               const Divider(
                 thickness: 1.0,
                 color: MIXIN_BLACK_5,
               ),
-              SizedBox(height: 15.0.h),
+              SizedBox(height: 19.0.h),
               Column(
                 children: [
                   // 서비스이용약관
                   SizedBox(
-                    height: 25.0.h,
+                    height: 18.0.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -230,8 +226,6 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                           onPressed: () {
                             setState(() {
                               isServiceUserChecked = true;
-                              // isMaintainChecked[0] = true;
-                              // changeData();
                               print(
                                 'main[0] = $nextButtonColor',
                               );
@@ -248,10 +242,10 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10.0.h),
+                  SizedBox(height: 15.0.h),
                   // 개인정보처리방침
                   SizedBox(
-                    height: 25.0.h,
+                    height: 18.0.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -298,6 +292,9 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                           splashColor: Colors.transparent,
                           iconSize: 18.0.w,
                           onPressed: () {
+                            setState(() {
+                              isPersonalIfmChecked = true;
+                            });
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -309,10 +306,10 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10.0.h),
+                  SizedBox(height: 15.0.h),
                   // 커뮤니티이용규칙
                   SizedBox(
-                    height: 25.0.h,
+                    height: 18.0.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -359,6 +356,9 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                             splashColor: Colors.transparent,
                             iconSize: 18.0.w,
                             onPressed: () {
+                              setState(() {
+                                isCommunityChecked = true;
+                              });
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -369,10 +369,10 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10.0.h),
+                  SizedBox(height: 15.0.h),
                   // 광고성 정보 수신
                   SizedBox(
-                    height: 25.0.h,
+                    height: 18.0.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -424,6 +424,9 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                           splashColor: Colors.transparent,
                           iconSize: 18.0.w,
                           onPressed: () {
+                            setState(() {
+                              isAdIfmChecked = true;
+                            });
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -438,7 +441,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                   SizedBox(height: 34.h),
                   // 본인 명의
                   SizedBox(
-                    height: 25.0.h,
+                    height: 20.0.h,
                     child: Row(
                       children: [
                         Transform.scale(
@@ -484,16 +487,16 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                         color: const Color(0xFFF2F3F7),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         border: Border.all(
                             color: const Color(0xFFCED0D5), width: 1.0)),
                     width: 342.w,
-                    height: 100.h,
+                    height: 114.h,
                     child: Text(
                       progressTextMain,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 12,
+                        fontSize: 13.sp,
                         fontFamily: 'SUIT',
                       ),
                     ),
@@ -501,7 +504,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                   SizedBox(height: 34.0.h),
                   // 14세 이상
                   SizedBox(
-                    height: 25.0.h,
+                    height: 20.0.h,
                     child: Row(
                       children: [
                         Transform.scale(
@@ -545,7 +548,7 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: const Color(0xFFF2F3F7),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         border: Border.all(
                             color: const Color(0xFFCED0D5), width: 1.0)),
                     width: 342.w,
@@ -560,35 +563,35 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
                     ),
                   ),
                   SizedBox(height: 10.h),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        elevation: 0.0),
-                    onPressed: () async {
-                      if (nextButtonColor == true) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignUpScreenNamePhone()));
-                        print('광고성 약관 : $isAdIfmCheckedText');
-                      } else {}
-                    },
-                    child: const SizedBox(
-                      width: 342,
-                      height: 56,
-                      child: Center(
-                        child: Text(
-                          '다음',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'SUIT',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //       backgroundColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
+                  //       shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(8.0)),
+                  //       elevation: 0.0),
+                  //   onPressed: () async {
+                  //     if (nextButtonColor == true) {
+                  //       Navigator.of(context).push(MaterialPageRoute(
+                  //           builder: (context) => SignUpScreenNamePhone()));
+                  //       print('광고성 약관 : $isAdIfmCheckedText');
+                  //     } else {}
+                  //   },
+                  //   child: const SizedBox(
+                  //     width: 342,
+                  //     height: 56,
+                  //     child: Center(
+                  //       child: Text(
+                  //         '다음',
+                  //         style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontSize: 18,
+                  //           fontFamily: 'SUIT',
+                  //           fontWeight: FontWeight.w600,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ],

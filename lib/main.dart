@@ -14,6 +14,7 @@ import 'package:mixin_2/screens/make_profile_card_screens/make_introduce_screen.
 import 'package:mixin_2/screens/moim_screens/moim_main_screen.dart';
 import 'package:mixin_2/screens/moim_screens/moim_noticeboard_screen.dart';
 import 'package:mixin_2/screens/onboarding_screens/onboarding_screen_main.dart';
+import 'package:mixin_2/screens/signup_screens/signup_screen_namephone.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_school.dart';
 import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 import 'package:mixin_2/screens/splash_screen.dart';
@@ -37,11 +38,12 @@ class Mixin extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'SUIT',
               scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+
               // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1),
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) =>  MakeIntroduceScreen(),
+              '/': (context) =>  LoginScreen(),
             },
           );
         });

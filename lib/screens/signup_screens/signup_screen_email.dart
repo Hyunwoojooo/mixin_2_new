@@ -30,6 +30,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
   bool onClickSendButton = false;
   late String userCertificationNumber;
   String userEmail = '';
+  bool nextButton = false;
 
   String sendText = '인증번호 전송';
   String sendAgainText = '인증번호 재전송';
@@ -73,15 +74,30 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.0,
-        leading: GestureDetector(
-          child: Image.asset('assets/images/back_icon.png'),
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35.w,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Image.asset(
+                  'assets/images/icons/back_icon_black_4x.png',
+                  width: 26.w,
+                  height: 26.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -105,7 +121,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                     setState(() {});
                   },
                 ),
-                SizedBox(height: 8.0.h),
+                SizedBox(height: 14.0.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -147,7 +163,9 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                 onChanged: (String value) {
                                   userCertificationNumber = value;
                                   if (userCertificationNumber.length == 6) {
-                                    setState(() {});
+                                    setState(() {
+                                      nextButton = true;
+                                    });
                                     FocusScope.of(context).unfocus();
                                   } else {
                                     setState(() {});
@@ -186,7 +204,15 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                 ),
                               ),
                             ),
-                            Text('$minutes:$seconds'),
+                            Text(
+                              '$minutes:$seconds',
+                              style: TextStyle(
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14.0.sp,
+                                color: MIXIN_POINT_COLOR,
+                              ),
+                            ),
                             SizedBox(width: 8.w),
                           ],
                         ),
@@ -202,19 +228,23 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                                 ? MIXIN_POINT_COLOR
                                 : MIXIN_BLACK_4,
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
+                                borderRadius: BorderRadius.circular(8.0.r)),
                             elevation: 0.0),
                         onPressed: () async {
-                          setState(() {
-                            onClickSendButton = true;
-                          });
-                          startTimer();
-                          Dio dio = Dio();
-                          final Response resp =
-                              await dio.post(serverUrl, data: {
-                            "userEmail": userEmail,
-                          });
-                          print(resp);
+                          if(userEmail.isNotEmpty){
+                            setState(() {
+                              onClickSendButton = true;
+                            });
+                            startTimer();
+                            Dio dio = Dio();
+                            final Response resp =
+                            await dio.post(serverUrl, data: {
+                              "userEmail": userEmail,
+                            });
+                            print(resp);
+                          } else{
+                            null;
+                          }
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -235,7 +265,7 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                     ),
                   ],
                 ),
-                SizedBox(height: 321.h),
+                SizedBox(height: 355.h),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -243,14 +273,20 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                             ? MIXIN_POINT_COLOR
                             : MIXIN_BLACK_4,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
+                            borderRadius: BorderRadius.circular(8.0.r)),
                         elevation: 0.0),
                     onPressed: () async {
+                      // if(nextButton == true){
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const SignUpScreenPassword()),
+                      //   );
+                      //   await storage.write(key: 'userEmail', value: userEmail);
+                      // } else{null;}
                       Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) => const SignUpScreenPassword()),
                       );
-                      await storage.write(key: 'userEmail', value: userEmail);
                     },
                     child: SizedBox(
                       width: 342.w,

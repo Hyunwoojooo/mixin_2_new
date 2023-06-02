@@ -55,6 +55,7 @@ dependencies:
   flutter_screenutil: ^5.8.2
   syncfusion_flutter_datepicker: ^21.2.6
   flutter_speed_dial: ^7.0.0
+  flutter_launcher_icons: ^0.13.1
 
 
 dev_dependencies:

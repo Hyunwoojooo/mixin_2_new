@@ -61,7 +61,7 @@ class _MainHomeScreenState extends State<MainHomeScreen>
                 width: 145.w,
                 height: 36.h,
                 child: TabBar(
-                  tabAlignment: TabAlignment.fill,
+                  tabAlignment: TabAlignment.center,
                   labelColor: WHITE,
                   unselectedLabelColor: MIXIN_BLACK_1,
                   controller: _tabController,

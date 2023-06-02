@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mixin_2/const/colors.dart';
 import 'package:mixin_2/const/term_of_service_text/service_term_text.dart';
-import 'package:mixin_2/screens/signup_screens/signup_screen_tos.dart';
 
 class ServiceUseTerm extends StatelessWidget {
   ServiceUseTerm({Key? key}) : super(key: key);
@@ -72,13 +71,13 @@ class ServiceUseTerm extends StatelessWidget {
           fillColor: MIXIN_POINT_COLOR,
           elevation: 0.0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0.r),
           ),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text(
-            '확인하고 전체동의',
+            '확인',
             style: TextStyle(
               color: Colors.white,
               fontSize: 18.sp,
@@ -100,7 +99,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 24.0.sp,
+                    fontSize: 26.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -109,7 +108,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.sp),
@@ -127,7 +126,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -136,7 +135,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -145,7 +144,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -154,7 +153,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -163,7 +162,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -172,7 +171,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -181,7 +180,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -190,7 +189,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -199,7 +198,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -208,7 +207,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -217,7 +216,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -226,7 +225,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -235,7 +234,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -244,7 +243,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -253,7 +252,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -262,7 +261,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -271,7 +270,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -280,7 +279,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -289,7 +288,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -298,7 +297,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -307,7 +306,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -316,7 +315,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -325,7 +324,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -334,7 +333,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -343,7 +342,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -352,7 +351,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 24.0.h),
@@ -361,7 +360,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.0.sp,
+                    fontSize: 20.0.sp,
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -370,7 +369,7 @@ class ServiceUseTerm extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w500,
-                    fontSize: 11.0.sp,
+                    fontSize: 12.0.sp,
                   ),
                 ),
                 SizedBox(height: 100.h)

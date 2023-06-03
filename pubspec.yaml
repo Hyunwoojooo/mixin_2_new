@@ -96,6 +96,7 @@ flutter:
     - assets/images/icons/
     - assets/images/category_images/
     - assets/images/bottom_navigation_bar_icons/
+    - assets/json/
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

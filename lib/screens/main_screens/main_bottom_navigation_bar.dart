@@ -122,7 +122,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       elevation: 0.0,
       children: [
         SpeedDialChild(
-          child: const Icon(Icons.settings_sharp, color: Colors.white,),
+          child: const Icon(Icons.add, color: Colors.white,),
           label: '모임 만들기',
           labelStyle: TextStyle(
             fontFamily: 'SUIT',
@@ -145,7 +145,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
           },
         ),
         SpeedDialChild(
-          child: const Icon(Icons.settings_sharp, color: Colors.white,),
+          child: const Icon(Icons.accessibility_new_rounded, color: Colors.white,),
           elevation: 0.0,
           label: '모임 가입',
           labelStyle: TextStyle(

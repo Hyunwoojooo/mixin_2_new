@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../const/colors.dart';
 
@@ -19,27 +20,19 @@ class _ChoiceGenderButtonState extends State<ChoiceGenderButton> {
     return Row(
       children: [
         SizedBox(
-          height: 48,
-          width: 106,
+          height: 48.h,
+          width: 106.w,
           child: ElevatedButton(
-            child: Text(
-              '상관없음',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-                fontFamily: 'SUIT',
-              ),
-            ),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: _ischecked1 ? MIXIN_ : Colors.white,
               foregroundColor: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_4,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_4, //MIXIN_BLACK_4,
-                  width: 1.0,
+                  color: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_5, //MIXIN_BLACK_4,
+                  width: 1.0.w,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
             ),
             onPressed: () {
@@ -49,33 +42,31 @@ class _ChoiceGenderButtonState extends State<ChoiceGenderButton> {
                 _ischecked3 = false;
               });
             },
-          ),
-        ),
-        SizedBox(
-          width: 12,
-        ),
-        SizedBox(
-          height: 48,
-          width: 106,
-          child: ElevatedButton(
             child: Text(
-              '남자만',
+              '상관없음',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontFamily: 'SUIT',
               ),
             ),
+          ),
+        ),
+        SizedBox(width: 12.w),
+        SizedBox(
+          height: 48.h,
+          width: 106.w,
+          child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: _ischecked2 ? MIXIN_ : Colors.white,
               foregroundColor: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_4,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_4,
+                  color: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_5,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
             ),
             onPressed: () {
@@ -85,32 +76,31 @@ class _ChoiceGenderButtonState extends State<ChoiceGenderButton> {
                 _ischecked3 = false;
               });
             },
+            child: Text(
+              '남자만',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+                fontFamily: 'SUIT',
+              ),
+            ),
           ),
         ),
+        SizedBox(width: 12.w),
         SizedBox(
-          width: 12,
-        ),
-        SizedBox(
-          height: 48,
-          width: 106,
+          height: 48.h,
+          width: 106.w,
           child: ElevatedButton(
-            child: Text(
-              '여자만',
-              style: TextStyle(
-                  fontFamily: 'SUIT',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500),
-            ),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: _ischecked3 ? MIXIN_ : Colors.white,
               foregroundColor: _ischecked3 ? MIXIN_2 : MIXIN_BLACK_4,
               shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: _ischecked3 ? MIXIN_2 : MIXIN_BLACK_4,
+                  color: _ischecked3 ? MIXIN_2 : MIXIN_BLACK_5,
                   width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
             ),
             onPressed: () {
@@ -120,6 +110,13 @@ class _ChoiceGenderButtonState extends State<ChoiceGenderButton> {
                 _ischecked3 = true;
               });
             },
+            child: Text(
+              '여자만',
+              style: TextStyle(
+                  fontFamily: 'SUIT',
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ],

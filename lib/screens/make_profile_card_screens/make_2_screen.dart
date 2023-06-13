@@ -44,8 +44,6 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(introduceList);
-    print(selectList);
   }
 
   void selectType(int index, String title) {
@@ -66,7 +64,6 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
       selectList.removeWhere((String t) => t == title);
     }
     print('selectList : $selectList');
-    print('introduceList : $introduceList');
   }
 
   final PageController controller = PageController(initialPage: 0);
@@ -116,6 +113,7 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
               key: 'userPersonality',
               value: jsonEncode(selectList),
             );
+            print('userPersonality : $selectList');
           } else {
             null;
           }
@@ -219,89 +217,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[0] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[0] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(0, '논쟁을 좋아하는');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[0] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '논쟁을 좋아하는',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[0] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[0] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(0, '논쟁을 좋아하는');
+                                  });
+                                },
+                                containerColor: introduceList[0] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '논쟁을 좋아하는',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[1] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[1] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(1, '평화를 좋아하는');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[1] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '평화를 좋아하는',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[1] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[1] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(1, '평화를 좋아하는');
+                                  });
+                                },
+                                containerColor: introduceList[1] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '평화를 좋아하는',
                               ),
                             ],
                           ),
@@ -310,87 +259,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
-                                          color: introduceList[2] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0.r)),
-                                        padding: EdgeInsets.zero,
-                                        elevation: 0.0,
-                                        backgroundColor:
-                                            introduceList[2] == true
-                                                ? MIXIN_
-                                                : Colors.white),
-                                    onPressed: () {
-                                      setState(() {
-                                        selectType(2, '수줍음을 타는');
-                                      });
-                                    },
-                                    child: Container(
-                                      color: introduceList[2] == true
-                                          ? MIXIN_
-                                          : Colors.white,
-                                      child: Text(
-                                        '수줍음을 타는',
-                                        style: TextStyle(
-                                          fontFamily: 'SUIT',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16.0.sp,
-                                          color: MIXIN_BLACK_1,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[2] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[2] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(2, '수줍음을 타는');
+                                  });
+                                },
+                                containerColor: introduceList[2] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '수줍음을 타는',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[3] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r)),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[3] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(3, '말주변이 좋은');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[3] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '말주변이 좋은',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[3] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[3] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(3, '말주변이 좋은');
+                                  });
+                                },
+                                containerColor: introduceList[3] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '말주변이 좋은',
                               ),
                             ],
                           ),
@@ -399,88 +301,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
-                                          color: introduceList[4] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w,
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r),
-                                        ),
-                                        padding: EdgeInsets.zero,
-                                        elevation: 0.0,
-                                        backgroundColor:
-                                            introduceList[4] == true
-                                                ? MIXIN_
-                                                : Colors.white),
-                                    onPressed: () {
-                                      setState(() {
-                                        selectType(4, '진지한');
-                                      });
-                                    },
-                                    child: Container(
-                                      color: introduceList[4] == true
-                                          ? MIXIN_
-                                          : Colors.white,
-                                      child: Text(
-                                        '진지한',
-                                        style: TextStyle(
-                                          fontFamily: 'SUIT',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16.0.sp,
-                                          color: MIXIN_BLACK_1,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[4] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[4] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(4, '진지한');
+                                  });
+                                },
+                                containerColor: introduceList[4] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '진지한',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[5] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r)),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[5] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(5, '장난끼가 많은');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[5] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '장난끼가 많은',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[5] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[5] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(5, '장난끼가 많은');
+                                  });
+                                },
+                                containerColor: introduceList[5] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '장난끼가 많은',
                               ),
                             ],
                           ),
@@ -489,88 +343,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
-                                            color: introduceList[6] == true
-                                                ? MIXIN_2
-                                                : MIXIN_BLACK_5,
-                                            width: 1.5.w),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r),
-                                        ),
-                                        padding: EdgeInsets.zero,
-                                        elevation: 0.0,
-                                        backgroundColor:
-                                            introduceList[6] == true
-                                                ? MIXIN_
-                                                : Colors.white),
-                                    onPressed: () {
-                                      setState(() {
-                                        selectType(6, '계획적인');
-                                      });
-                                    },
-                                    child: Container(
-                                      color: introduceList[6] == true
-                                          ? MIXIN_
-                                          : Colors.white,
-                                      child: Text(
-                                        '계획적인',
-                                        style: TextStyle(
-                                          fontFamily: 'SUIT',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16.0.sp,
-                                          color: MIXIN_BLACK_1,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[6] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[6] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(6, '계획적인');
+                                  });
+                                },
+                                containerColor: introduceList[6] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '계획적인',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[7] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[7] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(7, '즉흥적인');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[7] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '즉흥적인',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[7] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[7] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(7, '즉흥적인');
+                                  });
+                                },
+                                containerColor: introduceList[7] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '즉흥적인',
                               ),
                             ],
                           ),
@@ -582,86 +388,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[8] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r)),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[8] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(8, '느긋한');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[8] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '느긋한',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[8] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[8] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(8, '느긋한');
+                                  });
+                                },
+                                containerColor: introduceList[8] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '느긋한',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                          color: introduceList[9] == true
-                                              ? MIXIN_2
-                                              : MIXIN_BLACK_5,
-                                          width: 1.5.w),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0.r)),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[9] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(9, '성격이 급한');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[9] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '성격이 급한',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[9] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[9] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(9, '성격이 급한');
+                                  });
+                                },
+                                containerColor: introduceList[9] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '성격이 급한',
                               ),
                             ],
                           ),
@@ -670,91 +430,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    side: BorderSide(
-                                      color: introduceList[10] == true
-                                          ? MIXIN_2
-                                          : MIXIN_BLACK_5,
-                                      width: 1.5.w,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0.r),
-                                    ),
-                                    padding: EdgeInsets.zero,
-                                    elevation: 0.0,
-                                    backgroundColor: introduceList[10] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(10, '파티를 좋아하는');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[10] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '파티를 좋아하는',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[10] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[10] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(10, '파티를 좋아하는');
+                                  });
+                                },
+                                containerColor: introduceList[10] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '파티를 좋아하는',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[11] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[11] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(11, '소수모임을 좋아하는');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[11] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '소수모임을 좋아하는',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[11] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[11] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(11, '소수모임을 좋아하는');
+                                  });
+                                },
+                                containerColor: introduceList[11] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '소수모임을 좋아하는',
                               ),
                             ],
                           ),
@@ -763,90 +472,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[12] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[12] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(12, '단호한');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[12] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '단호한',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[12] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[12] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(12, '단호한');
+                                  });
+                                },
+                                containerColor: introduceList[12] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '단호한',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[13] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[13] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(13, '우유부단한');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[13] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '우유부단한',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[13] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[13] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(13, '우유부단한');
+                                  });
+                                },
+                                containerColor: introduceList[13] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '우유부단한',
                               ),
                             ],
                           ),
@@ -855,90 +514,40 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[14] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[14] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(14, '감성적인');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[14] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '감성적인',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[14] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[14] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(14, '감성적인');
+                                  });
+                                },
+                                containerColor: introduceList[14] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                text: '감성적인',
                               ),
                               SizedBox(width: 18.0.w),
-                              SizedBox(
-                                width: 138.w,
-                                height: 48.h,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      side: BorderSide(
-                                        color: introduceList[15] == true
-                                            ? MIXIN_2
-                                            : MIXIN_BLACK_5,
-                                        width: 1.5.w,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0.r),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      elevation: 0.0,
-                                      backgroundColor: introduceList[15] == true
-                                          ? MIXIN_
-                                          : Colors.white),
-                                  onPressed: () {
-                                    setState(() {
-                                      selectType(15, '이성적인');
-                                    });
-                                  },
-                                  child: Container(
-                                    color: introduceList[15] == true
-                                        ? MIXIN_
-                                        : Colors.white,
-                                    child: Text(
-                                      '이성적인',
-                                      style: TextStyle(
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0.sp,
-                                        color: MIXIN_BLACK_1,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
+                              ElevatedButtonFormat(
+                                borderSideColor: introduceList[15] == true
+                                    ? MIXIN_2
+                                    : MIXIN_BLACK_5,
+                                backgroundColor: introduceList[15] == true
+                                    ? MIXIN_
+                                    : Colors.white,
+                                onPressed: () {
+                                  setState(() {
+                                    selectType(15, '이성적인');
+                                  });
+                                },
+                                containerColor: introduceList[15] == true
+                                ? MIXIN_
+                                : Colors.white,
+                                text: '이성적인',
                               ),
                             ],
                           ),
@@ -1073,6 +682,60 @@ class _MakeCharacterScreenState extends State<MakeCharacterScreen> {
                 )
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ElevatedButtonFormat extends StatelessWidget {
+  Color borderSideColor;
+  Color backgroundColor;
+  void Function() onPressed;
+  Color containerColor;
+  String text;
+
+  ElevatedButtonFormat(
+      {required this.borderSideColor,
+      required this.backgroundColor,
+      required this.onPressed,
+      required this.containerColor,
+      required this.text,
+      Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 138.w,
+      height: 48.h,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          side: BorderSide(
+            color: borderSideColor,
+            width: 1.5.w,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0.r),
+          ),
+          padding: EdgeInsets.zero,
+          elevation: 0.0,
+          backgroundColor: backgroundColor,
+        ),
+        onPressed: onPressed,
+        child: Container(
+          color: containerColor,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'SUIT',
+              fontWeight: FontWeight.w500,
+              fontSize: 16.0.sp,
+              color: MIXIN_BLACK_1,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

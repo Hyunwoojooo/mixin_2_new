@@ -438,14 +438,14 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                             // focus 일 때 세팅
                             focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0.r),
-                                    borderSide: const BorderSide(
-                                        color: MIXIN_BLACK_5, width: 1.5))
+                                    borderSide: BorderSide(
+                                        color: MIXIN_BLACK_5, width: 1.5.w))
                                 .copyWith(
                               borderSide: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                borderSide: const BorderSide(
+                                borderRadius: BorderRadius.circular(8.0.r),
+                                borderSide:  BorderSide(
                                   color: MIXIN_BLACK_5,
-                                  width: 1.5,
+                                  width: 1.5.w,
                                 ),
                               ).borderSide,
                             ),
@@ -608,27 +608,27 @@ class _SignUpScreenNamePhoneState extends State<SignUpScreenNamePhone> {
                           borderRadius: BorderRadius.circular(8.0)),
                       elevation: 0.0),
                   onPressed: () async {
-                    // if(nextButton == true){
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const SignUpScreenSchool()),
-                    //   );
-                    //   await storage.write(key: 'userName', value: userName);
-                    //   await storage.write(key: 'userGender', value: userGender);
-                    //   await storage.write(key: 'userAgent', value: selectAgency);
-                    //   await storage.write(
-                    //       key: 'userPhoneNumber', value: userPhoneNumber);
-                    //   print('이름 : $userName');
-                    //   print('통신사 : $selectAgency');
-                    //   print('성별 : $userGender');
-                    //   print('전화번호 : $userPhoneNumber');
-                    // } else{
-                    //   null;
-                    // }
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpScreenSchool()),
-                    );
+                    if(nextButton == true){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpScreenSchool()),
+                      );
+                      await storage.write(key: 'userName', value: userName);
+                      await storage.write(key: 'userGender', value: userGender);
+                      await storage.write(key: 'userAgent', value: selectAgency);
+                      await storage.write(
+                          key: 'userPhoneNumber', value: userPhoneNumber);
+                      print('이름 : $userName');
+                      print('통신사 : $selectAgency');
+                      print('성별 : $userGender');
+                      print('전화번호 : $userPhoneNumber');
+                    } else{
+                      null;
+                    }
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const SignUpScreenSchool()),
+                    // );
                   },
                   child: SizedBox(
                     width: 342.w,

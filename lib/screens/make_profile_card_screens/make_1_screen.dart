@@ -158,262 +158,180 @@ class _MakePositionScreenState extends State<MakePositionScreen> {
                 SizedBox(height: 54.h),
                 Row(
                   children: [
-                    SizedBox(
-                      width: 165.w,
-                      height: 105.h,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                              color: positionList[0] == true
-                                  ? MIXIN_2
-                                  : MIXIN_BLACK_5,
-                              width: 1.5.w,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0.r),
-                            ),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor: positionList[0] == true
-                                ? MIXIN_
-                                : Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            positionList[0] = !positionList[0];
-                            if (positionList[0] == true) {
-                              positionList[1] = false;
-                              positionList[2] = false;
-                              positionList[3] = false;
-                              selectedOptions.clear();
-                              selectedOptions.add('리더형');
-                            }
-                            print(selectedOptions);
-                          });
-                        },
-                        child: Container(
-                          color:
-                              positionList[0] == true ? MIXIN_ : Colors.white,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '나 빼고 결정하는건\n못참지',
-                                style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.0.sp,
-                                  color: MIXIN_BLACK_3,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 10.0.h),
-                              Text(
-                                '리더형',
-                                style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontSize: 16.0.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: MIXIN_BLACK_1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    ElevatedButtonFormat(
+                      borderSideColor:
+                          positionList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor:
+                          positionList[0] == true ? MIXIN_ : Colors.white,
+                      containerColor:
+                          positionList[0] == true ? MIXIN_ : Colors.white,
+                      mainText: '리더형',
+                      subText: '나 빼고 결정하는건\n못참지',
+                      onPressed: () {
+                        setState(() {
+                          positionList[0] = !positionList[0];
+                          if (positionList[0] == true) {
+                            positionList[1] = false;
+                            positionList[2] = false;
+                            positionList[3] = false;
+                            selectedOptions.clear();
+                            selectedOptions.add('리더형');
+                          }
+                          print(selectedOptions);
+                        });
+                      },
                     ),
                     SizedBox(width: 12.0.w),
-                    SizedBox(
-                      width: 165.w,
-                      height: 105.h,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                                color: positionList[1] == true
-                                    ? MIXIN_2
-                                    : MIXIN_BLACK_5,
-                                width: 1.5.w),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0.r)),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor: positionList[1] == true
-                                ? MIXIN_
-                                : Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            positionList[1] = !positionList[1];
-                            if (positionList[1] == true) {
-                              positionList[2] = false;
-                              positionList[0] = false;
-                              positionList[3] = false;
-                              selectedOptions.clear();
-                              selectedOptions.add('분위기메이커형');
-                            }
-                            print(selectedOptions);
-                          });
-                        },
-                        child: Container(
-                          color:
-                              positionList[1] == true ? MIXIN_ : Colors.white,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '이 모임 분위기는\n내가 책임진다!',
-                                style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.0.sp,
-                                  color: MIXIN_BLACK_3,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 10.0.h),
-                              Text(
-                                '분위기메이커형',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontSize: 16.0.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: MIXIN_BLACK_1),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    ElevatedButtonFormat(
+                      borderSideColor:
+                          positionList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor:
+                          positionList[1] == true ? MIXIN_ : Colors.white,
+                      containerColor:
+                          positionList[1] == true ? MIXIN_ : Colors.white,
+                      mainText: '분위기메이커형',
+                      subText: '이 모임 분위기는\n내가 책임진다!',
+                      onPressed: () {
+                        setState(() {
+                          positionList[1] = !positionList[1];
+                          if (positionList[1] == true) {
+                            positionList[2] = false;
+                            positionList[0] = false;
+                            positionList[3] = false;
+                            selectedOptions.clear();
+                            selectedOptions.add('분위기메이커형');
+                          }
+                          print(selectedOptions);
+                        });
+                      },
                     ),
                   ],
                 ),
                 SizedBox(height: 14.0.h),
                 Row(
                   children: [
-                    SizedBox(
-                      width: 165.w,
-                      height: 105.h,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                              color: positionList[2] == true
-                                  ? MIXIN_2
-                                  : MIXIN_BLACK_5,
-                              width: 1.5.r,
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0.r)),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor: positionList[2] == true
-                                ? MIXIN_
-                                : Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            positionList[2] = !positionList[2];
-                            if (positionList[2] == true) {
-                              positionList[1] = false;
-                              positionList[0] = false;
-                              positionList[3] = false;
-                              selectedOptions.clear();
-                              selectedOptions.add('다좋아형');
-                            }
-
-                            print(selectedOptions);
-                          });
-                        },
-                        child: Container(
-                          color:
-                              positionList[2] == true ? MIXIN_ : Colors.white,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '좋아좋아\n뭐든지 다 좋아~',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14.0.sp,
-                                    color: MIXIN_BLACK_3),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 10.0.h),
-                              Text(
-                                '다좋아형',
-                                style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontSize: 16.0.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: MIXIN_BLACK_1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    ElevatedButtonFormat(
+                      borderSideColor:
+                          positionList[2] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor:
+                          positionList[2] == true ? MIXIN_ : Colors.white,
+                      containerColor:
+                          positionList[2] == true ? MIXIN_ : Colors.white,
+                      mainText: '다좋아형',
+                      subText: '좋아좋아\n뭐든지 다 좋아~',
+                      onPressed: () {
+                        setState(() {
+                          positionList[2] = !positionList[2];
+                          if (positionList[2] == true) {
+                            positionList[1] = false;
+                            positionList[0] = false;
+                            positionList[3] = false;
+                            selectedOptions.clear();
+                            selectedOptions.add('다좋아형');
+                          }
+                          print(selectedOptions);
+                        });
+                      },
                     ),
                     SizedBox(width: 12.0.w),
-                    SizedBox(
-                      width: 165.w,
-                      height: 105.h,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            side: BorderSide(
-                                color: positionList[3] == true
-                                    ? MIXIN_2
-                                    : MIXIN_BLACK_5,
-                                width: 1.5.w),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0.r)),
-                            padding: EdgeInsets.zero,
-                            elevation: 0.0,
-                            backgroundColor: positionList[3] == true
-                                ? MIXIN_
-                                : Colors.white),
-                        onPressed: () {
-                          setState(() {
-                            positionList[3] = !positionList[3];
-                            if (positionList[3] == true) {
-                              positionList[1] = false;
-                              positionList[0] = false;
-                              positionList[2] = false;
-                              selectedOptions.clear();
-                              selectedOptions.add('차분형');
-                            }
-                            print(selectedOptions);
-                          });
-                        },
-                        child: Container(
-                          color:
-                              positionList[3] == true ? MIXIN_ : Colors.white,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '당황하지 않아요\n침착하게..',
-                                style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14.0.sp,
-                                    color: MIXIN_BLACK_3),
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 10.0.h),
-                              Text(
-                                '차분형',
-                                style: TextStyle(
-                                  fontFamily: 'SUIT',
-                                  fontSize: 16.0.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: MIXIN_BLACK_1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    ElevatedButtonFormat(
+                      borderSideColor:
+                          positionList[3] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                      backgroundColor:
+                          positionList[3] == true ? MIXIN_ : Colors.white,
+                      containerColor:
+                          positionList[3] == true ? MIXIN_ : Colors.white,
+                      mainText: '차분형',
+                      subText: '당황하지 않아요\n침착하게..',
+                      onPressed: () {
+                        setState(() {
+                          positionList[3] = !positionList[3];
+                          if (positionList[3] == true) {
+                            positionList[1] = false;
+                            positionList[0] = false;
+                            positionList[2] = false;
+                            selectedOptions.clear();
+                            selectedOptions.add('차분형');
+                          }
+                          print(selectedOptions);
+                        });
+                      },
                     ),
                   ],
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ElevatedButtonFormat extends StatelessWidget {
+  Color borderSideColor;
+  Color backgroundColor;
+  Color containerColor;
+  String mainText;
+  String subText;
+  void Function() onPressed;
+
+  ElevatedButtonFormat(
+      {required this.borderSideColor,
+      required this.backgroundColor,
+      required this.containerColor,
+      required this.mainText,
+      required this.subText,
+      required this.onPressed,
+      Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 165.w,
+      height: 105.h,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          side: BorderSide(
+            color: borderSideColor,
+            width: 1.5.w,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0.r),
+          ),
+          padding: EdgeInsets.zero,
+          elevation: 0.0,
+          backgroundColor: backgroundColor,
+        ),
+        onPressed: onPressed,
+        child: Container(
+          color: containerColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                subText,
+                style: TextStyle(
+                  fontFamily: 'SUIT',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.0.sp,
+                  color: MIXIN_BLACK_3,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10.0.h),
+              Text(
+                mainText,
+                style: TextStyle(
+                  fontFamily: 'SUIT',
+                  fontSize: 16.0.sp,
+                  fontWeight: FontWeight.w600,
+                  color: MIXIN_BLACK_1,
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../const/colors.dart';
+
 class ChoiceResisterButton extends StatefulWidget {
   const ChoiceResisterButton({Key? key}) : super(key: key);
 
@@ -19,26 +21,19 @@ class _ChoiceResisterButtonState extends State<ChoiceResisterButton> {
         Row(
           children: [
             SizedBox(
-              height: 48,
-              width: 165,
+              height: 48.h,
+              width: 165.w,
               child: ElevatedButton(
-                child: Text(
-                  '자유롭게 가입',
-                  style: TextStyle(
-                      fontFamily: 'SUIT',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: _ischecked1 ? MIXIN_ : Colors.white,
                   foregroundColor: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_4,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
-                      color: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_4,
-                      width: 1.0,
+                      color: _ischecked1 ? MIXIN_2 : MIXIN_BLACK_5,
+                      width: 1.0.w,
                     ),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
                 onPressed: () {
@@ -47,32 +42,30 @@ class _ChoiceResisterButtonState extends State<ChoiceResisterButton> {
                     _ischecked2 = false;
                   });
                 },
-              ),
-            ),
-            SizedBox(
-              width: 12,
-            ),
-            SizedBox(
-              height: 48,
-              width: 165,
-              child: ElevatedButton(
                 child: Text(
-                  '승인 후 가입',
+                  '자유롭게 가입',
                   style: TextStyle(
                       fontFamily: 'SUIT',
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w500),
                 ),
+              ),
+            ),
+            SizedBox(width: 12.w),
+            SizedBox(
+              height: 48.h,
+              width: 165.w,
+              child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: _ischecked2 ? MIXIN_ : Colors.white,
                   foregroundColor: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_4,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
-                      color: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_4,
-                      width: 1.0,
+                      color: _ischecked2 ? MIXIN_2 : MIXIN_BLACK_5,
+                      width: 1.0.w,
                     ),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
                 onPressed: () {
@@ -81,6 +74,13 @@ class _ChoiceResisterButtonState extends State<ChoiceResisterButton> {
                     _ischecked2 = true;
                   });
                 },
+                child: Text(
+                  '승인 후 가입',
+                  style: TextStyle(
+                      fontFamily: 'SUIT',
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ],
@@ -88,45 +88,45 @@ class _ChoiceResisterButtonState extends State<ChoiceResisterButton> {
         if (_ischecked2)
           Column(
             children: [
+              SizedBox(height: 16.h),
               SizedBox(
-                height: 16,
-              ),
-              SizedBox(
-                height: 65,
+                height: 65.h,
                 child: TextFormField(
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontFamily: 'SUIT',
                     fontWeight: FontWeight.w600,
                   ),
                   decoration: InputDecoration(
                     hintText: '가입 조건을 작성해주세요',
                     hintStyle: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontFamily: 'SUIT',
                       fontWeight: FontWeight.w500,
                       color: MIXIN_BLACK_5,
                     ),
                     counterStyle: TextStyle(
-                      fontSize: 12,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                       fontFamily: 'SUIT',
-                      color: Color(0xFFCED0D5),
+                      color: const Color(0xFFCED0D5),
                     ),
                     border: InputBorder.none,
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      borderSide: BorderSide(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8.r),
+                      ),
+                      borderSide: const BorderSide(
                         color: MIXIN_BLACK_4,
                       ),
                     ),
                     // counterText: '',
                     filled: true,
                     fillColor: MIXIN_BLACK_4,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20.w),
                   ),
                   maxLength: 80,
-                  maxLines:null,
+                  maxLines: null,
                 ),
               ),
             ],

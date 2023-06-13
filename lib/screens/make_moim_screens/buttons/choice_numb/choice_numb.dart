@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../choice_cycle/numbs.dart';
 
@@ -25,23 +26,31 @@ class _ChoiceNumbState extends State<ChoiceNumb> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 100,),
+        SizedBox(height: 40.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // hours wheel
             Container(
-              width: 70,
-              height: 160,
+              width: 270.w,
+              height: 230.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(24.r),
+                  topLeft: Radius.circular(24.r),
+                ),
+              ),
               child: ListWheelScrollView.useDelegate(
                 // onSelectedItemChanged: (value) ==> print(value),
                 controller: _controller,
-                itemExtent: 60,
+                itemExtent: 70,
                 perspective: 0.005,
                 diameterRatio: 1000,
-                // useMagnifier: true,
-                // magnification: 1.2,
-                physics: FixedExtentScrollPhysics(),
+                squeeze: 1,
+                overAndUnderCenterOpacity: 0.2,
+                useMagnifier: true,
+                magnification: 1.3,
+                physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildListDelegate(
                   children: List<Widget>.generate(31, (index) {
                     return Numbs(

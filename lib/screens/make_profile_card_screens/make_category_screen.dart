@@ -61,7 +61,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
                 MaterialPageRoute(builder: (context) => const MakePositionScreen()),
               );
               print('categoryList : $selectedOptions');
-              await storage.write(key: 'userKeyword', value: jsonEncode(selectedOptions));
+              await storage.write(key: 'categorys', value: jsonEncode(selectedOptions));
             } else {null;}
           },
       ),
@@ -69,7 +69,7 @@ class _MakeCategoryScreenState extends State<MakeCategoryScreen> {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

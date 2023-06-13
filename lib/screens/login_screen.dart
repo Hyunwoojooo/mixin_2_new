@@ -12,7 +12,6 @@ import '../components/custom_textformfield.dart';
 import '../const/data.dart';
 import 'make_profile_card_screens/make_category_screen.dart';
 
-
 /*
   버튼 눌렀을 때 파란색 활성화 애니메이션 제거
   토큰 있을 때 없을 때
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: CustomTextFormField(
-                    hintText: '아이디',
+                    hintText: '학교 이메일',
                     onChanged: (String value) {
                       username = value;
                     },
@@ -95,41 +94,43 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscrueText: true,
                   ),
                 ),
-                 SizedBox(height: 107.0.h),
+                SizedBox(height: 107.0.h),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
+                      borderRadius: BorderRadius.circular(8.0.r),
+                    ),
                     elevation: 0.0,
                     backgroundColor: MIXIN_POINT_COLOR,
                   ),
                   onPressed: () async {
-                    // final idPassword = '$username:$password';
-                    //
-                    // // 일반 String을 base64로 변환
-                    // Codec<String, String> stringToBase64 = utf8.fuse(base64);
-                    //
-                    // String token = stringToBase64.encode(idPassword);
-                    //
-                    // final resp = await dio.post(serverUrl, data: {
-                    //   "userEmail": username,
-                    //   "userPassword": password,
-                    // });
-                    // print('resp : $resp');
-                    //
-                    // final refreshToken = resp.headers['Authorization'];
-                    // print('refreshToken : $refreshToken');
-                    // print('refreshTokenEncode : ${jsonEncode(refreshToken)}');
-                    //
-                    // // final accessToken = resp.data['accessToken'];
-                    // await storage.write(key: REFRESH_TOKEN_KEY, value: jsonEncode(refreshToken));
-                    // // await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
+                    final idPassword = '$username:$password';
+
+                    // 일반 String을 base64로 변환
+                    Codec<String, String> stringToBase64 = utf8.fuse(base64);
+
+                    String token = stringToBase64.encode(idPassword);
+
+                    final resp = await dio.post(serverUrl, data: {
+                      "userEmail": username,
+                      "userPassword": password,
+                    });
+                    print('resp : $resp');
+
+                    final refreshToken = resp.headers['Authorization'];
+                    print('refreshToken : $refreshToken');
+                    print('refreshTokenEncode : ${jsonEncode(refreshToken)}');
+
+                    // final accessToken = resp.data['accessToken'];
+                    await storage.write(
+                        key: REFRESH_TOKEN_KEY,
+                        value: jsonEncode(refreshToken));
+                    // await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
 
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           builder: (context) => const MakeCategoryScreen()),
                     );
-
                   },
                   child: SizedBox(
                     width: 260.w,
@@ -166,7 +167,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0.w, vertical: 8.h),
                         child: Container(
                           width: 1.w,
                           height: 12.h,
@@ -178,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: EdgeInsets.zero,
                         ),
                         onPressed: () {},
-                        child:  Text(
+                        child: Text(
                           '비밀번호 찾기',
                           style: TextStyle(
                               color: MIXIN_BLACK_4,
@@ -188,7 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0.w, vertical: 8.h),
                         child: Container(
                           width: 1.w,
                           height: 12.h,

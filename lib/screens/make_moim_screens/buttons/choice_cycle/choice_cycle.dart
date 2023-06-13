@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mixin_2/const/colors.dart';
 
 import 'numbs.dart';
 import 'weeks_months.dart';
@@ -23,22 +25,24 @@ class _ChoiceCycleState extends State<ChoiceCycle> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 100,),
+        SizedBox(height: 50.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //am_pm
-            Container(
-              width: 70,
-              height: 160,
+            SizedBox(
+              width: 70.w,
+              height: 160.h,
               child: ListWheelScrollView.useDelegate(
                 controller: _controller,
                 itemExtent: 70,
                 perspective: 0.005,
                 diameterRatio: 1000,
-                // useMagnifier: true,
-                // magnification: 1.2,
-                physics: FixedExtentScrollPhysics(),
+                squeeze: 1,
+                overAndUnderCenterOpacity: 0.2,
+                useMagnifier: true,
+                magnification: 1.3,
+                physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildBuilderDelegate(
                     childCount: 2,
                     builder: (context, index) {
@@ -54,22 +58,22 @@ class _ChoiceCycleState extends State<ChoiceCycle> {
                     }),
               ),
             ),
-            SizedBox(
-              width: 70,
-            ),
+            SizedBox(width: 70.w),
             // hours wheel
-            Container(
-              width: 70,
-              height: 160,
+            SizedBox(
+              width: 70.w,
+              height: 160.h,
               child: ListWheelScrollView.useDelegate(
                 // onSelectedItemChanged: (value) ==> print(value),
                 controller: _controller,
                 itemExtent: 60,
                 perspective: 0.005,
                 diameterRatio: 1000,
-                // useMagnifier: true,
-                // magnification: 1.2,
-                physics: FixedExtentScrollPhysics(),
+                squeeze: 1,
+                overAndUnderCenterOpacity: 0.2,
+                useMagnifier: true,
+                magnification: 1.3,
+                physics: const FixedExtentScrollPhysics(),
                 childDelegate: ListWheelChildLoopingListDelegate(
                   children: List<Widget>.generate(31, (index) {
                     return Numbs(
@@ -79,14 +83,16 @@ class _ChoiceCycleState extends State<ChoiceCycle> {
                 ),
               ),
             ),
-            SizedBox(width: 30,),
-            Text('회',
+            SizedBox(width: 30.w),
+            Text(
+              '회',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 24.sp,
                 fontFamily: 'SUIT',
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF474747),
-              ),),
+                color: MIXIN_47,
+              ),
+            ),
           ],
         ),
       ],

@@ -13,7 +13,7 @@ class MainHomeHomeScreen extends StatefulWidget {
 
 class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
   final List<bool> _selectScript = List.filled(3, false);
-  List<String> tagText = ['필카', '야외', '사진'];
+  List<String> tagText = ['자격증', '산업기사', '집중'];
 
   @override
   Widget build(BuildContext context) {
@@ -153,15 +153,15 @@ class _MainHomeHomeScreenState extends State<MainHomeHomeScreen> {
                 children: [
                   MoimCardSmall(
                     moimType: '스터디',
-                    dDay: 7,
-                    imageAsset: 'assets/images/category_images/music.png',
-                    categoryName: '음악',
-                    memberGender: 1,
-                    totalMember: 6,
-                    currentMember: 1,
+                    dDay: 10,
+                    imageAsset: 'assets/images/category_images/class.png',
+                    categoryName: '수업',
+                    memberGender: 0,
+                    totalMember: 5,
+                    currentMember: 3,
                     onPressed: (){},
                     heartColor: MIXIN_POINT_COLOR,
-                    moimName: '필름감아',
+                    moimName: '산업안전 산업기사 자격증 스터디',
                     tagText: tagText,
                   ),
                   SizedBox(width: 12.w),

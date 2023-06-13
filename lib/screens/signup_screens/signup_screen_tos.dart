@@ -90,20 +90,20 @@ class _SignUpTosScreenState extends State<SignUpTosScreen> {
         text: '다음',
         fillColor: nextButtonColor == true ? MIXIN_POINT_COLOR : MIXIN_BLACK_4,
         onPressed: () async {
-          // if (nextButtonColor == true) {
-          //   Navigator.of(context).push(
-          //     MaterialPageRoute(
-          //       builder: (context) => SignUpScreenNamePhone(),
-          //     ),
-          //   );
-          //   print('광고성 약관 : $isAdIfmCheckedText');
-          // } else {}
+          if (nextButtonColor == true) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => SignUpScreenNamePhone(),
+              ),
+            );
+            print('광고성 약관 : $isAdIfmCheckedText');
+          } else {}
 
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => SignUpScreenNamePhone(),
-            ),
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => SignUpScreenNamePhone(),
+          //   ),
+          // );
         },
       ),
       body: SingleChildScrollView(

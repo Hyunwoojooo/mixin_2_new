@@ -276,17 +276,17 @@ class _SignUpScreenEmailState extends State<SignUpScreenEmail> {
                             borderRadius: BorderRadius.circular(8.0.r)),
                         elevation: 0.0),
                     onPressed: () async {
-                      // if(nextButton == true){
-                      //   Navigator.of(context).push(
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const SignUpScreenPassword()),
-                      //   );
-                      //   await storage.write(key: 'userEmail', value: userEmail);
-                      // } else{null;}
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpScreenPassword()),
-                      );
+                      if(nextButton == true){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreenPassword()),
+                        );
+                        await storage.write(key: 'userEmail', value: userEmail);
+                      } else{null;}
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const SignUpScreenPassword()),
+                      // );
                     },
                     child: SizedBox(
                       width: 342.w,

@@ -13,7 +13,7 @@ class _SelectTermState extends State<SelectTerm> {
   Widget build(BuildContext context) {
     return SfDateRangePicker(
         view: DateRangePickerView.month,
-        monthViewSettings: DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+        monthViewSettings: const DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
         selectionMode: DateRangePickerSelectionMode.range);
   }
 }

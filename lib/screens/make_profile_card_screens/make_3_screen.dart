@@ -66,7 +66,7 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
             );
             await storage.write(
                 key: 'userValues', value: jsonEncode(selectOptions));
-            print(selectOptions);
+            print('userValues : $selectOptions');
           } else {
             null;
           }
@@ -164,9 +164,10 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         side: BorderSide(
-                            color:
-                                selectList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                            width: 1.5.w),
+                          color:
+                              selectList[0] == true ? MIXIN_2 : MIXIN_BLACK_5,
+                          width: 1.5.w,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0.r),
                         ),
@@ -228,7 +229,7 @@ class _MakeImportantScreenState extends State<MakeImportantScreen> {
                       side: BorderSide(
                           color:
                               selectList[1] == true ? MIXIN_2 : MIXIN_BLACK_5,
-                          width: 1.5),
+                          width: 1.5.w),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0.r),
                       ),

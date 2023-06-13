@@ -4,8 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:mixin_2/components/school_card.dart';
 import 'package:mixin_2/const/data.dart';
 import 'package:mixin_2/layout/text_layout.dart';
 import 'package:mixin_2/models/school_name.dart';
@@ -22,8 +20,20 @@ class SignUpScreenSchool extends StatefulWidget {
 
 class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
   final String serverSchoolUrl = '$ip/school';
-  final String serverDepartmentUrl = '$ip/동양대학교/Department';
+  final String serverDepartmentUrl = '$ip/동양미래대학교/Department';
+
+  // 학교 변수
   String selectSchool = '';
+  String userUniversity = '';
+  List<String> schoolNames = [];
+  List<String> schoolAddress = [];
+
+  // 학과 변수
+  String selectDepartment = '';
+  String userDepartment = '';
+  List<String> filteredDepartments = [];
+  List<String> collegeNames = [];
+
   final dio = Dio();
 
   List<int> studentNumber = List<int>.generate(24, (index) => index + 1);
@@ -65,9 +75,6 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
         .toList();
     print('newone ==========${filteredData}');
   }
-
-  List<String> schoolNames = [];
-  List<String> schoolAddress = [];
 
   List<String> filterData(String searchText) {
     return dataSchoolList
@@ -206,38 +213,27 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342.w,
                     height: 56.h,
                     child: Text(
-                      '대학교를 선택해주세요',
+                      userUniversity.isEmpty ? '대학교를 선택해주세요' : userUniversity,
                       style: TextStyle(
-                        color: MIXIN_BLACK_4,
+                        color: userUniversity.isEmpty
+                            ? MIXIN_BLACK_4
+                            : MIXIN_BLACK_1,
                         fontSize: 16.sp,
                         fontFamily: 'SUIT',
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
                   onPressed: () async {
                     final dataSchool = await dio.get(serverSchoolUrl);
-                    print('school : ${dataSchool.data}');
-                    print('school : ${dataSchool.data.runtimeType}');
-                    // print('Dongyang School : ${dataSchool.data[2]}');
-                    // fetchDataSchool();
-                    // Map<String, dynamic> data = dataSchool.data;
-                    // List<dynamic> filteredData = data['data']
-                    //     .where((item) => item['schoolName'].contains(selectSchool) as bool)
-                    //     .toList();
-                    // List<String> schoolNames = filteredData
-                    //     .map((item) => item['schoolName'] as String)
-                    //     .toList();
-                    // print(filteredData);
-                    // print(schoolNames);
-
                     if (!mounted) return;
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return SingleChildScrollView(
                             child: AlertDialog(
-                              contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 8.h),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 7.w, vertical: 8.h),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24.0.r),
                               ),
@@ -256,8 +252,11 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                   ),
                                   IconButton(
                                     onPressed: () {
+                                      setState(() {
+                                        schoolNames.clear();
+                                        schoolAddress.clear();
+                                      });
                                       Navigator.pop(context);
-                                      getSchoolNameList();
                                     },
                                     icon: Image.asset(
                                       'assets/images/icons/close_icon_black_3x.png',
@@ -270,7 +269,8 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                               content: Column(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12.w),
                                     width: 294.0.w,
                                     height: 48.0.h,
                                     child: TextFormField(
@@ -278,12 +278,17 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                         obscureText: false,
                                         autofocus: false,
                                         decoration: InputDecoration(
-                                          prefixIcon: Padding(
+                                          suffixIcon: Padding(
                                             padding:
                                                 EdgeInsets.only(top: 4.0.h),
-                                            child: Image.asset(
-                                              'assets/images/icon_search.png',
-                                              color: MIXIN_BLACK_4,
+                                            child: IconButton(
+                                              onPressed: () {
+                                                setState(() {});
+                                              },
+                                              icon: Image.asset(
+                                                'assets/images/icon_search.png',
+                                                color: MIXIN_POINT_COLOR,
+                                              ),
                                             ),
                                           ),
                                           contentPadding: EdgeInsets.symmetric(
@@ -342,10 +347,6 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                                             as String
                                                         : '정보없음')
                                                 .toList();
-
-                                            print('ADDDDD = $schoolAddress');
-                                            print(selectSchool);
-                                            print('Real : $filteredNameData');
                                           });
                                         }),
                                   ),
@@ -386,13 +387,26 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                                               height: 32.h,
                                               child: ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
-                                                  backgroundColor: MIXIN_POINT_COLOR,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(8.r),
-                                                  ),
-                                                  padding: EdgeInsets.zero
-                                                ),
-                                                onPressed: () {},
+                                                    backgroundColor:
+                                                        MIXIN_POINT_COLOR,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.r),
+                                                    ),
+                                                    padding: EdgeInsets.zero),
+                                                onPressed: () {
+                                                  userUniversity =
+                                                      schoolNames[index];
+                                                  print(
+                                                      'userUniversity = $userUniversity');
+                                                  setState(() {
+                                                    schoolNames.clear();
+                                                    schoolAddress.clear();
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
                                                 child: Text(
                                                   '선택하기',
                                                   style: TextStyle(
@@ -417,6 +431,7 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                   },
                 ),
                 SizedBox(height: 24.0.h),
+
                 const InfoText(text: '학과'),
                 SizedBox(height: 12.0.h),
                 ElevatedButton(
@@ -429,82 +444,224 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     elevation: 0.0,
                   ),
                   onPressed: () async {
-                    final resp1 = await dio.get(serverDepartmentUrl);
-                    print('school : ${resp1.data}');
+                    final dataDepartment = await dio.get(serverDepartmentUrl);
+                    Map<String, dynamic> data = dataDepartment.data;
+                    List<dynamic> colleges = data['data']['colleges'];
+
+                    print('학과데이터 : ${dataDepartment.data}');
                     if (!mounted) return;
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return AlertDialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0.r),
-                            ),
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '학과 검색하기',
-                                  style: TextStyle(
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 24.0.sp,
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: Image.asset(
-                                    'assets/images/icons/close_icon_black_3x.png',
-                                    width: 26.w,
-                                    color: MIXIN_BLACK_1,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            content: Column(
-                              children: [
-                                SizedBox(
-                                  width: 294.0.w,
-                                  height: 48.0.h,
-                                  child: TextFormField(
-                                    cursorColor: Colors.grey,
-                                    obscureText: false,
-                                    autofocus: false,
-                                    decoration: InputDecoration(
-                                      prefixIcon: Image.asset(
-                                          'assets/images/icon_search.png'),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.0, horizontal: 12.0.w),
-                                      hintText: '학과검색',
-                                      hintStyle: TextStyle(
-                                        color: MIXIN_BLACK_4,
-                                        fontSize: 16.sp,
-                                        fontFamily: 'SUIT',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      fillColor: MIXIN_BLACK_5,
-                                      filled: true,
-                                      border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0.r),
-                                        borderSide: const BorderSide(
-                                          color: MIXIN_BLACK_4,
-                                          width: 1,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0.r),
-                                        borderSide: const BorderSide(
-                                          color: MIXIN_BLACK_4,
-                                          width: 1,
-                                        ),
-                                      ),
+                          return SingleChildScrollView(
+                            child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24.0.r),
+                              ),
+                              title: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '학과 검색하기',
+                                    style: TextStyle(
+                                      fontFamily: 'SUIT',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 24.0.sp,
+                                      color: MIXIN_BLACK_1,
                                     ),
                                   ),
-                                )
-                              ],
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        selectDepartment = '';
+                                        filteredDepartments.clear();
+                                        collegeNames.clear();
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Image.asset(
+                                      'assets/images/icons/close_icon_black_3x.png',
+                                      width: 26.w,
+                                      color: MIXIN_BLACK_1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              content: Column(
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12.w),
+                                    width: 294.0.w,
+                                    height: 48.0.h,
+                                    child: TextFormField(
+                                      cursorColor: Colors.grey,
+                                      obscureText: false,
+                                      autofocus: false,
+                                      decoration: InputDecoration(
+                                        prefixIcon: Padding(
+                                          padding: EdgeInsets.only(top: 4.0.h),
+                                          child: Image.asset(
+                                              'assets/images/icon_search.png'),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 0.0, horizontal: 12.0.w),
+                                        hintText: '학과검색',
+                                        hintStyle: TextStyle(
+                                          color: MIXIN_BLACK_4,
+                                          fontSize: 16.sp,
+                                          fontFamily: 'SUIT',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        fillColor: MIXIN_BLACK_5,
+                                        filled: true,
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0.r),
+                                          borderSide: const BorderSide(
+                                            color: MIXIN_BLACK_4,
+                                            width: 1,
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0.r),
+                                          borderSide: const BorderSide(
+                                            color: MIXIN_BLACK_4,
+                                            width: 1,
+                                          ),
+                                        ),
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectDepartment = value;
+                                          Map<String, String>
+                                              departmentCollegeMap = {};
+
+                                          // departmentName과 collegeName 매칭하기
+                                          for (var college in colleges) {
+                                            List<dynamic> departments =
+                                                college['departments'];
+                                            for (var department
+                                                in departments) {
+                                              String departmentName =
+                                                  department['departmentName'];
+                                              String collegeName =
+                                                  college['collegeName'];
+                                              departmentCollegeMap[
+                                                  departmentName] = collegeName;
+                                            }
+                                          }
+
+                                          // departmentName 필터링하기
+                                          filteredDepartments
+                                              .clear(); // 새로운 검색을 위해 리스트 초기화
+
+                                          for (var departmentName
+                                              in departmentCollegeMap.keys) {
+                                            if (departmentName
+                                                .contains(selectDepartment)) {
+                                              filteredDepartments
+                                                  .add(departmentName);
+                                            }
+                                          }
+                                          // 매칭된 collegeName 가져오기
+                                          collegeNames
+                                              .clear(); // 새로운 검색을 위해 리스트 초기화
+
+                                          for (var departmentName
+                                              in filteredDepartments) {
+                                            String? collegeName =
+                                                departmentCollegeMap[
+                                                    departmentName];
+                                            collegeNames.add(collegeName!);
+                                          }
+                                          print(
+                                              '----------------\n$collegeNames');
+                                          print(
+                                              '----------------\n$filteredDepartments');
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 12.h),
+                                  SizedBox(
+                                    width: 320.0.w,
+                                    height: 550.h,
+                                    child: ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      itemCount: filteredDepartments.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return SizedBox(
+                                          height: 70.h,
+                                          width: 294.0.w,
+                                          child: ListTile(
+                                            title: Text(
+                                              filteredDepartments[index],
+                                              style: TextStyle(
+                                                  fontFamily: 'SUIT',
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16.sp,
+                                                  color: MIXIN_BLACK_1),
+                                            ),
+                                            subtitle: Text(
+                                              collegeNames[index].isEmpty
+                                                  ? '정보없음'
+                                                  : collegeNames[index],
+                                              style: TextStyle(
+                                                fontFamily: 'SUIT',
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 12.sp,
+                                                color: MIXIN_BLACK_3,
+                                              ),
+                                            ),
+                                            trailing: SizedBox(
+                                              width: 70.w,
+                                              height: 32.h,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        MIXIN_POINT_COLOR,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.r),
+                                                    ),
+                                                    padding: EdgeInsets.zero),
+                                                onPressed: () {
+                                                  userDepartment =
+                                                      filteredDepartments[
+                                                          index];
+                                                  print(
+                                                      'userUniversity = $userDepartment');
+                                                  setState(() {
+                                                    selectDepartment = '';
+                                                    filteredDepartments.clear();
+                                                    collegeNames.clear();
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  '선택하기',
+                                                  style: TextStyle(
+                                                    fontFamily: 'SUIT',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14.sp,
+                                                    color: WHITE,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         });
@@ -514,12 +671,14 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                     width: 342.w,
                     height: 56.h,
                     child: Text(
-                      '학과를 선택해주세요',
+                      userDepartment.isEmpty ? '학과를 선택해주세요' : userDepartment,
                       style: TextStyle(
-                        color: MIXIN_BLACK_4,
+                        color: userDepartment.isEmpty
+                            ? MIXIN_BLACK_4
+                            : MIXIN_BLACK_1,
                         fontSize: 16.sp,
                         fontFamily: 'SUIT',
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -542,9 +701,9 @@ class _SignUpScreenSchoolState extends State<SignUpScreenSchool> {
                       await storage.write(
                           key: 'userStudentId', value: userStudentId);
                       await storage.write(
-                          key: 'userUniversity', value: '동양미래대학교');
+                          key: 'userUniversity', value: userUniversity);
                       await storage.write(
-                          key: 'userDepartment', value: '자동화공학과');
+                          key: 'userDepartment', value: userDepartment);
                     },
                     child: SizedBox(
                       width: 342.w,

@@ -165,66 +165,62 @@ class _SignUpScreenPasswordState extends State<SignUpScreenPassword> {
                             borderRadius: BorderRadius.circular(8.0.r)),
                         elevation: 0.0),
                     onPressed: () async {
-                      // if ((userPassword == userPasswordCheck &&
-                      //         userPassword.isNotEmpty &&
-                      //         userPasswordCheck.isNotEmpty) &&
-                      //     _hasUpperCaseAndNumber(userPassword) &&
-                      //     userPassword.length >= 8 &&
-                      //     userPassword.length <= 16) {
-                      //   Dio dio = Dio();
-                      //   String? agradInfrm =
-                      //   await storage.read(key: 'isAdIfmChecked');
-                      //   print('광고성 : $agradInfrm');
-                      //   String? userName = await storage.read(key: 'userName');
-                      //   print('이름 : $userName');
-                      //   String? userGender =
-                      //   await storage.read(key: 'userGender');
-                      //   print('성별 : $userGender');
-                      //   String? userPhoneNumber =
-                      //   await storage.read(key: 'userPhoneNumber');
-                      //   print('휴대폰 번호 : $userPhoneNumber');
-                      //   String? userCarrier =
-                      //   await storage.read(key: 'userAgent');
-                      //   print('통신사 : $userCarrier');
-                      //   String? userStudentId =
-                      //   await storage.read(key: 'userStudentId');
-                      //   print('학번 : $userStudentId');
-                      //   String? userUniversity =
-                      //   await storage.read(key: 'userUniversity');
-                      //   print('대학교 : $userUniversity');
-                      //   String? userDepartment =
-                      //   await storage.read(key: 'userDepartment');
-                      //   print('학과 : $userDepartment');
-                      //   String? userEmail = await storage.read(key: 'userEmail');
-                      //   print('이메일 : $userEmail');
-                      //   await storage.write(
-                      //       key: 'userPassword', value: userPassword);
-                      //   print('비밀번호 : $userPassword');
-                      //
-                      //   final Response resp = await dio.post(serverUrl, data: {
-                      //     "agradInfrm": agradInfrm,
-                      //     "userName": userName,
-                      //     "userGender": userGender,
-                      //     "userPhoneNumber": userPhoneNumber,
-                      //     "userCarrier": userCarrier,
-                      //     "userStudentId": userStudentId,
-                      //     "userUniversity": userUniversity,
-                      //     "userDepartment": userDepartment,
-                      //     "userEmail": userEmail,
-                      //     "userPassword": userPassword,
-                      //   });
-                      //   print(resp);
-                      //
-                      //   Navigator.of(context).push(
-                      //       MaterialPageRoute(
-                      //           builder: (context) => const LoginScreen()),
-                      //   );
-                      // } else{null;}
+                      if ((userPassword == userPasswordCheck &&
+                              userPassword.isNotEmpty &&
+                              userPasswordCheck.isNotEmpty) &&
+                          _hasUpperCaseAndNumber(userPassword) &&
+                          userPassword.length >= 8 &&
+                          userPassword.length <= 16) {
+                        Dio dio = Dio();
+                        String? agradInfrm =
+                        await storage.read(key: 'isAdIfmChecked');
+                        print('광고성 : $agradInfrm');
+                        String? userName = await storage.read(key: 'userName');
+                        print('이름 : $userName');
+                        String? userGender =
+                        await storage.read(key: 'userGender');
+                        print('성별 : $userGender');
+                        String? userPhoneNumber =
+                        await storage.read(key: 'userPhoneNumber');
+                        print('휴대폰 번호 : $userPhoneNumber');
+                        String? userCarrier =
+                        await storage.read(key: 'userAgent');
+                        print('통신사 : $userCarrier');
+                        String? userStudentId =
+                        await storage.read(key: 'userStudentId');
+                        print('학번 : $userStudentId');
+                        String? userUniversity =
+                        await storage.read(key: 'userUniversity');
+                        print('대학교 : $userUniversity');
+                        String? userDepartment =
+                        await storage.read(key: 'userDepartment');
+                        print('학과 : $userDepartment');
+                        String? userEmail = await storage.read(key: 'userEmail');
+                        print('이메일 : $userEmail');
+                        await storage.write(
+                            key: 'userPassword', value: userPassword);
+                        print('비밀번호 : $userPassword');
 
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
-                      );
+                        final Response resp = await dio.post(serverUrl, data: {
+                          "agradInfrm": agradInfrm,
+                          "userName": userName,
+                          "userGender": userGender,
+                          "userPhoneNumber": userPhoneNumber,
+                          "userCarrier": userCarrier,
+                          "userStudentId": userStudentId,
+                          "userUniversity": userUniversity,
+                          "userDepartment": userDepartment,
+                          "userEmail": userEmail,
+                          "userPassword": userPassword,
+                        });
+                        print(resp);
+
+                        Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
+                        );
+                      } else{null;}
+
                     },
                     child: SizedBox(
                       width: 342.w,

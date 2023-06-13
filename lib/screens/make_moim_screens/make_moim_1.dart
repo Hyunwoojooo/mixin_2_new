@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mixin_2/screens/make_moim_screens/make_moim_tag.dart';
 import '../../const/colors.dart';
 import 'buttons/category_button.dart';
 
@@ -15,119 +17,141 @@ class _MakeMoim1State extends State<MakeMoim1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F2),
-      appBar: AppBar(
-        title: Text(
-          '모임 만들기',
-          style: TextStyle(
-              height: 1.66,
-              color: MIXIN_BLACK_1,
-              fontFamily: 'SUIT',
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-        leading: IconButton(
-          icon: ImageIcon(
-            AssetImage('assets/images/Back.png'),
-            size: 26,
-            color: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35.w,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/icons/back_icon_black_4x.png',
+                      width: 26.w,
+                      height: 26.h,
+                      fit: BoxFit.contain,
+                    ),
+                    SizedBox(width: 16.w),
+                    Text(
+                      '모임 만들기',
+                      style: TextStyle(
+                        fontFamily: 'SUIT',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.sp,
+                        color: MIXIN_BLACK_1,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-          onPressed: () {},
         ),
-        backgroundColor: Color(0xFFF2F2F2),
-        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
+              SizedBox(height: 25.h),
               SizedBox(
-                height: 25,
-              ),
-              SizedBox(
-                // height: 761,
-                height: 450,
+                height: 450.h,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+                  padding: EdgeInsets.fromLTRB(24.w, 0, 24.w, 0),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Container(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: '모임명을 작성해주세요',
-                              hintStyle: TextStyle(
-                                fontSize: 24,
-                                fontFamily: 'SUIT',
-                                fontWeight: FontWeight.w600,
-                                color: MIXIN_BLACK_4,
-                              ),
-                              counterStyle: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'SUIT',
-                                color: Color(0xFFCED0D5),
-                              ),
-                              border: InputBorder.none,
-                              counterText: '',
-                            ),
-                            style: TextStyle(
-                              fontSize: 24,
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: '모임명을 작성해주세요',
+                            hintStyle: TextStyle(
+                              fontSize: 24.sp,
                               fontFamily: 'SUIT',
                               fontWeight: FontWeight.w600,
+                              color: MIXIN_BLACK_4,
                             ),
-                            maxLength: 25,
+                            counterStyle: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'SUIT',
+                              color: const Color(0xFFCED0D5),
+                            ),
+                            border: InputBorder.none,
+                            counterText: '',
                           ),
+                          style: TextStyle(
+                            fontSize: 24.sp,
+                            fontFamily: 'SUIT',
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLength: 25,
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        SizedBox(height: 10.h),
                         //카테고리 버튼
-                        CartegoryButton(),
-                        SizedBox(height: 20),
-                        Container(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: "모임에 대한 정보를 입력해주세요.",
-                              hintStyle: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'SUIT',
-                                color: MIXIN_BLACK_4,
-                              ),
-                              counterStyle: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'SUIT',
-                                color: Color(0xFFCED0D5),
-                              ),
-                              border: InputBorder.none,
+                        const CartegoryButton(),
+                        SizedBox(height: 4.h),
+                        Divider(thickness: 1.w, height: 20.h),
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: "모임에 대한 정보를 입력해주세요.",
+                            hintStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'SUIT',
+                              color: MIXIN_BLACK_4,
                             ),
-                            maxLength: maxLength,
-                            maxLines: null,
+                            counterStyle: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'SUIT',
+                              color: const Color(0xFFCED0D5),
+                            ),
+                            border: InputBorder.none,
                           ),
+                          maxLength: maxLength,
+                          maxLines: null,
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Divider(thickness: 8, height: 8, color: _grey),
-              SizedBox(
-                height: 149,
-              ),
+              Divider(thickness: 8, height: 8.h, color: _grey),
+              SizedBox(height: 180.h),
               ElevatedButton(
-                child: Text('다음',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,fontFamily: 'SUIT'),),
                 style: TextButton.styleFrom(
-                  fixedSize: Size(342, 56),
+                  fixedSize: Size(342.w, 56.h),
                   elevation: 0,
-                  backgroundColor: MIXIN_BLACK_4,
-                  foregroundColor: Color(0xFFFFFFFF),
+                  backgroundColor: MIXIN_POINT_COLOR,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                      const TagPage(),
+                    ),
+                  );
+                },
+                child: Text(
+                  '다음',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.sp,
+                      fontFamily: 'SUIT',
+                    color: WHITE,
+                  ),
+                ),
               ),
             ],
           ),

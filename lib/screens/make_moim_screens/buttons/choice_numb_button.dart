@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../const/colors.dart';
 import 'choice_numb/choice_numb.dart';
+
 class ChoiceNumbButton extends StatefulWidget {
   const ChoiceNumbButton({Key? key}) : super(key: key);
 
@@ -9,67 +11,69 @@ class ChoiceNumbButton extends StatefulWidget {
 }
 
 class _ChoiceNumbButtonState extends State<ChoiceNumbButton> {
-  int ?newsAgency;
+  int? newsAgency;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48,
-      width: 342,
+      height: 48.h,
+      width: 342.w,
       child: ElevatedButton(
-        child: Container(
-            alignment: Alignment.centerLeft,
-            child: Text('인원 수를 선택해 주세요.')),
         style: ElevatedButton.styleFrom(
           elevation: 0,
           backgroundColor: Colors.white,
           foregroundColor: MIXIN_BLACK_4,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: MIXIN_BLACK_4,
-              width: 1.0,
+              color: MIXIN_BLACK_5,
+              width: 1.0.w,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
         ),
         onPressed: () {
           showModalBottomSheet(
+            backgroundColor: Colors.transparent,
             context: context,
             builder: (BuildContext context) {
-              return SizedBox(
-                height: 370,
-                width: double.infinity,
+              return Container(
+                height: 370.h,
+                // width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(24.r),
+                    topLeft: Radius.circular(24.r),
+                  ),
+                  color: WHITE,
+                ),
                 child: Column(
                   children: [
-                    ChoiceNumb(),
-                    Expanded(
-                      child: Center(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: MIXIN_POINT_COLOR,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
-                            elevation: 8.0,
-                          ),
-                          onPressed: () async {
-                            Navigator.of(context).pop();
-                            setState(() {
-                            });
-                            print(newsAgency);
-                          },
-                          child: Container(
-                            width: 342,
-                            height: 56,
-                            child: Center(
-                              child: Text(
-                                '확인',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontFamily: 'SUIT',
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                    const ChoiceNumb(),
+                    SizedBox(height: 30.h),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: MIXIN_POINT_COLOR,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0.r)),
+                          elevation: 0.0,
+                        ),
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          setState(() {});
+                          print(newsAgency);
+                        },
+                        child: Container(
+                          width: 342.w,
+                          height: 56.h,
+                          alignment: Alignment.center,
+                          child: Text(
+                            '확인',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                                fontFamily: 'SUIT',
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),
@@ -80,6 +84,18 @@ class _ChoiceNumbButtonState extends State<ChoiceNumbButton> {
             },
           );
         },
+        child: Container(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            '인원 수를 선택해 주세요.',
+            style: TextStyle(
+              fontFamily: 'SUIT',
+              fontWeight: FontWeight.w500,
+              fontSize: 16.sp,
+              color: MIXIN_BLACK_4,
+            ),
+          ),
+        ),
       ),
     );
   }

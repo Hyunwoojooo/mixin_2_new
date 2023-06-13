@@ -16,7 +16,7 @@ class MainMoimScreen extends StatefulWidget {
 class _MainMoimScreenState extends State<MainMoimScreen>
     with SingleTickerProviderStateMixin {
   List<bool> _isHeartSelect = List.filled(5, false);
-  List<String> tagText = ['LP', '음악감상', '논알콜'];
+  List<String> tagText = ['자격증', '산업기사', '집중'];
   bool _isThunderSelect = false;
 
   void onTap(int index) {
@@ -64,8 +64,6 @@ class _MainMoimScreenState extends State<MainMoimScreen>
                         padding: EdgeInsets.only(top: 6.h),
                         icon: Image.asset(
                           'assets/images/icon_search.png',
-                          // width: 30,
-                          // height: 30,
                           color: Colors.black,
                         ),
                       ),
@@ -316,27 +314,27 @@ class _MainMoimScreenState extends State<MainMoimScreen>
             MoimCardBig(
               moimType: '스터디',
               dDay: 10,
-              imageAsset: 'assets/images/category_images/music.png',
-              categoryName: '음악',
+              imageAsset: 'assets/images/category_images/class.png',
+              categoryName: '수업',
               memberGender: 0,
-              totalMember: 14,
-              currentMember: 4,
+              totalMember: 5,
+              currentMember: 3,
               onPressed: (){},
               heartColor: MIXIN_POINT_COLOR,
-              moimName: '역전할맥 5명 구합니다앙아아아아아아아아앙',
+              moimName: '산업안전 산업기사 자격증 스터디',
               tagText: tagText,
             ),
             // 번개 모임 카드
             MoimThunder(
-              imageAsset: 'assets/images/category_images/music.png',
-              categoryName: '음악',
+              imageAsset: 'assets/images/category_images/health.png',
+              categoryName: '운동',
               memberGender: 1,
               totalMember: 5,
               currentMember: 2,
               onPressed: (){},
-              moimName: '역전할맥 5명 구합니다앙아아아아아아아아앙',
-              moimDate: '12/1 (목)',
-              moimPlace: '6호관 앞 흡연부스 오세오세',
+              moimName: '풋살 6명 구합니다!',
+              moimDate: '6/7 (수)',
+              moimPlace: '6호관 앞 흡연부스',
             ),
             MoimThunder(
               imageAsset: 'assets/images/category_images/music.png',
@@ -345,7 +343,7 @@ class _MainMoimScreenState extends State<MainMoimScreen>
               totalMember: 5,
               currentMember: 2,
               onPressed: (){},
-              moimName: '역전할맥 5명 구합니다앙아아아아아아아아앙',
+              moimName: '역전할맥 ',
               moimDate: '12/1 (목)',
               moimPlace: '6호관 앞 흡연부스 오세오세',
             ),

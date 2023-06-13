@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mixin_2/const/data.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../const/colors.dart';
 import '../complete_profile_card_screen/complete_profile_card_screen.dart';
@@ -22,8 +23,8 @@ class MakeIntroduceScreen extends StatefulWidget {
 class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
   XFile? _pickedFile;
   final storage = FlutterSecureStorage();
-  final String serverUrl = 'http://122.37.227.143:8080/api/user/profile';
-  final String serverCategory = 'http://122.37.227.143:8080/api/category';
+  final String serverUrl = '$ip/api/user/profile';
+  final String serverCategory = '$ip/api/category';
 
   final _userNickNameTextEditController = TextEditingController();
   final _userIntroduceTextEditController = TextEditingController();
@@ -43,10 +44,6 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _imageSize = MediaQuery
-        .of(context)
-        .size
-        .width / 4;
 
     void fetchData() async {
       final dio = Dio();
@@ -54,38 +51,103 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
       String? userPersonality = await storage.read(key: 'userPersonality');
       String? userValues = await storage.read(key: 'userValues');
       String? refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
+      String? categorys = await storage.read(key: 'categorys');
+      List<String> userPersonalityList = [];
+      List<String> categoryList = [];
+
+      userPosition = userPosition!
+          .substring(1, userPosition!.length - 1) // 대괄호 제거
+          .replaceAll("\"", ''); // 쉼표로 분리하여 List<String> 생성
+
+      userPersonalityList = userPersonality!
+          .substring(1, userPersonality!.length - 1) // 대괄호 제거
+          .replaceAll("\"", '')
+          .split(','); // 쉼표로 분리하여 List<String> 생성
+
+      userValues = userValues!
+          .substring(1, userValues!.length - 1) // 대괄호 제거
+          .replaceAll("\"", ''); // 쉼표로 분리하여 List<String> 생성
+
+      categoryList = categorys!
+          .substring(1, categorys!.length - 1) // 대괄호 제거
+          .replaceAll("\"", '')
+          .split(','); // 쉼표로 분리하여 List<String> 생성
+
       except(refreshToken!);
 
       int userSmileDegree = 50;
-      print(refreshToken);
+      print('refreshToken : $refreshToken');
       print(jsonDecode(refreshToken)[0]);
+
+
       final Response resp = await dio.post(serverUrl,
           options: Options(
               headers: {
-                "Authorization": jsonDecode(refreshToken!)[0],
+                "Authorization": jsonDecode(refreshToken)[0],
               }
           ),
           data: {
             "userPosition": userPosition,
-            "userPersonality": userPersonality,
+            "userPersonalitys": userPersonalityList,
             "userValues": userValues,
             "userSmileDegree": userSmileDegree,
             "userIntroduceText": userIntroduceText,
             "userNickName": userNickName,
           });
+
+
+      final Response respCategory = await dio.post(serverCategory,
+          options: Options(
+              headers: {
+                "Authorization": jsonDecode(refreshToken)[0],
+              }
+          ),
+          data: {
+            "categorys": categoryList,
+          });
+
+      print('userPosition : $userPosition');
+      print(userPosition.runtimeType);
+      print('userPersonality : $userPersonality');
+      print(userPersonality.runtimeType);
+      print('userPersonalityList : $userPersonalityList');
+      print(userPersonalityList.runtimeType);
+      print('userValues : $userValues');
+      print(userValues.runtimeType);
+      print('categorys : $categorys');
+      print(categorys.runtimeType);
+      print('categorysList : $categoryList');
+      print(categoryList.runtimeType);
+
+      print(respCategory);
       print(resp);
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.0,
-        leading: GestureDetector(
-          child: Image.asset('assets/images/back_icon.png'),
-          onTap: () {
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          titleSpacing: -35.w,
+          title: GestureDetector(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20.h,
+                ),
+                Image.asset(
+                  'assets/images/icons/back_icon_black_4x.png',
+                  width: 26.w,
+                  height: 26.h,
+                  fit: BoxFit.contain,
+                ),
+              ],
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -112,7 +174,7 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                   width: 203.w,
                   height: 36.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(18.0.r),
                     color: MIXIN_BLACK_5,
                   ),
                   child: Text(
@@ -126,55 +188,60 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                   ),
                 ),
                 SizedBox(height: 47.h),
-                SizedBox(
-                  width: 80.w,
-                  height: 80.h,
-                  child: ElevatedButton(
-                    onPressed: (){
-                      print(userIntroduceText);
-                      print(userNickName);
-                    },
-                    child: Text('asdf'),
-                  )
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey,
+                  ),
+                  height: 90.h,
+                  width: 90.w,
+                  child: SfRadialGauge(
+                    animationDuration: 2000,
+                    axes: <RadialAxis>[
+                      RadialAxis(
+                        startAngle: 90,
+                        endAngle: 90,
+                        radiusFactor: 1,
+                        isInversed: true,
+                        canScaleToFit: true,
+                        minimum: 0,
+                        maximum: 100,
+                        showLabels: false,
+                        showTicks: false,
+                        axisLineStyle: const AxisLineStyle(
+                          thickness: 5,
+                          cornerStyle: CornerStyle.bothFlat,
+                          color: Colors.white,
+                        ),
+                        pointers: const <GaugePointer>[
+                          RangePointer(
+                            value: 50,
+                            width: 0.11,
+                            sizeUnit: GaugeSizeUnit.factor,
+                            cornerStyle: CornerStyle.bothCurve,
+                            gradient: SweepGradient(
+                              colors: <Color>[
+                                MIXIN_,
+                                Color(0xFF51B49F),
+                              ],
+                              stops: <double>[
+                                0.25,
+                                0.75,
+                              ],
+                            ),
+                          ),
+                          MarkerPointer(
+                            value: 50,
+                            markerHeight: 15,
+                            markerWidth: 15,
+                            markerType: MarkerType.circle,
+                            color: Color(0xFF32A086),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                // Column(
-                //   children: [
-                //     const SizedBox(height: 20,),
-                //     if (_pickedFile == null)
-                //       Container(
-                //         constraints: BoxConstraints(
-                //           minHeight: _imageSize,
-                //           minWidth: _imageSize,
-                //         ),
-                //         child: GestureDetector(
-                //           onTap: () {
-                //             _showBottomSheet();
-                //           },
-                //           child: Center(
-                //             child: Icon(
-                //               Icons.account_circle,
-                //               size: _imageSize,
-                //             ),
-                //           ),
-                //         ),
-                //       )
-                //     else
-                //       Center(
-                //         child: Container(
-                //           width: _imageSize,
-                //           height: _imageSize,
-                //           decoration: BoxDecoration(
-                //             shape: BoxShape.circle,
-                //             border: Border.all(
-                //                 width: 2, color: Theme.of(context).colorScheme.primary),
-                //             image: DecorationImage(
-                //                 image: FileImage(File(_pickedFile!.path)),
-                //                 fit: BoxFit.cover),
-                //           ),
-                //         ),
-                //       ),
-                //   ],
-                // ),
                 SizedBox(height: 35.h),
                 // 닉네임
                 SizedBox(
@@ -211,26 +278,27 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                       fillColor: Colors.grey,
                       filled: false,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         borderSide:
-                        const BorderSide(color: MIXIN_BLACK_5, width: 1.5),
+                        BorderSide(color: MIXIN_BLACK_5, width: 1.5.w),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         borderSide:
-                        const BorderSide(color: MIXIN_BLACK_5, width: 1.5),
+                        BorderSide(color: MIXIN_BLACK_5, width: 1.5.w),
                       ).copyWith(
                           borderSide: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: const BorderSide(
-                                  color: MIXIN_BLACK_5, width: 1.5))
+                              borderRadius: BorderRadius.circular(8.0.r),
+                              borderSide: BorderSide(
+                                  color: MIXIN_BLACK_5, width: 1.5.w),)
                               .borderSide),
                     ),
                   ),
                 ),
+
                 // 0/8
                 Padding(
                   padding: EdgeInsets.only(left: 200.0.w, top: 4.h),
@@ -250,8 +318,8 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                   width: 342.w,
                   height: 160.h,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(color: MIXIN_BLACK_5, width: 1.5)),
+                      borderRadius: BorderRadius.circular(8.0.r),
+                      border: Border.all(color: MIXIN_BLACK_5, width: 1.5.w)),
                   child: TextFormField(
                     textAlign: TextAlign.start,
                     scrollPadding: EdgeInsets.zero,
@@ -287,22 +355,22 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                       fillColor: Colors.grey,
                       filled: false,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         borderSide: const BorderSide(
                           color: Colors.transparent,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8.0.r),
                         borderSide: const BorderSide(
                           color: Colors.transparent,
                         ),
                       ).copyWith(
                           borderSide: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(8.0.r),
                             borderSide: const BorderSide(
                               color: Colors.transparent,
                             ),
@@ -332,7 +400,7 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: MIXIN_POINT_COLOR,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
+                            borderRadius: BorderRadius.circular(8.0.r)),
                         elevation: 0.0),
                     onPressed: () async {
                       print('userNickName : $userNickName');
@@ -370,72 +438,4 @@ class _MakeIntroduceScreenState extends State<MakeIntroduceScreen> {
       ),
     );
   }
-
-// _showBottomSheet() {
-//   return showModalBottomSheet(
-//     context: context,
-//     shape: const RoundedRectangleBorder(
-//       borderRadius: BorderRadius.vertical(
-//         top: Radius.circular(25),
-//       ),
-//     ),
-//     builder: (context) {
-//       return Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: [
-//           const SizedBox(
-//             height: 20,
-//           ),
-//           ElevatedButton(
-//             onPressed: () => _getCameraImage(),
-//             child: const Text('사진찍기'),
-//           ),
-//           const SizedBox(
-//             height: 10,
-//           ),
-//           const Divider(
-//             thickness: 3,
-//           ),
-//           const SizedBox(
-//             height: 10,
-//           ),
-//           ElevatedButton(
-//             onPressed: () => _getPhotoLibraryImage(),
-//             child: const Text('라이브러리에서 불러오기'),
-//           ),
-//           const SizedBox(
-//             height: 20,
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }
-//
-// _getCameraImage() async {
-//   final pickedFile =
-//   await ImagePicker().pickImage(source: ImageSource.camera);
-//   if (pickedFile != null) {
-//     setState(() {
-//       _pickedFile = pickedFile;
-//     });
-//   } else {
-//     if (kDebugMode) {
-//       print('이미지 선택안함');
-//     }
-//   }
-// }
-// _getPhotoLibraryImage() async {
-//   final pickedFile =
-//   await ImagePicker().pickImage(source: ImageSource.gallery);
-//   if (pickedFile != null) {
-//     setState(() {
-//       _pickedFile = _pickedFile;
-//     });
-//   } else {
-//     if (kDebugMode) {
-//       print('이미지 선택안함');
-//     }
-//   }
-// }
 }

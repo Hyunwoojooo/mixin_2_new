@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mixin_2/screens/main_screens/main_bottom_navigation_bar.dart';
+import 'package:mixin_2/screens/main_screens/main_home_screens/main_home_screen.dart';
 
 import '../../const/colors.dart';
-
 
 class MakeMoim4 extends StatelessWidget {
   const MakeMoim4({Key? key}) : super(key: key);
@@ -9,94 +11,85 @@ class MakeMoim4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F2),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFF2F2F2),
-        elevation: 0,
-      ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 450 + 149 + 24,
-              child: Column(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 197.h),
+              Text(
+                '모임이 완성되었습니다!',
+                style: TextStyle(
+                  fontFamily: 'SUIT',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24.sp,
+                  color: MIXIN_BLACK_1,
+                ),
+              ),
+              SizedBox(height: 45.h),
+              Image.asset(
+                'assets/images/complete_make_moim.png',
+                width: 233.w,
+                height: 299.h,
+              ),
+              SizedBox(height: 183.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    height: 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '모임이 완성되었습니다!',
-                        style: TextStyle(
-                            fontFamily: 'SUIT',
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                            color: MIXIN_BLACK_1),
+                    width: 165.w,
+                    height: 56.h,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        backgroundColor: MIXIN_POINT_COLOR,
+                        elevation: 0
                       ),
-                    ],
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const MainBottomNavigationBar(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        '완료하기',
+                        style: TextStyle(
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(
-                    height: 45,
-                  ),
-                  Container(
-                    width: 300,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/_MoimFinish.png'),
+                    width: 165.w,
+                    height: 56.h,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        backgroundColor: MIXIN_BLACK_4,
+                        elevation: 0
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        '공유하기',
+                        style: TextStyle(
+                          fontFamily: 'SUIT',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                        ),
                       ),
                     ),
-                  ),
+                  )
                 ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  child: Text(
-                    '완료하기',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        fontFamily: 'SUIT'),
-                  ),
-                  style: TextButton.styleFrom(
-                    fixedSize: Size(165, 56),
-                    elevation: 0,
-                    backgroundColor: Color(0xFF51B49F),
-                    foregroundColor: Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-                ElevatedButton(
-                  child: Text(
-                    '완료하기',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        fontFamily: 'SUIT'),
-                  ),
-                  style: TextButton.styleFrom(
-                    fixedSize: Size(165, 56),
-                    elevation: 0,
-                    backgroundColor: MIXIN_BLACK_4,
-                    foregroundColor: Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
